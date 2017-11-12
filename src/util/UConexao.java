@@ -14,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author Pedro
  */
-public class Conexao {
+public class UConexao {
 
     private static Connection conexao = null;
 
@@ -34,10 +34,10 @@ public class Conexao {
         try {
             Class.forName("oracle.jdbc.OracleDriver");
             return DriverManager.getConnection("jdbc:oracle:thin:@"
-                    + Propriedades.getProp("db.host")
+                    + UPropriedades.getProp("db.host")
                     + ":1521:xe",
-                    Propriedades.getProp("db.user"),
-                    Propriedades.getProp("db.password"));
+                    UPropriedades.getProp("db.user"),
+                    UPropriedades.getProp("db.password"));
         } catch (Exception e) {
             throw e;
         }

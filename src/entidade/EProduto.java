@@ -1,5 +1,5 @@
 package entidade;
 
-public class Produto {
+public class EProduto {
 
 }

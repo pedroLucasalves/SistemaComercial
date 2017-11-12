@@ -13,7 +13,7 @@ import java.util.Properties;
  *
  * @author Pedro
  */
-public class Propriedades {
+public class UPropriedades {
     public static String getProp(String nome)throws IOException{
         Properties props = new Properties();
         FileInputStream file = new FileInputStream(
