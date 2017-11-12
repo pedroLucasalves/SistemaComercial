@@ -18,7 +18,8 @@ public class ETipoFuncionario {
     public ETipoFuncionario() {
 
     }
-    public ETipoFuncionario(int codigo, String descricao){
+
+    public ETipoFuncionario(int codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -39,4 +40,9 @@ public class ETipoFuncionario {
         this.descricao = descricao;
     }
 
+    @Override
+    public String toString() {
+        return this.descricao;
+
+    }
 }
