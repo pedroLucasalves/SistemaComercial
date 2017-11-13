@@ -42,9 +42,11 @@ public class ATipoFuncionario extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButtonSalvat = new javax.swing.JButton();
+        jButtonPesquisar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
+        setTitle("ATipoFuncionarioCadastro");
 
         jButtonAlterar.setBackground(new java.awt.Color(255, 255, 0));
         jButtonAlterar.setText("Alterar");
@@ -72,6 +74,8 @@ public class ATipoFuncionario extends javax.swing.JInternalFrame {
         jButtonSalvat.setBackground(new java.awt.Color(51, 255, 51));
         jButtonSalvat.setText("Salvar");
 
+        jButtonPesquisar.setText("Pesquisar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,7 +91,9 @@ public class ATipoFuncionario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextFieldCodigo)
-                                .addGap(97, 97, 97))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonPesquisar)
+                                .addGap(6, 6, 6))
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(77, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -103,10 +109,11 @@ public class ATipoFuncionario extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -117,7 +124,7 @@ public class ATipoFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(jButtonAlterar)
                     .addComponent(jButtonExcluir)
                     .addComponent(jButtonCancelar))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,6 +143,7 @@ public class ATipoFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -5,10 +5,33 @@
  */
 package persistencia;
 
+import entidade.EProduto;
+import java.util.ArrayList;
+
 /**
  *
  * @author Pedro
  */
 public class PProduto {
+
+    public void incluir(EProduto eProduto) {
+        
+    }
+
+    public void alterar(EProduto eProduto) {
+        
+    }
+
+    public void excluir(int codigo) {
+        
+    }
+
+    public EProduto consultar(int codigo) {
+       return null; 
+    }
+
+    public ArrayList<EProduto> listar() {
+       return null; 
+    }
     
 }
