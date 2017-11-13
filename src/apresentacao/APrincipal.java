@@ -32,11 +32,11 @@ public class APrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPanePrincipal = new javax.swing.JDesktopPane();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jButtonProduto = new javax.swing.JButton();
-        jButtonFuncionario = new javax.swing.JButton();
-        jButtonCliente = new javax.swing.JButton();
-        jButtonPedido = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemFuncionario = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SistemaComercial");
@@ -47,117 +47,71 @@ public class APrincipal extends javax.swing.JFrame {
         jDesktopPanePrincipal.setLayout(jDesktopPanePrincipalLayout);
         jDesktopPanePrincipalLayout.setHorizontalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 931, Short.MAX_VALUE)
+            .addGap(0, 647, Short.MAX_VALUE)
         );
         jDesktopPanePrincipalLayout.setVerticalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 414, Short.MAX_VALUE)
         );
 
-        jDesktopPane1.setBackground(new java.awt.Color(255, 0, 0));
-        jDesktopPane1.setForeground(new java.awt.Color(255, 0, 0));
+        jMenu1.setText("Funcionarios");
 
-        jButtonProduto.setText("Produto");
-        jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemFuncionario.setText("Funcionario");
+        jMenuItemFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProdutoActionPerformed(evt);
+                jMenuItemFuncionarioActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItemFuncionario);
 
-        jButtonFuncionario.setText("Funcionario");
-        jButtonFuncionario.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setText("Tipo Funcionario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFuncionarioActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem2);
 
-        jButtonCliente.setText("Cliente");
-        jButtonCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClienteActionPerformed(evt);
-            }
-        });
+        jMenuBar1.add(jMenu1);
 
-        jButtonPedido.setText("Pedido");
-        jButtonPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPedidoActionPerformed(evt);
-            }
-        });
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
-        jDesktopPane1.setLayer(jButtonProduto, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButtonFuncionario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButtonCliente, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButtonPedido, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonProduto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonFuncionario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                    .addComponent(jButtonPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jButtonProduto)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonFuncionario)
-                .addGap(34, 34, 34)
-                .addComponent(jButtonCliente)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonPedido)
-                .addContainerGap(241, Short.MAX_VALUE))
-        );
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPanePrincipal))
+            .addComponent(jDesktopPanePrincipal)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
             .addComponent(jDesktopPanePrincipal)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFuncionarioActionPerformed
+    private void jMenuItemFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFuncionarioActionPerformed
         try{
-        ATipoFuncionario tela01 = new ATipoFuncionario(jDesktopPanePrincipal);
+        AFuncionario tela01 = new AFuncionario(jDesktopPanePrincipal);
         jDesktopPanePrincipal.add(tela01);
         tela01.setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
-    }//GEN-LAST:event_jButtonFuncionarioActionPerformed
+    }//GEN-LAST:event_jMenuItemFuncionarioActionPerformed
 
-    private void jButtonProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProdutoActionPerformed
-
-    private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClienteActionPerformed
-
-    private void jButtonPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPedidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonPedidoActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+            ATipoFuncionario tela02 = new ATipoFuncionario(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,11 +150,11 @@ public class APrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCliente;
-    private javax.swing.JButton jButtonFuncionario;
-    private javax.swing.JButton jButtonPedido;
-    private javax.swing.JButton jButtonProduto;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPanePrincipal;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemFuncionario;
     // End of variables declaration//GEN-END:variables
 }

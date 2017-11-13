@@ -5,9 +5,7 @@
  */
 package apresentacao;
 
-import entidade.ETipoFuncionario;
 import javax.swing.JDesktopPane;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,10 +24,7 @@ public class ATipoFuncionario extends javax.swing.JInternalFrame {
         
         this.jDesktopPanePrincipal = parametro;
     }
-    public ATipoFuncionario(JDesktopPane parametro, ETipoFuncionario eTipoFuncionario){
-        this(parametro);
-    }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,59 +34,112 @@ public class ATipoFuncionario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldCodigo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButtonSalvat = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Tipo Funcionário");
 
-        jButton1.setText("Cadastra Funcionario");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAlterar.setBackground(new java.awt.Color(255, 255, 0));
+        jButtonAlterar.setText("Alterar");
+
+        jButtonExcluir.setBackground(new java.awt.Color(255, 0, 0));
+        jButtonExcluir.setText("Excluir");
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Alterar Funcionario");
+        jLabel1.setText("Codigo");
+
+        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Descrição");
+
+        jButtonSalvat.setBackground(new java.awt.Color(51, 255, 51));
+        jButtonSalvat.setText("Salvar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(498, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldCodigo)
+                                .addGap(97, 97, 97))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(77, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonSalvat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonCancelar)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalvat)
+                    .addComponent(jButtonAlterar)
+                    .addComponent(jButtonExcluir)
+                    .addComponent(jButtonCancelar))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-        ATipoFuncionario_cadastro tela02 = new ATipoFuncionario_cadastro(jDesktopPanePrincipal);
-        jDesktopPanePrincipal.add(tela02);
-        tela02.setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
+
+    }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonSalvat;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldCodigo;
     // End of variables declaration//GEN-END:variables
 }
