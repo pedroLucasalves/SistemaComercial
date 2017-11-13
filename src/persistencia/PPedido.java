@@ -6,6 +6,7 @@
 package persistencia;
 
 import entidade.EPedido;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +27,10 @@ public class PPedido {
     }
 
     public EPedido consultar(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ArrayList<EPedido> listar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

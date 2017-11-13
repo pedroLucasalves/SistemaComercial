@@ -34,6 +34,6 @@ public class NPedido {
         return pPedido.consultar(codigo);
     }
     public ArrayList<EPedido> listar()throws SQLException, Exception{
-        return EPedido.listar();
+        return pPedido.listar();
     }
 }

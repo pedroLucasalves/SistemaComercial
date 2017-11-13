@@ -14,10 +14,6 @@ import java.util.ArrayList;
  */
 public class EPedido {
 
-    public static ArrayList<EPedido> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     private int codigo;
     private Date data;
     private double valorTotal;
@@ -45,6 +41,5 @@ public class EPedido {
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
-    
-    
+
 }
