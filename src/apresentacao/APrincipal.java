@@ -56,6 +56,7 @@ public class APrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Funcionarios");
 
+        jMenuItemFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
         jMenuItemFuncionario.setText("Funcionario");
         jMenuItemFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +65,7 @@ public class APrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemFuncionario);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem2.setText("Tipo Funcionario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
