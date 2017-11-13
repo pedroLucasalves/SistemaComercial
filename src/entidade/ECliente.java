@@ -10,7 +10,17 @@ package entidade;
  * @author Pedro
  */
 public class ECliente extends EPessoa {
+
+    private int codigo;
     private String formaPagamento;
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     public String getFormaPagamento() {
         return formaPagamento;
@@ -19,16 +29,17 @@ public class ECliente extends EPessoa {
     public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "CLiente{"
-                +"nome=" + nome
-                +"cpf=" + cpf
-                +"telefone=" + telefone
-                +"endereco=" + endereco
-                +"formaPagamento" + formaPagamento
-                +'}';
+                + "codigo=" + codigo
+                + "nome=" + nome
+                + "cpf=" + cpf
+                + "telefone=" + telefone
+                + "endereco=" + endereco
+                + "formaPagamento" + formaPagamento
+                + '}';
     }
-            
+
 }

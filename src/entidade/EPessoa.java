@@ -12,7 +12,7 @@ package entidade;
 public abstract class EPessoa {
    String nome;
    String cpf;
-   String telefone;
+   int telefone;
    String endereco;
 
     public String getNome() {
@@ -31,11 +31,11 @@ public abstract class EPessoa {
         this.cpf = cpf;
     }
 
-    public String getTelefone() {
+    public int getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(int telefone) {
         this.telefone = telefone;
     }
 

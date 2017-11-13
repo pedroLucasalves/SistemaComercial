@@ -28,13 +28,13 @@ public class NTipoFuncionario {
             per.alterar(eTipoFuncionario);
         }
     }
-    public void excluir(int codigo)throws SQLException{
+    public void excluir(int codigo)throws SQLException, Exception, Exception{
         per.excluir(codigo);
     }
-    public ETipoFuncionario consultar(int codigo) throws SQLException{
+    public ETipoFuncionario consultar(int codigo) throws SQLException, Exception{
         return per.consultar(codigo);
     }
-    public ArrayList<ETipoFuncionario> listar()throws SQLException{
+    public ArrayList<ETipoFuncionario> listar()throws SQLException, Exception{
         return per.listar();
     }
 }

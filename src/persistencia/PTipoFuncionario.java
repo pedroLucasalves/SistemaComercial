@@ -21,7 +21,7 @@ public class PTipoFuncionario {
     public void incluir(ETipoFuncionario eTipoFuncionario) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
 
-        String sq1 = "INSERT INTO FUNCIONARIO"
+        String sq1 = "INSERT INTO TIPOFUNCIONARIO"
                 + "(descricao) VALUES"
                 + "(?);";
         PreparedStatement ps = cnn.prepareStatement(sq1);
@@ -29,19 +29,19 @@ public class PTipoFuncionario {
         ps.setString(1, eTipoFuncionario.getDescricao());
         ps.execute();
 
-        String sql2 = "SELECT currval('FUNCIONARIO_CODIGO_SEQ') as codigo";
+        String sql2 = "SELECT currval('TIPOFUNCIONARIO_CODIGO_SEQ') as codigo;";
         Statement stm = cnn.createStatement();
         ResultSet rs = stm.executeQuery(sql2);
 
         if (rs.next()) {
-            int codigo = rs.getInt("codigo");
+            int codigo = rs.getInt("CODIGO");
         }
         rs.close();
         cnn.close();;
     }
 
     public void alterar(ETipoFuncionario eTipoFuncionario) throws ClassNotFoundException, Exception {
-        String sq1 = "UPDATE FUNCIONARIO SET DESCRICAO = ?, WHERE CODIGO = ?;";
+        String sq1 = "UPDATE TIPOFUNCIONARIO SET DESCRICAO = ?, WHERE CODIGO = ?;";
 
         Connection cnn = util.UConexao.getConexao();
         PreparedStatement psd = cnn.prepareStatement(sq1);
@@ -56,7 +56,7 @@ public class PTipoFuncionario {
     }
 
     public void excluir(int codigo) throws ClassNotFoundException, Exception {
-        String sq1 = "DELETE * FROM FUNCIONARIO WHERE CODIGO = ?;";
+        String sq1 = "DELETE * FROM TIPOFUNCIONARIO WHERE CODIGO = ?;";
 
         Connection cnn = util.UConexao.getConexao();
         PreparedStatement psd = cnn.prepareStatement(sq1);
@@ -70,7 +70,7 @@ public class PTipoFuncionario {
     }
 
     public ETipoFuncionario consultar(int codigo) throws ClassNotFoundException, Exception {
-        String sq1 = "SELECT * FROM FUNCIONARIO WHERE CODIGO = ?;";
+        String sq1 = "SELECT * FROM TIPOFUNCIONARIO WHERE CODIGO = ?;";
 
         Connection cnn = util.UConexao.getConexao();
         PreparedStatement psd = cnn.prepareStatement(sq1);
@@ -92,7 +92,7 @@ public class PTipoFuncionario {
     }
 
     public ArrayList<ETipoFuncionario> listar() throws ClassNotFoundException, Exception {
-        String sq1 = "SELECT * FROM FUNCIONARIO ORDEY BY CODIGO;";
+        String sq1 = "SELECT * FROM TIPOFUNCIONARIO ORDEY BY CODIGO;";
 
         Connection cnn = util.UConexao.getConexao();
         Statement stm = cnn.createStatement();

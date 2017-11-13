@@ -11,7 +11,16 @@ package entidade;
  */
 public class EFuncionario extends EPessoa {
 
+    private int codigo;
     private String rg;
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     public String getRg() {
         return rg;
@@ -31,4 +40,5 @@ public class EFuncionario extends EPessoa {
                 + "rg=" + rg
                 + '}';
     }
+
 }
