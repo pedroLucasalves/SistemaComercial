@@ -13,6 +13,21 @@ public class EFuncionario extends EPessoa {
 
     private int codigo;
     private String rg;
+    private ETipoFuncionario eTipoFuncionario;
+
+    public EFuncionario() {
+        eTipoFuncionario = new ETipoFuncionario();
+    }
+
+    public EFuncionario(ETipoFuncionario eTipoFuncionario) {
+        this.eTipoFuncionario = eTipoFuncionario;
+    }
+
+    public EFuncionario(int codigo, String nome) {
+        eTipoFuncionario = new ETipoFuncionario();
+        this.codigo = codigo;
+        this.nome = nome;
+    }
 
     public int getCodigo() {
         return codigo;
@@ -30,6 +45,15 @@ public class EFuncionario extends EPessoa {
         this.rg = rg;
     }
 
+    public ETipoFuncionario geteTipoFuncionario() {
+        return eTipoFuncionario;
+    }
+
+    public void seteTipoFuncionario(ETipoFuncionario eTipoFuncionario) {
+        this.eTipoFuncionario = eTipoFuncionario;
+    }
+    
+
     @Override
     public String toString() {
         return "Funcionario{"
@@ -38,6 +62,7 @@ public class EFuncionario extends EPessoa {
                 + "telefone=" + telefone
                 + "endereço=" + endereco
                 + "rg=" + rg
+                + "cod_funcionario=" + eTipoFuncionario
                 + '}';
     }
 

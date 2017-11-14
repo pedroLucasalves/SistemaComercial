@@ -8,6 +8,7 @@ package negocio;
 import entidade.EFuncionario;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import persistencia.PFuncionario;
 
 /**
@@ -34,7 +35,7 @@ public class NFuncionario {
     public EFuncionario consultar(int codigo)throws SQLException, Exception{
         return pFuncionario.consultar(codigo);
     }
-    public ArrayList<EFuncionario> listar()throws SQLException, Exception{
+    public List<EFuncionario> listar()throws SQLException, Exception{
         return pFuncionario.listar();
     }
 }

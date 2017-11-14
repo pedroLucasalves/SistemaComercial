@@ -3,26 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package apresentacao.cadastro;
-
-import javax.swing.JDesktopPane;
+package apresentacao.pesquisa;
 
 /**
  *
  * @author Pedro
  */
-public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
-    JDesktopPane jDesktopPanePrincipal;
+public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
+
     /**
-     * Creates new form AFuncionarioCadastro
+     * Creates new form AFuncionarioPesquisa
      */
-    public AFuncionarioCadastro() {
+    public AFuncionarioPesquisa() {
         initComponents();
-    }
-    public AFuncionarioCadastro(JDesktopPane parametro){
-        this();
-        
-        this.jDesktopPanePrincipal = parametro;
     }
 
     /**
@@ -34,18 +27,15 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setClosable(true);
-        setIconifiable(true);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
