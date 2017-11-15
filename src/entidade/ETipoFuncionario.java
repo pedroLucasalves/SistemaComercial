@@ -19,8 +19,8 @@ public class ETipoFuncionario {
 
     }
 
-    public ETipoFuncionario(int codigo, String descricao) {
-        this.codigo = codigo;
+    public ETipoFuncionario(int i, String descricao) {
+        this.codigo = i;
         this.descricao = descricao;
     }
 

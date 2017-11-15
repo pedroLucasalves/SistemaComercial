@@ -5,25 +5,45 @@
  */
 package apresentacao.cadastro;
 
+import entidade.EFuncionario;
+import entidade.ETipoFuncionario;
+import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import negocio.NFuncionario;
+import negocio.NTipoFuncionario;
 
 /**
  *
  * @author Pedro
  */
 public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
-        JDesktopPane jDesktopPanePrincipal;
+
+    JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form AFuncionarioCadastro
      */
-    public AFuncionarioCadastro() {
+    public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal) {
         initComponents();
+
+        carregaCombo();
+
+        this.jDesktopPanePrincipal = jDesktopPanePrincipal;
     }
-    public AFuncionarioCadastro(JDesktopPane parametro){
-        this();
-        
-        this.jDesktopPanePrincipal = parametro;
+
+    public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal, String codigo) {
+        this(jDesktopPanePrincipal);
+
+        try {
+            EFuncionario eFuncionario = new NFuncionario().consultar(Integer.parseInt(codigo));
+
+            preencherTela();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 
     /**
@@ -54,6 +74,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         jButtonAlterar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldEndereco = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -113,6 +135,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        jButtonSalvar.setBackground(new java.awt.Color(51, 255, 51));
+        jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +144,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonAlterar.setBackground(new java.awt.Color(255, 255, 0));
+        jButtonAlterar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAlterar.setText("Alterar");
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +153,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonExcluir.setBackground(new java.awt.Color(255, 0, 0));
+        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +162,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonFechar.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonFechar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonFechar.setText("Fechar");
         jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,15 +171,17 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel8.setText("Endereço");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButtonSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonAlterar)
@@ -157,37 +189,40 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
                         .addComponent(jButtonExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonFechar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5)
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel3))
+                            .addGap(205, 205, 205))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(55, 55, 55))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel2)
+                                    .addGap(19, 19, 19)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jComboBoxTipoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(55, 55, 55))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(19, 19, 19)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jButtonPesquisar))
-                                        .addComponent(jTextFieldNome))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldRG)
-                                            .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))))))))
+                                    .addComponent(jButtonPesquisar))
+                                .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextFieldRG)
+                                        .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel8))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBoxTipoFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -221,24 +256,48 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
                         .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jComboBoxTipoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
                     .addComponent(jButtonAlterar)
                     .addComponent(jButtonExcluir)
                     .addComponent(jButtonFechar))
-                .addContainerGap())
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        // TODO add your handling code here:
+        try {
+            EFuncionario eFuncionario = new EFuncionario();
+
+            if (!jTextFieldCodigo.getText().isEmpty()) {
+                eFuncionario.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
+            }
+            eFuncionario.setNome(jTextFieldNome.getText());
+            eFuncionario.setCpf(jFormattedTextFieldCPF.getText());
+            eFuncionario.setRg(jTextFieldRG.getText());
+            eFuncionario.setEndereco(jTextFieldEndereco.getText());
+            eFuncionario.setTelefone(Integer.parseInt(jFormattedTextFieldTelefone.getText()));
+            eFuncionario.seteTipoFuncionario((ETipoFuncionario) jComboBoxTipoFuncionario.getSelectedItem());
+
+            new NFuncionario().salvar(eFuncionario);
+
+            JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+
+            LimparTela();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
@@ -278,9 +337,45 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldEndereco;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldRG;
     // End of variables declaration//GEN-END:variables
+
+    private void LimparTela() {
+        try {
+            jTextFieldCodigo.setText("");
+            jTextFieldNome.setText("");
+            jFormattedTextFieldCPF.setText("");
+            jTextFieldRG.setText("");
+            jFormattedTextFieldTelefone.setText("");
+            jTextFieldEndereco.setText("");
+            jComboBoxTipoFuncionario.setSelectedIndex(0);
+
+            jButtonExcluir.setEnabled(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    private void carregaCombo() {
+
+        try {
+           ETipoFuncionario item0 = new ETipoFuncionario(0, "Selecione...");
+          // jComboBoxTipoFuncionario.addItem(item0);
+
+            for (ETipoFuncionario item : new NTipoFuncionario().listar()) {
+            //  jComboBoxTipoFuncionario.addItem(item);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());  
+        }
+    }
+
+    private void preencherTela() {
+
+    }
 }
