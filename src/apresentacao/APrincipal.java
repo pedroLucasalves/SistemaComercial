@@ -5,7 +5,6 @@
  */
 package apresentacao;
 
-import apresentacao.cadastro.AFuncionarioCadastro;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JOptionPane;
@@ -147,7 +146,7 @@ public class APrincipal extends javax.swing.JFrame {
 
     private void jButtonFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFuncionarioActionPerformed
         try{
-        AFuncionarioCadastro tela01 = new AFuncionarioCadastro(jDesktopPanePrincipal);
+        AFuncionario tela01 = new AFuncionario(jDesktopPanePrincipal);
         jDesktopPanePrincipal.add(tela01);
         tela01.setVisible(true);
         }catch(Exception e){
