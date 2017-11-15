@@ -22,69 +22,95 @@ public class PFuncionario {
 
     public void incluir(EFuncionario eFuncionario) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
+        cnn.setAutoCommit(false);
+        try {
+            String sq1 = "INSERT INTO FUNCIONARIO"
+                    + "(NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO"
+                    + "(?,?,?,?,?,?);";
+            PreparedStatement psd = cnn.prepareStatement(sq1);
 
-        String sq1 = "INSERT INTO FUNCIONARIO"
-                + "(NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO"
-                + "(?,?,?,?,?,?);";
-        PreparedStatement psd = cnn.prepareStatement(sq1);
+            psd.setString(1, eFuncionario.getNome());
+            psd.setString(2, eFuncionario.getCpf());
+            psd.setInt(3, eFuncionario.getTelefone());
+            psd.setString(4, eFuncionario.getEndereco());
+            psd.setString(5, eFuncionario.getRg());
+            psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
 
-        psd.setString(1, eFuncionario.getNome());
-        psd.setString(2, eFuncionario.getCpf());
-        psd.setInt(3, eFuncionario.getTelefone());
-        psd.setString(4, eFuncionario.getEndereco());
-        psd.setString(5, eFuncionario.getRg());
-        psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
+            String sq2 = "SELECT currval('FUNCIONARIO_COD_SEQ') as codigo;";
+            Statement stm = cnn.createStatement();
+            ResultSet rs = stm.executeQuery(sq2);
 
-        String sq2 = "SELECT currval('FUNCIONARIO_COD_SEQ') as codigo;";
-        Statement stm = cnn.createStatement();
-        ResultSet rs = stm.executeQuery(sq2);
-        if (rs.next()) {
-            int codigo = rs.getInt("CODIGO");
+            if (rs.next()) {
+                eFuncionario.setCodigo(rs.getInt("CODIGO"));
+            }
+            rs.close();
+            psd.close();
+            cnn.commit();
+
+        } catch (Exception e) {
+            cnn.rollback();
         }
     }
 
     public void alterar(EFuncionario eFuncionario) throws ClassNotFoundException, Exception {
-        String sq1 = "UPDATE FUNCIONARIO"
-                + " SET NOME = ?"
-                + " CPF = ?"
-                + " TELEFONE = ?"
-                + " ENDERECO = ?"
-                + " RG = ?"
-                + " COD_TIPOFUNCIONARIO"
-                + " WHERE = CODIGO = ?;";
-
         Connection cnn = util.UConexao.getConexao();
-        PreparedStatement psd = cnn.prepareStatement(sq1);
-        psd.setString(1, eFuncionario.getNome());
-        psd.setString(2, eFuncionario.getCpf());
-        psd.setInt(3, eFuncionario.getTelefone());
-        psd.setString(4, eFuncionario.getEndereco());
-        psd.setString(5, eFuncionario.getRg());
-        psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
+        cnn.setAutoCommit(false);
 
-        psd.execute();
+        try {
+            String sq1 = "UPDATE FUNCIONARIO"
+                    + " SET NOME = ?"
+                    + " CPF = ?"
+                    + " TELEFONE = ?"
+                    + " ENDERECO = ?"
+                    + " RG = ?"
+                    + " COD_TIPOFUNCIONARIO"
+                    + " WHERE = CODIGO = ?;";
+
+            PreparedStatement psd = cnn.prepareStatement(sq1);
+            psd.setString(1, eFuncionario.getNome());
+            psd.setString(2, eFuncionario.getCpf());
+            psd.setInt(3, eFuncionario.getTelefone());
+            psd.setString(4, eFuncionario.getEndereco());
+            psd.setString(5, eFuncionario.getRg());
+            psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
+
+            psd.execute();
+
+            cnn.commit();
+
+        } catch (Exception e) {
+            cnn.rollback();
+        }
         cnn.close();
     }
 
     public void excluir(int codigo) throws ClassNotFoundException, Exception {
-        String sq1 = "DELETE FROM FUNCIONARIO WHERE CODIGO = ?;";
         Connection cnn = util.UConexao.getConexao();
+        cnn.setAutoCommit(false);
+        try {
+            String sq1 = "DELETE FROM FUNCIONARIO WHERE CODIGO = ?;";
 
-        PreparedStatement psd = cnn.prepareStatement(sq1);
+            PreparedStatement psd = cnn.prepareStatement(sq1);
 
-        psd.setInt(1, codigo);
+            psd.setInt(1, codigo);
 
-        psd.execute();
-        psd.close();
+            psd.execute();
+
+            psd.close();
+            cnn.commit();
+        } catch (Exception e) {
+            cnn.rollback();
+        }
         cnn.close();
     }
 
     public EFuncionario consultar(int codigo) throws ClassNotFoundException, Exception {
+        Connection cnn = util.UConexao.getConexao();
+
         String sq1 = "SELECT CODIGO, NOME, CPF, TELEFONE, ENDERECO, RG,"
                 + " COD_FUNCIONARIO"
                 + " FROM FUNCIONARIO WHERE CODIGO = ?";
 
-        Connection cnn = util.UConexao.getConexao();
         PreparedStatement psd = cnn.prepareStatement(sq1);
 
         psd.setInt(1, codigo);
@@ -108,8 +134,10 @@ public class PFuncionario {
 
     public List<EFuncionario> listar() throws ClassNotFoundException, Exception {
         List<EFuncionario> lista = new ArrayList<>();
-        String sq1 = "SELECT * FROM FUNCIONARIO ORDER BY NOME ;";
+
         Connection cnn = util.UConexao.getConexao();
+
+        String sq1 = "SELECT * FROM FUNCIONARIO ORDER BY NOME ;";
 
         PreparedStatement psd = cnn.prepareStatement(sq1);
 

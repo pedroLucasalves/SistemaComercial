@@ -7,6 +7,7 @@ package entidade;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +18,14 @@ public class EPedido {
     private int codigo;
     private Date data;
     private double valorTotal;
+    
+    private EFuncionario eFuncionario;
+    private List<EItemPedido> eItemPedido;
+    
+    public EPedido(){
+        eFuncionario = new EFuncionario();
+        eItemPedido = new ArrayList<>();
+    }
 
     public int getCodigo() {
         return codigo;
@@ -42,4 +51,20 @@ public class EPedido {
         this.valorTotal = valorTotal;
     }
 
+    public EFuncionario geteFuncionario() {
+        return eFuncionario;
+    }
+
+    public void seteFuncionario(EFuncionario eFuncionario) {
+        this.eFuncionario = eFuncionario;
+    }
+
+    public List<EItemPedido> geteItemPedido() {
+        return eItemPedido;
+    }
+
+    public void seteItemPedido(List<EItemPedido> eItemPedido) {
+        this.eItemPedido = eItemPedido;
+    }
+    
 }
