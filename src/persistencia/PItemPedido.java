@@ -17,17 +17,24 @@ import java.sql.SQLException;
 public class PItemPedido {
 
     public void incluir(EItemPedido eItemPedido, Connection cnn) throws SQLException, Exception {
-        String sq1 = "INSERT INTO ITEMPEDIDO(QUANTIDADE, VALOR, COD_PEDIDO, COD_PRODUTO"
-                    +"VALUES (?,?,?,?);";
-        
-        PreparedStatement psd = cnn.prepareStatement(sq1);
-        
-        psd.setDouble(1, eItemPedido.getQuantidade());
-        psd.setDouble(2,eItemPedido.getValor());
-        psd.setInt(3,eItemPedido.getePedido().getCodigo());
-        psd.setInt(4,eItemPedido.geteProduto().getCodigo());
-        
-        
-        psd.execute();
+        cnn.setAutoCommit(false);
+
+        try {
+            String sq1 = "INSERT INTO ITEMPEDIDO(QUANTIDADE, VALOR, COD_PEDIDO, COD_PRODUTO"
+                    + "VALUES (?,?,?,?);";
+
+            PreparedStatement psd = cnn.prepareStatement(sq1);
+
+            psd.setDouble(1, eItemPedido.getQuantidade());
+            psd.setDouble(2, eItemPedido.getValor());
+            psd.setInt(3, eItemPedido.getePedido().getCodigo());
+            psd.setInt(4, eItemPedido.geteProduto().getCodigo());
+
+            psd.execute();
+            psd.close();
+        } catch (Exception e) {
+            cnn.rollback();
+        }
+        cnn.close();
     }
 }
