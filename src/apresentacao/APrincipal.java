@@ -7,6 +7,7 @@ package apresentacao;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Pedro
  */
 public class APrincipal extends javax.swing.JFrame {
+
 
     /**
      * Creates new form TelaPrincipal
@@ -24,6 +26,7 @@ public class APrincipal extends javax.swing.JFrame {
 
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,6 +85,11 @@ public class APrincipal extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(0, 102, 255));
         jButton2.setText("Clente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButtonFuncionario.setBackground(new java.awt.Color(0, 102, 255));
         jButtonFuncionario.setText("Funcionario");
@@ -153,6 +161,16 @@ public class APrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonFuncionarioActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try{
+        ACliente telaC = new ACliente(jDesktopPanePrincipal);
+        jDesktopPanePrincipal.add(telaC);
+        telaC.setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
