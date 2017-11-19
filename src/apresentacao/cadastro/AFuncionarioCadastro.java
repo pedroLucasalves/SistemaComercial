@@ -27,9 +27,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal) {
         initComponents();
 
-        carregaCombo();
-
         this.jDesktopPanePrincipal = jDesktopPanePrincipal;
+        carregaCombo();
     }
 
     public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal, String codigo) {
@@ -67,7 +66,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
         jTextFieldRG = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBoxTipoFuncionario = new javax.swing.JComboBox<>();
+        jComboBoxTipoFuncionario = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
@@ -270,7 +269,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jButtonAlterar)
                     .addComponent(jButtonExcluir)
                     .addComponent(jButtonFechar))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -327,7 +326,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JComboBox<String> jComboBoxTipoFuncionario;
+    private javax.swing.JComboBox jComboBoxTipoFuncionario;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
@@ -364,14 +363,14 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void carregaCombo() {
 
         try {
-           ETipoFuncionario item0 = new ETipoFuncionario(0, "Selecione...");
-          // jComboBoxTipoFuncionario.addItem(item0);
+            ETipoFuncionario item0 = new ETipoFuncionario(0, "Selecione...");
+            jComboBoxTipoFuncionario.addItem(item0);
 
             for (ETipoFuncionario item : new NTipoFuncionario().listar()) {
-            //  jComboBoxTipoFuncionario.addItem(item);
+                jComboBoxTipoFuncionario.addItem(item);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());  
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 

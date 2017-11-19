@@ -5,17 +5,26 @@
  */
 package apresentacao;
 
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author Pedro
  */
 public class AProduto extends javax.swing.JInternalFrame {
-
+    JDesktopPane jDesktopPanePrincipal;
     /**
      * Creates new form AProduto
      */
     public AProduto() {
         initComponents();
+    }
+    public AProduto(JDesktopPane parametro){
+        this();
+        
+        
+        this.jDesktopPanePrincipal = parametro;
+        
     }
 
     /**
@@ -27,11 +36,14 @@ public class AProduto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        jButtonCadastrarProduto = new javax.swing.JButton();
+        jButtonConsultarProduto = new javax.swing.JButton();
 
         setClosable(true);
 
-        jButton2.setText("Cadastrar Prdouto");
+        jButtonCadastrarProduto.setText("Cadastrar Prdouto");
+
+        jButtonConsultarProduto.setText("Consultar Produto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -39,15 +51,19 @@ public class AProduto extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonConsultarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(jButtonCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jButtonConsultarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -55,6 +71,7 @@ public class AProduto extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCadastrarProduto;
+    private javax.swing.JButton jButtonConsultarProduto;
     // End of variables declaration//GEN-END:variables
 }

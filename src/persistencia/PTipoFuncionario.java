@@ -30,17 +30,19 @@ public class PTipoFuncionario {
             PreparedStatement ps = cnn.prepareStatement(sq1);
 
             ps.setString(1, eTipoFuncionario.getDescricao());
-            ps.execute();
 
             String sql2 = "SELECT currval('TIPOFUNCIONARIO_CODIGO_SEQ') as codigo;";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sql2);
 
             if (rs.next()) {
-                int codigo = rs.getInt("CODIGO");
+                eTipoFuncionario.setCodigo(rs.getInt("CODIGO"));
             }
+            ps.execute();
+
             cnn.commit();
             rs.close();
+            ps.close();
         } catch (Exception e) {
             cnn.rollback();
         }
