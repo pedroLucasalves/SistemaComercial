@@ -58,6 +58,21 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Codigo");
 
+        jTextFieldCodigo.setEditable(false);
+
+        jTextFieldCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoActionPerformed(evt);
+            }
+        });
+        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoActionPerformed(evt);
+            }
+        });
+
         jButtonPesquisar.setText("Pesquisar");
         jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,6 +255,10 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
+        
+    }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

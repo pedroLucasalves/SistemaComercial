@@ -23,29 +23,29 @@ public class PTipoFuncionario {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-
-            String sq1 = "INSERT INTO TIPOFUNCIONARIO"
-                    + "(descricao) VALUES"
-                    + "(?);";
-            PreparedStatement ps = cnn.prepareStatement(sq1);
-
-            ps.setString(1, eTipoFuncionario.getDescricao());
-
-            ps.execute();
-
-            String sql2 = "SELECT currval('TIPOFUNCIONARIO_CODIGO_SEQ') as codigo";
-            Statement stm = cnn.createStatement();
+            String sql2 = "SELECT TIPOFUNCIONARIO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
+             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sql2);
-
             if (rs.next()) {
                 eTipoFuncionario.setCodigo(rs.getInt("CODIGO"));
             }
+            rs.close();
+            String sq1 = "INSERT INTO TIPOFUNCIONARIO"
+                    + "(CODIGO,DESCRICAO) VALUES"
+                    + "(?,?)";
+            PreparedStatement ps = cnn.prepareStatement(sq1);
+            ps.setInt(1, eTipoFuncionario.getCodigo());
+            ps.setString(2, eTipoFuncionario.getDescricao());
 
+            ps.execute();
+
+            
             cnn.commit();
             rs.close();
             ps.close();
         } catch (Exception e) {
             cnn.rollback();
+            throw e;
         }
 
         cnn.close();
@@ -66,6 +66,7 @@ public class PTipoFuncionario {
             cnn.commit();
         } catch (Exception e) {
             cnn.rollback();
+            throw e;
         }
         cnn.close();
 

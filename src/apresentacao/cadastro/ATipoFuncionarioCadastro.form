@@ -92,6 +92,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldCodigo">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCodigoActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTextFieldCodigo.setEditable(false);&#xa;&#xa;jTextFieldCodigo.setFont(new java.awt.Font(&quot;Tahoma&quot;, 1, 12)); // NOI18N&#xa;&#xa;jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        jTextFieldCodigoActionPerformed(evt);&#xa;    }&#xa;});"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonPesquisar">
       <Properties>
