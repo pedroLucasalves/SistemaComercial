@@ -19,7 +19,7 @@ public class UConexao {
     private static Connection conexao = null;
 
     private UConexao() {
-        
+
     }
 
     public static synchronized Connection getConexao() throws IOException, ClassNotFoundException, Exception {

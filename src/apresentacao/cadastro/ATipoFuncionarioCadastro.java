@@ -5,26 +5,33 @@
  */
 package apresentacao.cadastro;
 
+import apresentacao.pesquisa.ATipoFuncionarioPesquisa;
+import entidade.ETipoFuncionario;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import negocio.NTipoFuncionario;
 
 /**
  *
  * @author Pedro
  */
 public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
-JDesktopPane jDesktopPanePrincipal;
+
+    JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form ATipoFuncionarioCadastro
      */
     public ATipoFuncionarioCadastro() {
         initComponents();
     }
-public ATipoFuncionarioCadastro(JDesktopPane parametro){
-    this();
-    
-    this.jDesktopPanePrincipal = parametro;
-}
+
+    public ATipoFuncionarioCadastro(JDesktopPane parametro) {
+        this();
+
+        this.jDesktopPanePrincipal = parametro;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,10 +42,10 @@ public ATipoFuncionarioCadastro(JDesktopPane parametro){
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldCodigo = new javax.swing.JTextField();
         jButtonPesquisar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldDescricao = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
@@ -127,13 +134,13 @@ public ATipoFuncionarioCadastro(JDesktopPane parametro){
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(26, 26, 26)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonPesquisar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButtonSalvar)
@@ -153,12 +160,12 @@ public ATipoFuncionarioCadastro(JDesktopPane parametro){
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonPesquisar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
@@ -173,7 +180,19 @@ public ATipoFuncionarioCadastro(JDesktopPane parametro){
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
+            ETipoFuncionario eTipoFuncionario = new ETipoFuncionario();
 
+            eTipoFuncionario.setDescricao(jTextFieldDescricao.getText());
+
+            if (!jTextFieldCodigo.getText().isEmpty()) {
+                eTipoFuncionario.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
+            }
+            NTipoFuncionario nTipoFuncionario = new NTipoFuncionario();
+            nTipoFuncionario.salvar(eTipoFuncionario);
+
+            JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+            
+            LimparTela();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -181,7 +200,7 @@ public ATipoFuncionarioCadastro(JDesktopPane parametro){
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         try {
-
+            LimparTela();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -189,7 +208,16 @@ public ATipoFuncionarioCadastro(JDesktopPane parametro){
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         try {
-
+            int resposta = JOptionPane.showConfirmDialog(null,
+                            "Confirmar a exclusão do 'Tipo Funcionario'?",
+                            "Sistema Comercial",JOptionPane.YES_NO_OPTION);
+            
+            if(resposta == JOptionPane.YES_OPTION){
+                NTipoFuncionario nTipoFuncionario = new NTipoFuncionario();
+                nTipoFuncionario.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
+            }
+            
+            JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -205,7 +233,9 @@ public ATipoFuncionarioCadastro(JDesktopPane parametro){
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         try {
-
+            ATipoFuncionarioPesquisa tela01 = new ATipoFuncionarioPesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela01);
+            tela01.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -222,7 +252,13 @@ public ATipoFuncionarioCadastro(JDesktopPane parametro){
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldDescricao;
     // End of variables declaration//GEN-END:variables
+
+    private void LimparTela() {
+        jTextFieldCodigo.setText("");
+        jTextFieldDescricao.setText("");
+    
+    }
 }

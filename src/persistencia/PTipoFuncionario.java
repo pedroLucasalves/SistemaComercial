@@ -31,6 +31,8 @@ public class PTipoFuncionario {
 
             ps.setString(1, eTipoFuncionario.getDescricao());
 
+            ps.execute();
+
             String sql2 = "SELECT currval('TIPOFUNCIONARIO_CODIGO_SEQ') as codigo";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sql2);
@@ -38,7 +40,6 @@ public class PTipoFuncionario {
             if (rs.next()) {
                 eTipoFuncionario.setCodigo(rs.getInt("CODIGO"));
             }
-            ps.execute();
 
             cnn.commit();
             rs.close();
@@ -112,7 +113,7 @@ public class PTipoFuncionario {
     }
 
     public ArrayList<ETipoFuncionario> listar() throws ClassNotFoundException, Exception {
-        String sq1 = "SELECT * FROM TIPOFUNCIONARIO ORDEY BY CODIGO";
+        String sq1 = "SELECT * FROM TIPOFUNCIONARIO ORDER BY CODIGO";
 
         Connection cnn = util.UConexao.getConexao();
         Statement stm = cnn.createStatement();

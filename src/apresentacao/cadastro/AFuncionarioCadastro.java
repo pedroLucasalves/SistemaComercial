@@ -287,8 +287,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             eFuncionario.setRg(jTextFieldRG.getText());
             eFuncionario.setEndereco(jTextFieldEndereco.getText());
             eFuncionario.setTelefone(Integer.parseInt(jFormattedTextFieldTelefone.getText()));
-            eFuncionario.seteTipoFuncionario((ETipoFuncionario) jComboBoxTipoFuncionario.getSelectedItem());
 
+            //eFuncionario.seteTipoFuncionario((ETipoFuncionario) jComboBoxTipoFuncionario.getSelectedItem());
             new NFuncionario().salvar(eFuncionario);
 
             JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
@@ -298,6 +298,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
@@ -316,7 +317,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
 

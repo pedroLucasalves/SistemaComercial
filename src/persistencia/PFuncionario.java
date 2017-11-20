@@ -36,7 +36,7 @@ public class PFuncionario {
             psd.setString(5, eFuncionario.getRg());
             psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
 
-            String sq2 = "SELECT currval('FUNCIONARIO_COD_SEQ') as codigo";
+            String sq2 = "SELECT currval('FUNCIONARIO_COD_SEQ') AS CODIGO";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sq2);
 
