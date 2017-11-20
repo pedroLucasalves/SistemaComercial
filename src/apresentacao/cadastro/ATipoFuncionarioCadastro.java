@@ -5,6 +5,7 @@
  */
 package apresentacao.cadastro;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,14 +13,18 @@ import javax.swing.JOptionPane;
  * @author Pedro
  */
 public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
-
+JDesktopPane jDesktopPanePrincipal;
     /**
      * Creates new form ATipoFuncionarioCadastro
      */
     public ATipoFuncionarioCadastro() {
         initComponents();
     }
-
+public ATipoFuncionarioCadastro(JDesktopPane parametro){
+    this();
+    
+    this.jDesktopPanePrincipal = parametro;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

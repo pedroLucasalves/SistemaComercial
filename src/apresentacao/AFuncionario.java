@@ -6,6 +6,7 @@
 package apresentacao;
 
 import apresentacao.cadastro.AFuncionarioCadastro;
+import apresentacao.cadastro.ATipoFuncionarioCadastro;
 import java.awt.JobAttributes;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -91,7 +92,13 @@ public class AFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCadastrarFuncionarioActionPerformed
 
     private void jButtonCadastrarTipoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarTipoFuncionarioActionPerformed
-        // TODO add your handling code here:
+        try {
+            ATipoFuncionarioCadastro tela02 = new ATipoFuncionarioCadastro(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonCadastrarTipoFuncionarioActionPerformed
 
 
