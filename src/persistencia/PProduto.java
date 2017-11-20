@@ -26,7 +26,7 @@ public class PProduto {
         
         try {
             String sq1 = "INSERT INTO PRODUTO (NOME, VALOR,QUANTIDADE)"
-                          +"VALUES (?,?,?);";
+                          +"VALUES (?,?,?)";
             
             PreparedStatement psd = cnn.prepareStatement(sq1);
             
@@ -36,7 +36,7 @@ public class PProduto {
             
             psd.execute();
             
-            String sq2 = "SELECT currval('PRODUTO_CODIGO_SEQ') as codigo;";
+            String sq2 = "SELECT currval('PRODUTO_CODIGO_SEQ') as codigo";
             
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sq2);

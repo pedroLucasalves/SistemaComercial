@@ -21,7 +21,7 @@ public class PItemPedido {
 
         try {
             String sq1 = "INSERT INTO ITEMPEDIDO(QUANTIDADE, VALOR, COD_PEDIDO, COD_PRODUTO"
-                    + "VALUES (?,?,?,?);";
+                    + "VALUES (?,?,?,?)";
 
             PreparedStatement psd = cnn.prepareStatement(sq1);
 

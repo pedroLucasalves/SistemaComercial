@@ -26,7 +26,7 @@ public class PCliente {
         try{
             String sq1 = "INSERT INTO CLIENTE"
                     + "(NOME,CPF,TELEFONE,ENDERECO,RG, FORMAPAGAMENTO"
-                    + "(?,?,?,?,?,?);";
+                    + "(?,?,?,?,?,?)";
             
             PreparedStatement psd = cnn.prepareStatement(sq1);
             
@@ -36,7 +36,7 @@ public class PCliente {
             psd.setString(4, eCliente.getEndereco());
             psd.setString(5, eCliente.getFormaPagamento());
             
-            String sq2 = "SELECT currval('CLIENTE_COD_SEQ') as codigo;";
+            String sq2 = "SELECT currval('CLIENTE_COD_SEQ') as codigo";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sq2);
 
@@ -65,7 +65,7 @@ public class PCliente {
                     + " TELEFONE = ?"
                     + " ENDERECO = ?"
                     + " FORMAPAGAMENTO"
-                    + " WHERE = CODIGO = ?;";
+                    + " WHERE = CODIGO = ?";
 
             PreparedStatement psd = cnn.prepareStatement(sq1);
             psd.setString(1, eCliente.getNome());
@@ -88,7 +88,7 @@ public class PCliente {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-            String sq1 = "DELETE FROM CLIENTE WHERE CODIGO = ?;";
+            String sq1 = "DELETE FROM CLIENTE WHERE CODIGO = ?";
 
             PreparedStatement psd = cnn.prepareStatement(sq1);
 
@@ -136,7 +136,7 @@ public class PCliente {
 
         Connection cnn = util.UConexao.getConexao();
 
-        String sq1 = "SELECT * FROM CLIENTE ORDER BY NOME ;";
+        String sq1 = "SELECT * FROM CLIENTE ORDER BY NOME";
 
         PreparedStatement psd = cnn.prepareStatement(sq1);
 

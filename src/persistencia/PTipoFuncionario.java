@@ -31,7 +31,7 @@ public class PTipoFuncionario {
 
             ps.setString(1, eTipoFuncionario.getDescricao());
 
-            String sql2 = "SELECT currval('TIPOFUNCIONARIO_CODIGO_SEQ') as codigo;";
+            String sql2 = "SELECT currval('TIPOFUNCIONARIO_CODIGO_SEQ') as codigo";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sql2);
 
@@ -53,7 +53,7 @@ public class PTipoFuncionario {
     public void alterar(ETipoFuncionario eTipoFuncionario) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         try {
-            String sq1 = "UPDATE TIPOFUNCIONARIO SET DESCRICAO = ?, WHERE CODIGO = ?;";
+            String sq1 = "UPDATE TIPOFUNCIONARIO SET DESCRICAO = ?, WHERE CODIGO = ?";
 
             PreparedStatement psd = cnn.prepareStatement(sq1);
 
@@ -74,7 +74,7 @@ public class PTipoFuncionario {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-            String sq1 = "DELETE * FROM TIPOFUNCIONARIO WHERE CODIGO = ?;";
+            String sq1 = "DELETE * FROM TIPOFUNCIONARIO WHERE CODIGO = ?";
 
             PreparedStatement psd = cnn.prepareStatement(sq1);
 
@@ -90,7 +90,7 @@ public class PTipoFuncionario {
     }
 
     public ETipoFuncionario consultar(int codigo) throws ClassNotFoundException, Exception {
-        String sq1 = "SELECT * FROM TIPOFUNCIONARIO WHERE CODIGO = ?;";
+        String sq1 = "SELECT * FROM TIPOFUNCIONARIO WHERE CODIGO = ?";
 
         Connection cnn = util.UConexao.getConexao();
         PreparedStatement psd = cnn.prepareStatement(sq1);
@@ -112,7 +112,7 @@ public class PTipoFuncionario {
     }
 
     public ArrayList<ETipoFuncionario> listar() throws ClassNotFoundException, Exception {
-        String sq1 = "SELECT * FROM TIPOFUNCIONARIO ORDEY BY CODIGO;";
+        String sq1 = "SELECT * FROM TIPOFUNCIONARIO ORDEY BY CODIGO";
 
         Connection cnn = util.UConexao.getConexao();
         Statement stm = cnn.createStatement();

@@ -26,7 +26,7 @@ public class PFuncionario {
         try {
             String sq1 = "INSERT INTO FUNCIONARIO"
                     + "(NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO"
-                    + "(?,?,?,?,?,?);";
+                    + "(?,?,?,?,?,?)";
             PreparedStatement psd = cnn.prepareStatement(sq1);
 
             psd.setString(1, eFuncionario.getNome());
@@ -36,7 +36,7 @@ public class PFuncionario {
             psd.setString(5, eFuncionario.getRg());
             psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
 
-            String sq2 = "SELECT currval('FUNCIONARIO_COD_SEQ') as codigo;";
+            String sq2 = "SELECT currval('FUNCIONARIO_COD_SEQ') as codigo";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sq2);
 
@@ -64,7 +64,7 @@ public class PFuncionario {
                     + " ENDERECO = ?"
                     + " RG = ?"
                     + " COD_TIPOFUNCIONARIO"
-                    + " WHERE = CODIGO = ?;";
+                    + " WHERE = CODIGO = ?";
 
             PreparedStatement psd = cnn.prepareStatement(sq1);
             psd.setString(1, eFuncionario.getNome());
@@ -88,7 +88,7 @@ public class PFuncionario {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-            String sq1 = "DELETE FROM FUNCIONARIO WHERE CODIGO = ?;";
+            String sq1 = "DELETE FROM FUNCIONARIO WHERE CODIGO = ?";
 
             PreparedStatement psd = cnn.prepareStatement(sq1);
 
@@ -137,7 +137,7 @@ public class PFuncionario {
 
         Connection cnn = util.UConexao.getConexao();
 
-        String sq1 = "SELECT * FROM FUNCIONARIO ORDER BY NOME ;";
+        String sq1 = "SELECT * FROM FUNCIONARIO ORDER BY NOME";
 
         PreparedStatement psd = cnn.prepareStatement(sq1);
 
