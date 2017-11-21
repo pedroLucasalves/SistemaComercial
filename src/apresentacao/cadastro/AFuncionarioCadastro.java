@@ -303,7 +303,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             eFuncionario.setEndereco(jTextFieldEndereco.getText());
             eFuncionario.setTelefone(jFormattedTextFieldTelefone.getText());
 
-            //eFuncionario.seteTipoFuncionario((ETipoFuncionario) jComboBoxTipoFuncionario.getSelectedItem());
+            eFuncionario.seteTipoFuncionario((ETipoFuncionario) jComboBoxTipoFuncionario.getSelectedItem());
             new NFuncionario().salvar(eFuncionario);
 
             JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");

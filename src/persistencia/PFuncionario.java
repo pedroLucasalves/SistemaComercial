@@ -33,10 +33,10 @@ public class PFuncionario {
             }
             rs.close();
             String sq1 = "INSERT INTO FUNCIONARIO"
-                    + "(CODIG,NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO)VALUES"
+                    + "(CODIGO,NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO)VALUES"
                     + "(?,?,?,?,?,?,?)";
             PreparedStatement psd = cnn.prepareStatement(sq1);
-            
+
             psd.setInt(1, eFuncionario.getCodigo());
             psd.setString(2, eFuncionario.getNome());
             psd.setString(3, eFuncionario.getCpf());
@@ -44,12 +44,14 @@ public class PFuncionario {
             psd.setString(5, eFuncionario.getEndereco());
             psd.setString(6, eFuncionario.getRg());
             psd.setInt(7, eFuncionario.geteTipoFuncionario().getCodigo());
-
+            System.out.println(eFuncionario.geteTipoFuncionario().getCodigo());
+            psd.execute();
             psd.close();
             cnn.commit();
 
         } catch (Exception e) {
             cnn.rollback();
+            throw e;
         }
     }
 
