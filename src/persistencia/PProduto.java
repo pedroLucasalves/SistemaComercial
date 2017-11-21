@@ -23,32 +23,30 @@ public class PProduto {
     public void incluir(EProduto eProduto) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
-        
+
         try {
-            String sq1 = "INSERT INTO PRODUTO (NOME, VALOR,QUANTIDADE)"
-                          +"VALUES (?,?,?)";
-            
-            PreparedStatement psd = cnn.prepareStatement(sq1);
-            
-            psd.setString(1,eProduto.getNome());
-            psd.setDouble(2,eProduto.getValor());
-            psd.setDouble(3, eProduto.getQuantidade());
-            
-            psd.execute();
-            
-            String sq2 = "SELECT currval('PRODUTO_CODIGO_SEQ') as codigo";
-            
+            String sq2 = "SELECT PRODUTO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sq2);
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 eProduto.setCodigo(rs.getInt("CODIGO"));
             }
             rs.close();
+            String sq1 = "INSERT INTO PRODUTO (CODIGO,NOME, VALOR,QUANTIDADE)"
+                    + "VALUES (?,?,?,?)";
+
+            PreparedStatement psd = cnn.prepareStatement(sq1);
+            psd.setInt(1, eProduto.getCodigo());
+            psd.setString(2, eProduto.getNome());
+            psd.setDouble(3, eProduto.getValor());
+            psd.setDouble(4, eProduto.getQuantidade());
+
+            psd.execute();
+
             psd.close();
             cnn.commit();
-          
-          
+
         } catch (Exception e) {
             cnn.rollback();
         }
@@ -56,19 +54,19 @@ public class PProduto {
     }
 
     public void alterar(EProduto eProduto) {
-        
+
     }
 
     public void excluir(int codigo) {
-        
+
     }
 
     public EProduto consultar(int codigo) {
-       return null; 
+        return null;
     }
 
     public ArrayList<EProduto> listar() {
-       return null; 
+        return null;
     }
-    
+
 }

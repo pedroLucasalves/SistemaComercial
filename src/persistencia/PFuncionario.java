@@ -24,19 +24,7 @@ public class PFuncionario {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-            String sq1 = "INSERT INTO FUNCIONARIO"
-                    + "(NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO"
-                    + "(?,?,?,?,?,?)";
-            PreparedStatement psd = cnn.prepareStatement(sq1);
-
-            psd.setString(1, eFuncionario.getNome());
-            psd.setString(2, eFuncionario.getCpf());
-            psd.setInt(3, eFuncionario.getTelefone());
-            psd.setString(4, eFuncionario.getEndereco());
-            psd.setString(5, eFuncionario.getRg());
-            psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
-
-            String sq2 = "SELECT currval('FUNCIONARIO_COD_SEQ') AS CODIGO";
+            String sq2 = "SELECT FUNCIONARIO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sq2);
 
@@ -44,6 +32,18 @@ public class PFuncionario {
                 eFuncionario.setCodigo(rs.getInt("CODIGO"));
             }
             rs.close();
+            String sq1 = "INSERT INTO FUNCIONARIO"
+                    + "(CODIG,NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO"
+                    + "(?,?,?,?,?,?,?)";
+            PreparedStatement psd = cnn.prepareStatement(sq1);
+            psd.setInt(1, eFuncionario.getCodigo());
+            psd.setString(2, eFuncionario.getNome());
+            psd.setString(3, eFuncionario.getCpf());
+            psd.setString(4, eFuncionario.getTelefone());
+            psd.setString(5, eFuncionario.getEndereco());
+            psd.setString(6, eFuncionario.getRg());
+            psd.setInt(7, eFuncionario.geteTipoFuncionario().getCodigo());
+
             psd.close();
             cnn.commit();
 
@@ -69,7 +69,7 @@ public class PFuncionario {
             PreparedStatement psd = cnn.prepareStatement(sq1);
             psd.setString(1, eFuncionario.getNome());
             psd.setString(2, eFuncionario.getCpf());
-            psd.setInt(3, eFuncionario.getTelefone());
+            psd.setString(3, eFuncionario.getTelefone());
             psd.setString(4, eFuncionario.getEndereco());
             psd.setString(5, eFuncionario.getRg());
             psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
@@ -122,7 +122,7 @@ public class PFuncionario {
             eFuncionario.setCodigo(rs.getInt("CODIGO"));
             eFuncionario.setNome(rs.getString("NOME"));
             eFuncionario.setCpf(rs.getString("CPF"));
-            eFuncionario.setTelefone(rs.getInt("TELEFONE"));
+            eFuncionario.setTelefone(rs.getString("TELEFONE"));
             eFuncionario.setEndereco(rs.getString("ENDERECO"));
             eFuncionario.setRg(rs.getString("RG"));
             eFuncionario.seteTipoFuncionario(new PTipoFuncionario().consultar(rs.getInt("COD_FUNCIONARIO")));
@@ -151,7 +151,7 @@ public class PFuncionario {
             eFuncionario.setCodigo(rs.getInt("CODIGO"));
             eFuncionario.setNome(rs.getString("NOME"));
             eFuncionario.setCpf(rs.getString("CPF"));
-            eFuncionario.setTelefone(rs.getInt("TELEFONE"));
+            eFuncionario.setTelefone(rs.getString("TELEFONE"));
             eFuncionario.setEndereco(rs.getString("ENDERECO"));
             eFuncionario.setRg(rs.getString("RG"));
             eFuncionario.seteTipoFuncionario(pTipoFuncionario.consultar(rs.getInt("COD_FUNCIONARIO")));

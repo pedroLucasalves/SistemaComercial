@@ -18,25 +18,13 @@ import java.util.List;
  * @author Pedro
  */
 public class PCliente {
-    
-    public void incluir (ECliente eCliente) throws ClassNotFoundException, Exception{
+
+    public void incluir(ECliente eCliente) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
-        
-        try{
-            String sq1 = "INSERT INTO CLIENTE"
-                    + "(NOME,CPF,TELEFONE,ENDERECO,RG, FORMAPAGAMENTO"
-                    + "(?,?,?,?,?,?)";
-            
-            PreparedStatement psd = cnn.prepareStatement(sq1);
-            
-            psd.setString(0, eCliente.getNome());
-            psd.setString(2, eCliente.getCpf());
-            psd.setInt(3, eCliente.getTelefone());
-            psd.setString(4, eCliente.getEndereco());
-            psd.setString(5, eCliente.getFormaPagamento());
-            
-            String sq2 = "SELECT currval('CLIENTE_COD_SEQ') as codigo";
+
+        try {
+            String sq2 = "SELECT  CLIENTE_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sq2);
 
@@ -44,17 +32,28 @@ public class PCliente {
                 eCliente.setCodigo(rs.getInt("CODIGO"));
             }
             rs.close();
+            String sq1 = "INSERT INTO CLIENTE"
+                    + "(CODIGO,NOME,CPF,TELEFONE,ENDERECO,RG, FORMAPAGAMENTO"
+                    + "(?,?,?,?,?,?,?)";
+
+            PreparedStatement psd = cnn.prepareStatement(sq1);
+            psd.setInt(1, eCliente.getCodigo());
+            psd.setString(2, eCliente.getNome());
+            psd.setString(3, eCliente.getCpf());
+            psd.setString(4, eCliente.getTelefone());
+            psd.setString(5, eCliente.getEndereco());
+            psd.setString(6, eCliente.getFormaPagamento());
+
             psd.close();
             cnn.commit();
-            
-        }catch(Exception e) {
+
+        } catch (Exception e) {
             cnn.rollback();
         }
     }
-        
-        
-        public void alterar (ECliente eCliente) throws ClassNotFoundException, Exception {
-            
+
+    public void alterar(ECliente eCliente) throws ClassNotFoundException, Exception {
+
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
 
@@ -70,9 +69,9 @@ public class PCliente {
             PreparedStatement psd = cnn.prepareStatement(sq1);
             psd.setString(1, eCliente.getNome());
             psd.setString(2, eCliente.getCpf());
-            psd.setInt(3, eCliente.getTelefone());
+            psd.setString(3, eCliente.getTelefone());
             psd.setString(4, eCliente.getEndereco());
-            psd.setString(5,eCliente.getFormaPagamento());
+            psd.setString(5, eCliente.getFormaPagamento());
 
             psd.execute();
 
@@ -83,8 +82,8 @@ public class PCliente {
         }
         cnn.close();
     }
-        
-           public void excluir(int codigo) throws ClassNotFoundException, Exception {
+
+    public void excluir(int codigo) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
@@ -122,7 +121,7 @@ public class PCliente {
             eCliente.setCodigo(rs.getInt("CODIGO"));
             eCliente.setNome(rs.getString("NOME"));
             eCliente.setCpf(rs.getString("CPF"));
-            eCliente.setTelefone(rs.getInt("TELEFONE"));
+            eCliente.setTelefone(rs.getString("TELEFONE"));
             eCliente.setEndereco(rs.getString("ENDERECO"));
             eCliente.setFormaPagamento(rs.getString("FORMAPAGAMENTO"));
         }
@@ -141,21 +140,17 @@ public class PCliente {
         PreparedStatement psd = cnn.prepareStatement(sq1);
 
         ResultSet rs = psd.executeQuery();
-        
-        
-            ECliente eCliente = new ECliente();
-            eCliente.setCodigo(rs.getInt("CODIGO"));
-            eCliente.setNome(rs.getString("NOME"));
-            eCliente.setCpf(rs.getString("CPF"));
-            eCliente.setTelefone(rs.getInt("TELEFONE"));
-            eCliente.setEndereco(rs.getString("ENDERECO"));
-            eCliente.setFormaPagamento(rs.getString("FORMAPAGAMENTO"));
-            lista.add(eCliente);
-        
+
+        ECliente eCliente = new ECliente();
+        eCliente.setCodigo(rs.getInt("CODIGO"));
+        eCliente.setNome(rs.getString("NOME"));
+        eCliente.setCpf(rs.getString("CPF"));
+        eCliente.setTelefone(rs.getString("TELEFONE"));
+        eCliente.setEndereco(rs.getString("ENDERECO"));
+        eCliente.setFormaPagamento(rs.getString("FORMAPAGAMENTO"));
+        lista.add(eCliente);
+
         return lista;
     }
-        
-        
-    }
-    
 
+}

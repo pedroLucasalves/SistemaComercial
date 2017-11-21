@@ -24,7 +24,7 @@ public class PTipoFuncionario {
         cnn.setAutoCommit(false);
         try {
             String sql2 = "SELECT TIPOFUNCIONARIO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
-             Statement stm = cnn.createStatement();
+            Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(sql2);
             if (rs.next()) {
                 eTipoFuncionario.setCodigo(rs.getInt("CODIGO"));
@@ -39,9 +39,7 @@ public class PTipoFuncionario {
 
             ps.execute();
 
-            
             cnn.commit();
-            rs.close();
             ps.close();
         } catch (Exception e) {
             cnn.rollback();
@@ -124,6 +122,7 @@ public class PTipoFuncionario {
             ETipoFuncionario objeto = new ETipoFuncionario();
             objeto.setCodigo(rs.getInt("CODIGO"));
             objeto.setDescricao(rs.getString("DESCRICAO"));
+            lista.add(objeto);
         }
         stm.close();
         rs.close();

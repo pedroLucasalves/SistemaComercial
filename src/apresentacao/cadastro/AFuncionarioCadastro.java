@@ -286,7 +286,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             eFuncionario.setCpf(jFormattedTextFieldCPF.getText());
             eFuncionario.setRg(jTextFieldRG.getText());
             eFuncionario.setEndereco(jTextFieldEndereco.getText());
-            eFuncionario.setTelefone(Integer.parseInt(jFormattedTextFieldTelefone.getText()));
+            eFuncionario.setTelefone(jFormattedTextFieldTelefone.getText());
 
             //eFuncionario.seteTipoFuncionario((ETipoFuncionario) jComboBoxTipoFuncionario.getSelectedItem());
             new NFuncionario().salvar(eFuncionario);
