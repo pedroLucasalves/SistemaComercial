@@ -34,6 +34,7 @@ public class PTipoFuncionario {
                     + "(CODIGO,DESCRICAO) VALUES"
                     + "(?,?)";
             PreparedStatement ps = cnn.prepareStatement(sq1);
+            
             ps.setInt(1, eTipoFuncionario.getCodigo());
             ps.setString(2, eTipoFuncionario.getDescricao());
 

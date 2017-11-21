@@ -33,9 +33,10 @@ public class PFuncionario {
             }
             rs.close();
             String sq1 = "INSERT INTO FUNCIONARIO"
-                    + "(CODIG,NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO"
+                    + "(CODIG,NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO)VALUES"
                     + "(?,?,?,?,?,?,?)";
             PreparedStatement psd = cnn.prepareStatement(sq1);
+            
             psd.setInt(1, eFuncionario.getCodigo());
             psd.setString(2, eFuncionario.getNome());
             psd.setString(3, eFuncionario.getCpf());
