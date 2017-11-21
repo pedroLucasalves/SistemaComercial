@@ -81,6 +81,21 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Codigo");
 
+        jTextFieldCodigo.setEditable(false);
+
+        jTextFieldCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoActionPerformed(evt);
+            }
+        });
+        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoActionPerformed(evt);
+            }
+        });
+
         jButtonPesquisar.setText("Pesquisar");
         jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,6 +334,10 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
 
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
+
+    }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
