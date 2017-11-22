@@ -45,6 +45,12 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         }
     }
 
+    public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal, ETipoFuncionario eTipoFuncionario) {
+        this(jDesktopPanePrincipal);
+        
+       // preencherTela(eTipoFuncionario);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

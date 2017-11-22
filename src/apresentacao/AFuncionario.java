@@ -16,16 +16,19 @@ import javax.swing.JOptionPane;
  * @author Pedro
  */
 public class AFuncionario extends javax.swing.JInternalFrame {
+
     JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form AFuncionarioCadastro
      */
     public AFuncionario() {
         initComponents();
     }
-    public AFuncionario(JDesktopPane parametro){
+
+    public AFuncionario(JDesktopPane parametro) {
         this();
-        
+
         this.jDesktopPanePrincipal = parametro;
     }
 
@@ -82,13 +85,15 @@ public class AFuncionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarFuncionarioActionPerformed
-       try{
-        AFuncionarioCadastro tela01 = new AFuncionarioCadastro(jDesktopPanePrincipal);
-        jDesktopPanePrincipal.add(tela01);
-        tela01.setVisible(true);
-       }catch(Exception e ){
-           JOptionPane.showMessageDialog(null, e.getMessage());
-       }
+        try {
+            AFuncionarioCadastro tela01 = new AFuncionarioCadastro(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela01);
+            tela01.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonCadastrarFuncionarioActionPerformed
 
     private void jButtonCadastrarTipoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarTipoFuncionarioActionPerformed
@@ -96,6 +101,8 @@ public class AFuncionario extends javax.swing.JInternalFrame {
             ATipoFuncionarioCadastro tela02 = new ATipoFuncionarioCadastro(jDesktopPanePrincipal);
             jDesktopPanePrincipal.add(tela02);
             tela02.setVisible(true);
+
+            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

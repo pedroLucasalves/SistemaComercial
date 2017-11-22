@@ -7,6 +7,7 @@ package apresentacao.cadastro;
 
 import apresentacao.pesquisa.ATipoFuncionarioPesquisa;
 import entidade.ETipoFuncionario;
+import java.util.Vector;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import negocio.NTipoFuncionario;
@@ -30,6 +31,12 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
         this();
 
         this.jDesktopPanePrincipal = parametro;
+    }
+
+    public ATipoFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal, ETipoFuncionario eTipoFuncionario) {
+        this(jDesktopPanePrincipal);
+
+        preencherTela(eTipoFuncionario);
     }
 
     /**
@@ -206,7 +213,7 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
             nTipoFuncionario.salvar(eTipoFuncionario);
 
             JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
-            
+
             LimparTela();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -224,14 +231,14 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         try {
             int resposta = JOptionPane.showConfirmDialog(null,
-                            "Confirmar a exclusão do 'Tipo Funcionario'?",
-                            "Sistema Comercial",JOptionPane.YES_NO_OPTION);
-            
-            if(resposta == JOptionPane.YES_OPTION){
+                    "Confirmar a exclusão do 'Tipo Funcionario'?",
+                    "Sistema Comercial", JOptionPane.YES_NO_OPTION);
+
+            if (resposta == JOptionPane.YES_OPTION) {
                 NTipoFuncionario nTipoFuncionario = new NTipoFuncionario();
                 nTipoFuncionario.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
             }
-            
+
             JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -251,13 +258,15 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
             ATipoFuncionarioPesquisa tela01 = new ATipoFuncionarioPesquisa(jDesktopPanePrincipal);
             jDesktopPanePrincipal.add(tela01);
             tela01.setVisible(true);
+
+            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
-        
+
     }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
 
@@ -278,6 +287,24 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void LimparTela() {
         jTextFieldCodigo.setText("");
         jTextFieldDescricao.setText("");
-    
+
+    }
+
+    private void preencherTela(ETipoFuncionario eTipoFuncionario) {
+        try {
+            Vector<String> cabecalho = new Vector();
+            cabecalho.add("CODIGO");
+            cabecalho.add("DESCRICAO");
+
+            Vector detalhes = new Vector();
+
+            for (ETipoFuncionario detalhe : new NTipoFuncionario().listar()) {
+                Vector<String> linha = new Vector();
+                linha.add(detalhe.getCodigo() + "");
+                linha.add(detalhe.getDescricao());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 }

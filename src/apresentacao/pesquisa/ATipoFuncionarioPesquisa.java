@@ -5,23 +5,35 @@
  */
 package apresentacao.pesquisa;
 
+import apresentacao.cadastro.AFuncionarioCadastro;
+import apresentacao.cadastro.ATipoFuncionarioCadastro;
+import entidade.ETipoFuncionario;
+import java.util.Vector;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import negocio.NTipoFuncionario;
 
 /**
  *
  * @author Pedro
  */
 public class ATipoFuncionarioPesquisa extends javax.swing.JInternalFrame {
+
     JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form ATipoFuncionarioPesquisa
      */
     public ATipoFuncionarioPesquisa() {
         initComponents();
+
+        preencherTela();
     }
-    public ATipoFuncionarioPesquisa(JDesktopPane parametro){
+
+    public ATipoFuncionarioPesquisa(JDesktopPane parametro) {
         this();
-        
+
         this.jDesktopPanePrincipal = parametro;
     }
 
@@ -34,95 +46,141 @@ public class ATipoFuncionarioPesquisa extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButton1 = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextFieldProcurar = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jTablePesquisarTipoFuncionario = new javax.swing.JTable();
+        jButtonFechar = new javax.swing.JButton();
+
+        jRadioButton1.setText("jRadioButton1");
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Consultar TipoFuncionario");
+        jLabel1.setText("Consultar Tipo Funcionario");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(207, 207, 207)
+                .addGap(91, 91, 91)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(23, 23, 23))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePesquisarTipoFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTablePesquisarTipoFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTablePesquisarTipoFuncionarioMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTablePesquisarTipoFuncionario);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel2.setText("Filtro");
+        jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextFieldProcurar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
+                .addComponent(jButtonFechar)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jTextFieldProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jButtonFechar)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTablePesquisarTipoFuncionarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisarTipoFuncionarioMousePressed
+        try {
+
+            int linha = jTablePesquisarTipoFuncionario.getSelectedRow();
+            String codigo = jTablePesquisarTipoFuncionario.getValueAt(linha, 0).toString();
+
+            ETipoFuncionario eTipoFuncionario = new NTipoFuncionario().consultar(Integer.parseInt(codigo));
+
+            ATipoFuncionarioCadastro aFuncionario = new ATipoFuncionarioCadastro(jDesktopPanePrincipal, eTipoFuncionario);
+
+            jDesktopPanePrincipal.add(aFuncionario);
+            aFuncionario.setVisible(true);
+            util.Forms.centralizar(aFuncionario);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jTablePesquisarTipoFuncionarioMousePressed
+
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        try {
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonFecharActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButtonFechar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextFieldProcurar;
+    private javax.swing.JTable jTablePesquisarTipoFuncionario;
     // End of variables declaration//GEN-END:variables
+
+    private void preencherTela() {
+        try {
+            Vector<String> cabecalho = new Vector();
+            cabecalho.add("CODIGO");
+            cabecalho.add("DESCRICAO");
+
+            Vector detalhes = new Vector();
+
+            for (ETipoFuncionario detalhe : new NTipoFuncionario().listar()) {
+                Vector<String> linha = new Vector();
+                linha.add(detalhe.getCodigo() + "");
+                linha.add(detalhe.getDescricao());
+
+                detalhes.add(linha);
+            }
+            jTablePesquisarTipoFuncionario.setModel(new DefaultTableModel(detalhes, cabecalho));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 }
