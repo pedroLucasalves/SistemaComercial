@@ -290,10 +290,10 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             if (!jTextFieldCodigo.getText().isEmpty()) {
                 eFuncionario.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
             }
-            eFuncionario.setNome(jTextFieldNome.getText());
+            eFuncionario.setNome(jTextFieldNome.getText().toUpperCase());
             eFuncionario.setCpf(jFormattedTextFieldCPF.getText());
             eFuncionario.setRg(jTextFieldRG.getText());
-            eFuncionario.setEndereco(jTextFieldEndereco.getText());
+            eFuncionario.setEndereco(jTextFieldEndereco.getText().toUpperCase());
             eFuncionario.setTelefone(jFormattedTextFieldTelefone.getText());
 
             eFuncionario.seteTipoFuncionario((ETipoFuncionario) jComboBoxTipoFuncionario.getSelectedItem());
@@ -343,6 +343,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         AFuncionarioPesquisa tela01 = new AFuncionarioPesquisa(jDesktopPanePrincipal);
         jDesktopPanePrincipal.add(tela01);
         tela01.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed

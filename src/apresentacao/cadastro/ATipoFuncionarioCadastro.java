@@ -204,7 +204,7 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
         try {
             ETipoFuncionario eTipoFuncionario = new ETipoFuncionario();
 
-            eTipoFuncionario.setDescricao(jTextFieldDescricao.getText());
+            eTipoFuncionario.setDescricao(jTextFieldDescricao.getText().toUpperCase());
 
             if (!jTextFieldCodigo.getText().isEmpty()) {
                 eTipoFuncionario.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));

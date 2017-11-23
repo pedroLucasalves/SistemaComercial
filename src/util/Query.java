@@ -17,11 +17,11 @@ public class Query {
             + "(?,?,?,?,?,?,?)";
     public static final String SELECT_SEQ_FUNCIONARIO = "SELECT FUNCIONARIO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
     public static final String UPADTE_FUNCIONARIO = "UPDATE FUNCIONARIO SET "
-            + "(NOME = ?,CPF = ?,TELEFONE = ?,ENDERECO = ?,"
-            + "RG = ?,COD_TIPOFUNCIONARIO = ? WHERE CODIGO = ?)";
+            + "NOME = ?, CPF = ?, TELEFONE = ?, ENDERECO = ?, "
+            + "RG = ?, COD_TIPOFUNCIONARIO = ? WHERE CODIGO = ?";
     public static final String DELETE_FUNCIONARIO = "DELETE FROM FUNCIONARIO WHERE CODIGO = ?";
     public static final String SELECT_FUNCIONARIO = "SELECT * FROM FUNCIONARIO WHERE CODIGO = ?";
-    public static final String SELECT_ALL_FUNCIONARIO = "SELECT * FROM FUNCIONARIOO ORDER BY CODIGO";
+    public static final String SELECT_ALL_FUNCIONARIO = "SELECT * FROM FUNCIONARIO ORDER BY CODIGO";
 
     //TipoFuncionario
     public static final String INSERT_TIPOFUNCIONARIO = "INSERT INTO TIPOFUNCIONARIO"

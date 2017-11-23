@@ -66,13 +66,15 @@ public class PFuncionario {
             psd.setString(4, eFuncionario.getEndereco());
             psd.setString(5, eFuncionario.getRg());
             psd.setInt(6, eFuncionario.geteTipoFuncionario().getCodigo());
+            psd.setInt(7, eFuncionario.getCodigo());
 
-            psd.execute();
+            psd.executeUpdate();
 
             cnn.commit();
 
         } catch (Exception e) {
             cnn.rollback();
+            throw e;
         } finally {
             cnn.setAutoCommit(true);
         }
@@ -115,26 +117,29 @@ public class PFuncionario {
             eFuncionario.setTelefone(rs.getString("TELEFONE"));
             eFuncionario.setEndereco(rs.getString("ENDERECO"));
             eFuncionario.setRg(rs.getString("RG"));
-            eFuncionario.seteTipoFuncionario(new PTipoFuncionario().consultar(rs.getInt("COD_FUNCIONARIO")));
+            eFuncionario.seteTipoFuncionario(new PTipoFuncionario().consultar(rs.getInt("COD_TIPOFUNCIONARIO")));
         }
         psd.close();
         rs.close();
-        cnn.close();
         return eFuncionario;
+
     }
 
     public ArrayList<EFuncionario> listar() throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         Statement stm = cnn.createStatement();
         ResultSet rs = stm.executeQuery(Query.SELECT_ALL_FUNCIONARIO);
-        
+
         ArrayList<EFuncionario> lista = null;
         PTipoFuncionario pTipoFuncionario = null;
         while (rs.next()) {
+            if (lista == null) {
+                lista = new ArrayList<>();
+            }
             if (pTipoFuncionario == null) {
                 pTipoFuncionario = new PTipoFuncionario();
             }
-            
+
             EFuncionario eFuncionario = new EFuncionario();
             eFuncionario.setCodigo(rs.getInt("CODIGO"));
             eFuncionario.setNome(rs.getString("NOME"));
@@ -142,7 +147,7 @@ public class PFuncionario {
             eFuncionario.setTelefone(rs.getString("TELEFONE"));
             eFuncionario.setEndereco(rs.getString("ENDERECO"));
             eFuncionario.setRg(rs.getString("RG"));
-            eFuncionario.seteTipoFuncionario(pTipoFuncionario.consultar(rs.getInt("COD_FUNCIONARIO")));
+            eFuncionario.seteTipoFuncionario(pTipoFuncionario.consultar(rs.getInt("COD_TIPOFUNCIONARIO")));
             lista.add(eFuncionario);
         }
         return lista;

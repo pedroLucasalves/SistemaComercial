@@ -105,7 +105,6 @@ public class PTipoFuncionario {
         }
         psd.close();
         rs.close();
-        cnn.close();
         return objeto;
     }
 
@@ -127,7 +126,6 @@ public class PTipoFuncionario {
         }
         stm.close();
         rs.close();
-        cnn.close();
         return lista;
     }
 
