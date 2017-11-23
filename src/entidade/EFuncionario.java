@@ -29,6 +29,17 @@ public class EFuncionario extends EPessoa {
         this.nome = nome;
     }
 
+    public EFuncionario(int codigo, String nome, String cpf, String telefone,
+            String endereco, String rg, ETipoFuncionario eTipoFuncionario) {
+        this.codigo = codigo;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.rg = rg;
+        this.eTipoFuncionario = eTipoFuncionario;
+
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -52,7 +63,6 @@ public class EFuncionario extends EPessoa {
     public void seteTipoFuncionario(ETipoFuncionario eTipoFuncionario) {
         this.eTipoFuncionario = eTipoFuncionario;
     }
-    
 
     @Override
     public String toString() {
