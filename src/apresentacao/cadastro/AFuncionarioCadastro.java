@@ -5,6 +5,7 @@
  */
 package apresentacao.cadastro;
 
+import apresentacao.pesquisa.AFuncionarioPesquisa;
 import entidade.EFuncionario;
 import entidade.ETipoFuncionario;
 import java.sql.SQLException;
@@ -47,8 +48,8 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
 
     public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal, ETipoFuncionario eTipoFuncionario) {
         this(jDesktopPanePrincipal);
-        
-       // preencherTela(eTipoFuncionario);
+
+        // preencherTela(eTipoFuncionario);
     }
 
     /**
@@ -338,7 +339,9 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-
+        AFuncionarioPesquisa tela01 = new AFuncionarioPesquisa(jDesktopPanePrincipal);
+        jDesktopPanePrincipal.add(tela01);
+        tela01.setVisible(true);
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
@@ -401,6 +404,11 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     }
 
     private void preencherTela() {
+
+        try {
+
+        } catch (Exception e) {
+        }
 
     }
 }

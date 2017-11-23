@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import util.Query;
 
 /**
  *
@@ -24,18 +25,14 @@ public class PFuncionario {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-            String sq2 = "SELECT FUNCIONARIO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
             Statement stm = cnn.createStatement();
-            ResultSet rs = stm.executeQuery(sq2);
+            ResultSet rs = stm.executeQuery(Query.SELECT_SEQ_FUNCIONARIO);
 
             if (rs.next()) {
                 eFuncionario.setCodigo(rs.getInt("CODIGO"));
             }
             rs.close();
-            String sq1 = "INSERT INTO FUNCIONARIO"
-                    + "(CODIGO,NOME,CPF,TELEFONE,ENDERECO,RG, COD_TIPOFUNCIONARIO)VALUES"
-                    + "(?,?,?,?,?,?,?)";
-            PreparedStatement psd = cnn.prepareStatement(sq1);
+            PreparedStatement psd = cnn.prepareStatement(Query.INSERT_FUNCIONARIO);
 
             psd.setInt(1, eFuncionario.getCodigo());
             psd.setString(2, eFuncionario.getNome());
@@ -45,13 +42,15 @@ public class PFuncionario {
             psd.setString(6, eFuncionario.getRg());
             psd.setInt(7, eFuncionario.geteTipoFuncionario().getCodigo());
             System.out.println(eFuncionario.geteTipoFuncionario().getCodigo());
+            
             psd.execute();
-            psd.close();
             cnn.commit();
-
+            psd.close();
         } catch (Exception e) {
             cnn.rollback();
             throw e;
+        }finally{
+            cnn.setAutoCommit(true);
         }
     }
 
@@ -60,16 +59,7 @@ public class PFuncionario {
         cnn.setAutoCommit(false);
 
         try {
-            String sq1 = "UPDATE FUNCIONARIO"
-                    + " SET NOME = ?"
-                    + " CPF = ?"
-                    + " TELEFONE = ?"
-                    + " ENDERECO = ?"
-                    + " RG = ?"
-                    + " COD_TIPOFUNCIONARIO"
-                    + " WHERE = CODIGO = ?";
-
-            PreparedStatement psd = cnn.prepareStatement(sq1);
+            PreparedStatement psd = cnn.prepareStatement(Query.UPADTE_FUNCIONARIO);
             psd.setString(1, eFuncionario.getNome());
             psd.setString(2, eFuncionario.getCpf());
             psd.setString(3, eFuncionario.getTelefone());
@@ -83,38 +73,34 @@ public class PFuncionario {
 
         } catch (Exception e) {
             cnn.rollback();
+        }finally{
+            cnn.setAutoCommit(true);
         }
-        cnn.close();
+       
     }
 
     public void excluir(int codigo) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-            String sq1 = "DELETE FROM FUNCIONARIO WHERE CODIGO = ?";
-
-            PreparedStatement psd = cnn.prepareStatement(sq1);
+            PreparedStatement psd = cnn.prepareStatement(Query.DELETE_FUNCIONARIO);
 
             psd.setInt(1, codigo);
 
             psd.execute();
-
-            psd.close();
             cnn.commit();
         } catch (Exception e) {
             cnn.rollback();
+        }finally{
+            cnn.setAutoCommit(true);
         }
-        cnn.close();
+        
     }
 
     public EFuncionario consultar(int codigo) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
-
-        String sq1 = "SELECT CODIGO, NOME, CPF, TELEFONE, ENDERECO, RG,"
-                + " COD_FUNCIONARIO"
-                + " FROM FUNCIONARIO WHERE CODIGO = ?";
-
-        PreparedStatement psd = cnn.prepareStatement(sq1);
+        
+        PreparedStatement psd = cnn.prepareStatement(Query.SELECT_FUNCIONARIO);
 
         psd.setInt(1, codigo);
 
@@ -140,9 +126,7 @@ public class PFuncionario {
 
         Connection cnn = util.UConexao.getConexao();
 
-        String sq1 = "SELECT * FROM FUNCIONARIO ORDER BY NOME";
-
-        PreparedStatement psd = cnn.prepareStatement(sq1);
+        PreparedStatement psd = cnn.prepareStatement(Query.SELECT_ALL_FUNCIONARIO);
 
         ResultSet rs = psd.executeQuery();
         PTipoFuncionario pTipoFuncionario = null;
