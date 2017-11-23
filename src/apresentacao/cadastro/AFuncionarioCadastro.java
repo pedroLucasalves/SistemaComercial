@@ -32,24 +32,10 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         carregaCombo();
     }
 
-    public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal, String codigo) {
+    public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal, EFuncionario eFuncionario) {
         this(jDesktopPanePrincipal);
 
-        try {
-            EFuncionario eFuncionario = new NFuncionario().consultar(Integer.parseInt(codigo));
-
-            preencherTela();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
-    public AFuncionarioCadastro(JDesktopPane jDesktopPanePrincipal, ETipoFuncionario eTipoFuncionario) {
-        this(jDesktopPanePrincipal);
-
-        // preencherTela(eTipoFuncionario);
+        preencherTela(eFuncionario);
     }
 
     /**
@@ -77,7 +63,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
-        jButtonAlterar = new javax.swing.JButton();
+        jButtonLimpar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -165,12 +151,12 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonAlterar.setBackground(new java.awt.Color(255, 255, 0));
-        jButtonAlterar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonAlterar.setText("Alterar");
-        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpar.setBackground(new java.awt.Color(255, 255, 0));
+        jButtonLimpar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLimpar.setText("Limpar");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarActionPerformed(evt);
+                jButtonLimparActionPerformed(evt);
             }
         });
 
@@ -205,7 +191,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonAlterar)
+                        .addComponent(jButtonLimpar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -244,7 +230,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jComboBoxTipoFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +274,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
-                    .addComponent(jButtonAlterar)
+                    .addComponent(jButtonLimpar)
                     .addComponent(jButtonExcluir)
                     .addComponent(jButtonFechar))
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -322,12 +308,27 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
 
-    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        try {
+            LimparTela();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
+        try {
+            int resposta = JOptionPane.showConfirmDialog(null, "Confirma a exclusão do Funcionário?",
+                                                        "Sistema Comercial",JOptionPane.YES_OPTION);
+            
+            if(resposta ==JOptionPane.YES_OPTION){
+                NFuncionario nFuncionario = new NFuncionario();
+                nFuncionario.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+                LimparTela();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
@@ -350,9 +351,9 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxTipoFuncionario;
@@ -403,12 +404,26 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         }
     }
 
-    private void preencherTela() {
+    private void preencherTela(EFuncionario eFuncionario) {
 
         try {
+            jTextFieldCodigo.setText(eFuncionario.getCodigo() + "");
+            jTextFieldNome.setText(eFuncionario.getNome());
+            jFormattedTextFieldCPF.setText(eFuncionario.getCpf());
+            jTextFieldRG.setText(eFuncionario.getRg());
+            jFormattedTextFieldTelefone.setText(eFuncionario.getTelefone());
+            jTextFieldEndereco.setText(eFuncionario.getEndereco());
 
+            for (int i = 0; i < jComboBoxTipoFuncionario.getModel().getSize(); i++) {
+                ETipoFuncionario eTipoFuncionario = (ETipoFuncionario) jComboBoxTipoFuncionario.getModel().getElementAt(i);
+                if ((eTipoFuncionario.getCodigo() == eFuncionario.geteTipoFuncionario().getCodigo())) {
+                    jComboBoxTipoFuncionario.setSelectedIndex(i);
+                }
+            }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
     }
+
 }
