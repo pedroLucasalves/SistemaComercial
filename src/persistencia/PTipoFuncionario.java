@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.plaf.basic.BasicBorders;
+import util.Query;
 
 /**
  *
@@ -23,18 +25,14 @@ public class PTipoFuncionario {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-            String sql2 = "SELECT TIPOFUNCIONARIO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
             Statement stm = cnn.createStatement();
-            ResultSet rs = stm.executeQuery(sql2);
+            ResultSet rs = stm.executeQuery(Query.SELECT_SEQ_TIPOFUNCIONARIO);
             if (rs.next()) {
                 eTipoFuncionario.setCodigo(rs.getInt("CODIGO"));
             }
             rs.close();
-            String sq1 = "INSERT INTO TIPOFUNCIONARIO"
-                    + "(CODIGO,DESCRICAO) VALUES"
-                    + "(?,?)";
-            PreparedStatement ps = cnn.prepareStatement(sq1);
-            
+            PreparedStatement ps = cnn.prepareStatement(Query.INSERT_TIPOFUNCIONARIO);
+
             ps.setInt(1, eTipoFuncionario.getCodigo());
             ps.setString(2, eTipoFuncionario.getDescricao());
 
@@ -45,29 +43,29 @@ public class PTipoFuncionario {
         } catch (Exception e) {
             cnn.rollback();
             throw e;
+        } finally {
+            cnn.setAutoCommit(true);
         }
 
-        cnn.close();
     }
 
     public void alterar(ETipoFuncionario eTipoFuncionario) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
+        cnn.setAutoCommit(false);
         try {
-            String sq1 = "UPDATE TIPOFUNCIONARIO SET DESCRICAO = ?, WHERE CODIGO = ?";
-
-            PreparedStatement psd = cnn.prepareStatement(sq1);
+            PreparedStatement psd = cnn.prepareStatement(Query.UPDATE_TIPOFUNCIONARIO);
 
             psd.setString(1, eTipoFuncionario.getDescricao());
             psd.setInt(2, eTipoFuncionario.getCodigo());
 
-            psd.execute();
-            psd.close();
+            psd.executeUpdate();
             cnn.commit();
         } catch (Exception e) {
             cnn.rollback();
             throw e;
+        } finally {
+            cnn.setAutoCommit(true);
         }
-        cnn.close();
 
     }
 
@@ -75,26 +73,25 @@ public class PTipoFuncionario {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
-            String sq1 = "DELETE * FROM TIPOFUNCIONARIO WHERE CODIGO = ?";
-
-            PreparedStatement psd = cnn.prepareStatement(sq1);
+            PreparedStatement psd = cnn.prepareStatement(Query.DELETE_TIPOFUNCIONARIO);
 
             psd.setInt(1, codigo);
 
             psd.execute();
-            psd.close();
+            cnn.commit();
 
         } catch (Exception e) {
             cnn.rollback();
+            throw e;
+        } finally {
+            cnn.setAutoCommit(true);
         }
-        cnn.close();
+
     }
 
     public ETipoFuncionario consultar(int codigo) throws ClassNotFoundException, Exception {
-        String sq1 = "SELECT * FROM TIPOFUNCIONARIO WHERE CODIGO = ?";
-
         Connection cnn = util.UConexao.getConexao();
-        PreparedStatement psd = cnn.prepareStatement(sq1);
+        PreparedStatement psd = cnn.prepareStatement(Query.SELECT_TIPOFUNCIONARIO);
 
         psd.setInt(1, codigo);
 
@@ -113,13 +110,16 @@ public class PTipoFuncionario {
     }
 
     public ArrayList<ETipoFuncionario> listar() throws ClassNotFoundException, Exception {
-        String sq1 = "SELECT * FROM TIPOFUNCIONARIO ORDER BY CODIGO";
-
         Connection cnn = util.UConexao.getConexao();
         Statement stm = cnn.createStatement();
-        ResultSet rs = stm.executeQuery(sq1);
-        ArrayList<ETipoFuncionario> lista = new ArrayList<ETipoFuncionario>();
+        ResultSet rs = stm.executeQuery(Query.SELECT_ALL_TIPOFUNCIONARIO);
+
+        ArrayList<ETipoFuncionario> lista = null;
         while (rs.next()) {
+            if (lista == null) {
+                lista = new ArrayList<>();
+            }
+
             ETipoFuncionario objeto = new ETipoFuncionario();
             objeto.setCodigo(rs.getInt("CODIGO"));
             objeto.setDescricao(rs.getString("DESCRICAO"));
