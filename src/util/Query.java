@@ -20,7 +20,7 @@ public class Query {
             + "(NOME = ?,CPF = ?,TELEFONE = ?,ENDERECO = ?,"
             + "RG = ?,COD_TIPOFUNCIONARIO = ? WHERE CODIGO = ?)";
     public static final String DELETE_FUNCIONARIO = "DELETE FROM FUNCIONARIO WHERE CODIGO = ?";
-    public static final String SELECT_FUNCIONARIO = "SELECT * FROM FUNCIONARIO WHERE CODIGO =?";
+    public static final String SELECT_FUNCIONARIO = "SELECT * FROM FUNCIONARIO WHERE CODIGO = ?";
     public static final String SELECT_ALL_FUNCIONARIO = "SELECT * FROM FUNCIONARIOO ORDER BY CODIGO";
 
     //TipoFuncionario

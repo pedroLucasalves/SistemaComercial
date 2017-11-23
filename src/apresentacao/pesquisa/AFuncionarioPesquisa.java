@@ -5,20 +5,28 @@
  */
 package apresentacao.pesquisa;
 
+import entidade.EFuncionario;
+import java.util.Vector;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import negocio.NFuncionario;
 
 /**
  *
  * @author Pedro
  */
 public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
+    
     JDesktopPane jDesktopPanePrincipal;
+    
     /**
      * Creates new form AFuncionarioPesquisa
      */
     public AFuncionarioPesquisa() {
         initComponents();
+        
+        preencherTela();
     }
     public AFuncionarioPesquisa(JDesktopPane parametro){
         this();
@@ -38,7 +46,7 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablePesquisarFuncionario = new javax.swing.JTable();
         jButtonFechar = new javax.swing.JButton();
 
         setClosable(true);
@@ -67,7 +75,7 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
                 .addGap(24, 24, 24))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePesquisarFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -78,7 +86,7 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTablePesquisarFuncionario);
 
         jButtonFechar.setText("Fechar");
         jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +134,35 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablePesquisarFuncionario;
     // End of variables declaration//GEN-END:variables
+    private void preencherTela(){
+        try {
+            Vector <String> cabecalho = new Vector();
+            cabecalho.add("CODIGO");
+            cabecalho.add("NOME");
+            cabecalho.add("CPF");
+            cabecalho.add("RG");
+            cabecalho.add("TELEFONE");
+            cabecalho.add("ENDERECO");
+            cabecalho.add("TIPOASSOCIADO");
+            
+            Vector detalhes = new Vector();
+            
+            for(EFuncionario detalhe : new NFuncionario().listar()){
+                Vector<String> linha = new Vector();
+                linha.add(detalhe.getCodigo() + "");
+                linha.add(detalhe.getNome());
+                linha.add((detalhe.getCpf()));
+                linha.add(detalhe.getRg());
+                linha.add(detalhe.getTelefone());
+                linha.add(detalhe.getEndereco());
+                linha.add(detalhe.geteTipoFuncionario().getDescricao());
+                detalhes.add(linha);
+            }
+            jTablePesquisarFuncionario.setModel(new DefaultTableModel(detalhes, cabecalho));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 }

@@ -42,14 +42,14 @@ public class PFuncionario {
             psd.setString(6, eFuncionario.getRg());
             psd.setInt(7, eFuncionario.geteTipoFuncionario().getCodigo());
             System.out.println(eFuncionario.geteTipoFuncionario().getCodigo());
-            
+
             psd.execute();
             cnn.commit();
             psd.close();
         } catch (Exception e) {
             cnn.rollback();
             throw e;
-        }finally{
+        } finally {
             cnn.setAutoCommit(true);
         }
     }
@@ -73,10 +73,10 @@ public class PFuncionario {
 
         } catch (Exception e) {
             cnn.rollback();
-        }finally{
+        } finally {
             cnn.setAutoCommit(true);
         }
-       
+
     }
 
     public void excluir(int codigo) throws ClassNotFoundException, Exception {
@@ -91,23 +91,24 @@ public class PFuncionario {
             cnn.commit();
         } catch (Exception e) {
             cnn.rollback();
-        }finally{
+        } finally {
             cnn.setAutoCommit(true);
         }
-        
+
     }
 
     public EFuncionario consultar(int codigo) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
-        
+
         PreparedStatement psd = cnn.prepareStatement(Query.SELECT_FUNCIONARIO);
 
         psd.setInt(1, codigo);
 
         ResultSet rs = psd.executeQuery();
-        EFuncionario eFuncionario = new EFuncionario();
+        EFuncionario eFuncionario = null;
 
         if (rs.next()) {
+            eFuncionario = new EFuncionario();
             eFuncionario.setCodigo(rs.getInt("CODIGO"));
             eFuncionario.setNome(rs.getString("NOME"));
             eFuncionario.setCpf(rs.getString("CPF"));
@@ -117,23 +118,23 @@ public class PFuncionario {
             eFuncionario.seteTipoFuncionario(new PTipoFuncionario().consultar(rs.getInt("COD_FUNCIONARIO")));
         }
         psd.close();
+        rs.close();
         cnn.close();
         return eFuncionario;
     }
 
-    public List<EFuncionario> listar() throws ClassNotFoundException, Exception {
-        List<EFuncionario> lista = new ArrayList<>();
-
+    public ArrayList<EFuncionario> listar() throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
-
-        PreparedStatement psd = cnn.prepareStatement(Query.SELECT_ALL_FUNCIONARIO);
-
-        ResultSet rs = psd.executeQuery();
+        Statement stm = cnn.createStatement();
+        ResultSet rs = stm.executeQuery(Query.SELECT_ALL_FUNCIONARIO);
+        
+        ArrayList<EFuncionario> lista = null;
         PTipoFuncionario pTipoFuncionario = null;
         while (rs.next()) {
             if (pTipoFuncionario == null) {
                 pTipoFuncionario = new PTipoFuncionario();
             }
+            
             EFuncionario eFuncionario = new EFuncionario();
             eFuncionario.setCodigo(rs.getInt("CODIGO"));
             eFuncionario.setNome(rs.getString("NOME"));
