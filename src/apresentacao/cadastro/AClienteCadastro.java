@@ -5,25 +5,32 @@
  */
 package apresentacao.cadastro;
 
+import apresentacao.pesquisa.AClientePesquisa;
+import entidade.ECliente;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import negocio.NCliente;
 
 /**
  *
  * @author Pedro
  */
 public class AClienteCadastro extends javax.swing.JInternalFrame {
+
     JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form AClienteCadastro
      */
     public AClienteCadastro() {
         initComponents();
     }
-   public AClienteCadastro(JDesktopPane parametro){
-       this();
-       
-       this.jDesktopPanePrincipal = parametro;
-   }
+
+    public AClienteCadastro(JDesktopPane parametro) {
+        this();
+
+        this.jDesktopPanePrincipal = parametro;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,18 +120,43 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
         jButtonSalvar.setBackground(new java.awt.Color(51, 255, 0));
         jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jButtonLimpar.setBackground(new java.awt.Color(255, 255, 0));
         jButtonLimpar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpar.setText("Limpar");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
 
         jButtonExcluir.setBackground(new java.awt.Color(255, 0, 0));
         jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharActionPerformed(evt);
+            }
+        });
 
         jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,7 +227,7 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextFieldFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
                     .addComponent(jButtonLimpar)
@@ -210,6 +242,73 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
     private void jTextFieldFormaDePagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFormaDePagamentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldFormaDePagamentoActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        try {
+            ECliente eCliente = new ECliente();
+
+            if (!jTextFieldCodigo.getText().isEmpty()) {
+                eCliente.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
+            }
+            eCliente.setCpf(jFormattedTextFieldCPF.getText());
+            eCliente.setNome(jTextFieldNome.getText());
+            eCliente.setCpf(jFormattedTextFieldCPF.getText());
+            eCliente.setTelefone(jFormattedTextFieldTelefone.getText());
+            eCliente.setEndereco(jTextFieldEndereco.getText());
+
+            new NCliente().salvar(eCliente);
+
+            JOptionPane.showMessageDialog(null, "Operação Realizada com sucesso!");
+            
+            LimparTela();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        try {
+            LimparTela();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        try {
+            int resposta = JOptionPane.showConfirmDialog(null,"Confirmar a exclusão do cliente",
+                                                         "Sistema Comercial", JOptionPane.YES_OPTION);
+            if(resposta == JOptionPane.YES_OPTION){
+                NCliente nCliente = new NCliente();
+                nCliente.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+                LimparTela();
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        try {
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        try {
+            AClientePesquisa tela02 = new AClientePesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+            
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -233,4 +332,12 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldFormaDePagamento;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
+    private void LimparTela() {
+        jTextFieldCodigo.setText("");
+        jTextFieldNome.setText("");
+        jFormattedTextFieldCPF.setText("");
+        jFormattedTextFieldTelefone.setText("");
+        jTextFieldEndereco.setText("");
+        jTextFieldFormaDePagamento.setText("");
+    }
 }
