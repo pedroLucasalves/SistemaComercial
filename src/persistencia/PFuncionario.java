@@ -41,7 +41,7 @@ public class PFuncionario {
             psd.setString(5, eFuncionario.getEndereco());
             psd.setString(6, eFuncionario.getRg());
             psd.setInt(7, eFuncionario.geteTipoFuncionario().getCodigo());
-            System.out.println(eFuncionario.geteTipoFuncionario().getCodigo());
+           
 
             psd.execute();
             cnn.commit();
@@ -130,7 +130,8 @@ public class PFuncionario {
         Connection cnn = util.UConexao.getConexao();
         Statement stm = cnn.createStatement();
         ResultSet rs = stm.executeQuery(Query.SELECT_ALL_FUNCIONARIO);
-
+        
+        EFuncionario eFuncionario = null;
         ArrayList<EFuncionario> lista = null;
         PTipoFuncionario pTipoFuncionario = null;
         while (rs.next()) {
@@ -141,7 +142,7 @@ public class PFuncionario {
                 pTipoFuncionario = new PTipoFuncionario();
             }
 
-            EFuncionario eFuncionario = new EFuncionario();
+            eFuncionario = new EFuncionario();
             eFuncionario.setCodigo(rs.getInt("CODIGO"));
             eFuncionario.setNome(rs.getString("NOME"));
             eFuncionario.setCpf(rs.getString("CPF"));
