@@ -37,7 +37,7 @@ public class PFornecedor {
             psd.setInt(1, eFornecedor.getCodigo());
             psd.setString(2, eFornecedor.getNome());
             psd.setString(3, eFornecedor.getCnpj());
-            psd.setInt(4, eFornecedor.getTelefone());
+            psd.setString(4, eFornecedor.getTelefone());
             psd.setString(5, eFornecedor.getEmail());
             psd.setString(6, eFornecedor.getEndereco());
 
@@ -64,7 +64,7 @@ public class PFornecedor {
             psd.setInt(1, eFornecedor.getCodigo());
             psd.setString(2, eFornecedor.getNome());
             psd.setString(3, eFornecedor.getCnpj());
-            psd.setInt(4, eFornecedor.getTelefone());
+            psd.setString(4, eFornecedor.getTelefone());
             psd.setString(5, eFornecedor.getEmail());
             psd.setString(6, eFornecedor.getEndereco());
 
@@ -120,7 +120,7 @@ public class PFornecedor {
             eFornecedor.setCodigo(rs.getInt("CODIGO"));
             eFornecedor.setNome(rs.getString("NOME"));
             eFornecedor.setCnpj(rs.getString("CNPJ"));
-            eFornecedor.setTelefone(rs.getInt("TELEFONE"));
+            eFornecedor.setTelefone(rs.getString("TELEFONE"));
             eFornecedor.setEmail(rs.getString("EMAIL"));
             eFornecedor.setEndereco(rs.getString("ENDERECO"));
 
@@ -146,7 +146,7 @@ public class PFornecedor {
             eFornecedor.setCodigo(rs.getInt("CODIGO"));
             eFornecedor.setNome(rs.getString("NOME"));
             eFornecedor.setCnpj(rs.getString("CNPJ"));
-            eFornecedor.setTelefone(rs.getInt("TELEFONE"));
+            eFornecedor.setTelefone(rs.getString("TELEFONE"));
             eFornecedor.setEmail(rs.getString("EMAIL"));
             eFornecedor.setEndereco(rs.getString("ENDERECO"));
             lista.add(eFornecedor);

@@ -13,7 +13,7 @@ public class EFornecedor {
     private int codigo;
     private String nome;
     private String cnpj;
-    private int telefone;
+    private String telefone;
     private String email;
     private String endereco;
     
@@ -42,11 +42,11 @@ public class EFornecedor {
         this.cnpj = cnpj;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
