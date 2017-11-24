@@ -7,6 +7,7 @@ package negocio;
 
 import entidade.EFornecedor;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import persistencia.PFornecedor;
 
@@ -36,7 +37,7 @@ public class NFornecedor {
         
         return pFornecedor.consultar(codigo);
     }
-    public List<EFornecedor> listar()throws SQLException, Exception{
+    public ArrayList<EFornecedor> listar()throws SQLException, Exception{
        return pFornecedor.listar(); 
     }
 
