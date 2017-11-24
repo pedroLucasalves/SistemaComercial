@@ -5,6 +5,7 @@
  */
 package apresentacao;
 
+import apresentacao.cadastro.AFornecedorCadastro;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -13,16 +14,19 @@ import javax.swing.JOptionPane;
  * @author Pedro
  */
 public class AFornecedor extends javax.swing.JInternalFrame {
+
     JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form AFornecedor
      */
     public AFornecedor() {
         initComponents();
     }
-    public AFornecedor(JDesktopPane parametro){
+
+    public AFornecedor(JDesktopPane parametro) {
         this();
-        
+
         this.jDesktopPanePrincipal = parametro;
     }
 
@@ -79,10 +83,14 @@ public class AFornecedor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarFornecedorActionPerformed
-        try{
-           
-        }catch(Exception e ){
-           JOptionPane.showMessageDialog(null, e.getMessage());
+        try {
+            AFornecedorCadastro tela01 = new AFornecedorCadastro(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela01);
+            tela01.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonCadastrarFornecedorActionPerformed
 

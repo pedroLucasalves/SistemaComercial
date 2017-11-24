@@ -51,6 +51,7 @@ public class PFuncionario {
             throw e;
         } finally {
             cnn.setAutoCommit(true);
+
         }
     }
 

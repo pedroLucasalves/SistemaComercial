@@ -170,7 +170,6 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         });
 
         jButtonFechar.setBackground(new java.awt.Color(153, 153, 153));
-        jButtonFechar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonFechar.setText("Fechar");
         jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -7,7 +7,7 @@ package negocio;
 
 import entidade.ECliente;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 import persistencia.PCliente;
 
 /**
@@ -33,7 +33,7 @@ public class NCliente {
     public ECliente consultar(int codigo)throws SQLException, Exception{
         return pCliente.consultar(codigo);
     }
-    public List<ECliente> listar()throws SQLException, Exception{
+    public ArrayList<ECliente> listar()throws SQLException, Exception{
         return pCliente.listar();
     }
     
