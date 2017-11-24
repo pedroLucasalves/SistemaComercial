@@ -21,11 +21,9 @@ public abstract class TemplateMethod {
 
     public Iterator<EFuncionario> listagemDeFuncionario() throws Exception {
         try {
-            ArrayList<EFuncionario> listaDeFuncionario = new ArrayList<EFuncionario>();
 
-        //    PFuncionario pFuncionario = new PFuncionario().consultar();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+
         }
         return null;
     }
