@@ -10,13 +10,27 @@ package entidade;
  * @author Pedro
  */
 public class EFornecedor {
+
     private int codigo;
     private String nome;
     private String cnpj;
     private String telefone;
     private String email;
     private String endereco;
-    
+
+    public EFornecedor(int codigo, String nome, String cnpj, String telefone,
+            String email, String endereco) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.telefone = telefone;
+        this.email = email;
+        this.endereco = endereco;
+    }
+
+    public EFornecedor() {
+
+    }
 
     public int getCodigo() {
         return codigo;
@@ -65,16 +79,16 @@ public class EFornecedor {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
-    public String toString(){
+
+    public String toString() {
         return "Fornecedor {"
                 + "codigo = " + codigo
                 + "nome =" + nome
                 + "cnpj =" + cnpj
-                +"telefone =" + telefone
+                + "telefone =" + telefone
                 + "email =" + email
-                +"endereco =" + endereco
+                + "endereco =" + endereco
                 + '}';
     }
-    
+
 }

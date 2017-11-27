@@ -5,6 +5,8 @@
  */
 package apresentacao.cadastro;
 
+import apresentacao.pesquisa.AClientePesquisa;
+import apresentacao.pesquisa.AFornecedorPesquisa;
 import entidade.EFornecedor;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -15,18 +17,32 @@ import negocio.NFornecedor;
  * @author Pedro
  */
 public class AFornecedorCadastro extends javax.swing.JInternalFrame {
+
     JDesktopPane JDesktopPanePrincipal;
+
     /**
      * Creates new form AFornecedorCadastro
      */
     public AFornecedorCadastro() {
         initComponents();
     }
-    public AFornecedorCadastro(JDesktopPane parametro){
+
+    public AFornecedorCadastro(JDesktopPane parametro) {
         this();
-        
+
         this.JDesktopPanePrincipal = parametro;
+        
+        
     }
+    public AFornecedorCadastro(EFornecedor eFornecedor){
+        
+        preencherTela(eFornecedor);
+    }
+
+    public AFornecedorCadastro(JDesktopPane JdesktopPanePrincipal, EFornecedor eFornecedor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,6 +108,8 @@ public class AFornecedorCadastro extends javax.swing.JInternalFrame {
         jLabel5.setText("Telefone");
 
         jLabel6.setText("Email");
+
+        jTextFieldCodigo.setEditable(false);
 
         try {
             jFormattedTextFieldCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
@@ -234,45 +252,71 @@ public class AFornecedorCadastro extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-      
-        try{
+
+        try {
             EFornecedor eFornecedor = new EFornecedor();
-            if(!jTextFieldCodigo.getText().isEmpty()){
-              eFornecedor.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
+            if (!jTextFieldCodigo.getText().isEmpty()) {
+                eFornecedor.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
             }
             eFornecedor.setNome(jTextFieldNome.getText().toUpperCase());
             eFornecedor.setCnpj(jFormattedTextFieldCNPJ.getText());
             eFornecedor.setTelefone(jFormattedTextFieldTelefone.getText());
             eFornecedor.setEmail(jTextFieldEmail.getText());
             eFornecedor.setEndereco(jTextFieldEndereco.getText());
-            
+
             NFornecedor nFornecedor = new NFornecedor();
             nFornecedor.salvar(eFornecedor);
             JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
-            LimparTela();
-            
-            
-            }catch( Exception e){
-                JOptionPane.showMessageDialog(null, e.getMessage());
-                    
-                    }
-        
+            LimpaTela();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
-        // TODO add your handling code here:
+        try {
+            LimpaTela();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
+        try {
+            int resposta = JOptionPane.showConfirmDialog(null, "Confirme a exclusão do Fornecedor ?",
+                    "Sistema Comercial", JOptionPane.YES_OPTION);
+            if(resposta == JOptionPane.YES_OPTION){
+                NFornecedor nFornecedor = new NFornecedor();
+                nFornecedor.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+                LimpaTela();
+        }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
-        // TODO add your handling code here:
+        try {
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        // TODO add your handling code here:
+        try {
+            AFornecedorPesquisa tela02 = new AFornecedorPesquisa(JDesktopPanePrincipal);
+            JDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
 
@@ -298,20 +342,35 @@ public class AFornecedorCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 
-    private void LimparTela() {
+    private void LimpaTela() {
         try {
-            
-        
-        jTextFieldCodigo.setText("");
-        jTextFieldNome.setText("");
-        jFormattedTextFieldCNPJ.setText("");
-        jFormattedTextFieldTelefone.setText("");
-        jTextFieldEmail.setText("");
-        jTextFieldEndereco.setText("");
-        
-        jButtonExcluir.setEnabled(false);
+
+            jTextFieldCodigo.setText("");
+            jTextFieldNome.setText("");
+            jFormattedTextFieldCNPJ.setText("");
+            jFormattedTextFieldTelefone.setText("");
+            jTextFieldEmail.setText("");
+            jTextFieldEndereco.setText("");
+
+            jButtonExcluir.setEnabled(false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+
+    private void preencherTela(EFornecedor eFornecedor) {
+        try {
+
+            jTextFieldCodigo.setText(eFornecedor.getCodigo() + "");
+            jTextFieldNome.setText(eFornecedor.getNome());
+            jFormattedTextFieldCNPJ.setText(eFornecedor.getCnpj());
+            jFormattedTextFieldTelefone.setText(eFornecedor.getTelefone());
+            jTextFieldEmail.setText(eFornecedor.getEmail());
+            jTextFieldEndereco.setText(eFornecedor.getEndereco());
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
     }
 }

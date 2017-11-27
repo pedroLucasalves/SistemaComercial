@@ -5,17 +5,35 @@
  */
 package apresentacao.pesquisa;
 
+import apresentacao.cadastro.AFornecedorCadastro;
+import entidade.EFornecedor;
+import java.util.Vector;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import negocio.NFornecedor;
+import negocio.NFuncionario;
+
 /**
  *
  * @author Pedro
  */
 public class AFornecedorPesquisa extends javax.swing.JInternalFrame {
 
+    JDesktopPane JdesktopPanePrincipal;
+
     /**
      * Creates new form AFornecedorPesquisa
      */
     public AFornecedorPesquisa() {
         initComponents();
+        preencherTela();
+    }
+
+    public AFornecedorPesquisa(JDesktopPane parametro) {
+        this();
+
+        this.JdesktopPanePrincipal = parametro;
     }
 
     /**
@@ -27,21 +45,143 @@ public class AFornecedorPesquisa extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTablePesquisarFornecedor = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonfechar = new javax.swing.JButton();
+
+        setClosable(true);
+
+        jTablePesquisarFornecedor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTablePesquisarFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTablePesquisarFornecedorMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTablePesquisarFornecedor);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Fornecedor");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(343, 343, 343))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jButtonfechar.setText("Fechar");
+        jButtonfechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonfecharActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonfechar)
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonfechar)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonfecharActionPerformed
+        try {
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonfecharActionPerformed
+
+    private void jTablePesquisarFornecedorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisarFornecedorMousePressed
+        try {
+            int linha = jTablePesquisarFornecedor.getSelectedRow();
+            String codigo = jTablePesquisarFornecedor.getValueAt(linha, 0).toString();
+
+            EFornecedor eFornecedor = new NFornecedor().consultar(Integer.parseInt(codigo));
+            AFornecedorCadastro tela02 = new AFornecedorCadastro(JdesktopPanePrincipal, eFornecedor);
+            
+            JdesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+            
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jTablePesquisarFornecedorMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonfechar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTablePesquisarFornecedor;
     // End of variables declaration//GEN-END:variables
+     private void preencherTela() {
+        try {
+            Vector<String> cabecalho = new Vector();
+            cabecalho.add("CODIGO");
+            cabecalho.add("NOME");
+            cabecalho.add("CNPJ");
+            cabecalho.add("TELEFONE");
+            cabecalho.add("EMAIL");
+            cabecalho.add("ENDERECO");
+
+            Vector detalhes = new Vector();
+
+            for (EFornecedor detalhe : new NFornecedor().listar()) {
+                Vector<String> linha = new Vector();
+                linha.add(detalhe.getCodigo() + "");
+                linha.add(detalhe.getNome());
+                linha.add(detalhe.getCnpj());
+                linha.add(detalhe.getTelefone());
+                linha.add(detalhe.getEmail());
+                linha.add(detalhe.getEndereco());
+                detalhes.add(linha);
+
+            }
+            jTablePesquisarFornecedor.setModel(new DefaultTableModel(detalhes, cabecalho));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 }

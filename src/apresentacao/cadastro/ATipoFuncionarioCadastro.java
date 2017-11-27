@@ -291,6 +291,7 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
         jTextFieldCodigo.setText("");
         jTextFieldDescricao.setText("");
 
+        jButtonExcluir.setEnabled(false);
     }
 
     private void preencherTela(ETipoFuncionario eTipoFuncionario) {

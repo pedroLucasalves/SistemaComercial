@@ -36,7 +36,7 @@ public class Query {
 
     //Cliente
     public static final String INSERT_CLIENTE = "INSERT INTO CLIENTE"
-            + "CODIGO, NOME, CPF, TELEFONE, ENDERECO, FORMADEPAGAMENTO"
+            + "(CODIGO, NOME, CPF, TELEFONE, ENDERECO, FORMADEPAGAMENTO) VALUES"
             + "(?,?,?,?,?,?)";
     public static final String SELECT_SEQ_CLIENTE = " SELECT CLIENTE_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
     public static final String UPDATE_CLIENTE = "UPDATE CLIENTE SET "
@@ -46,10 +46,11 @@ public class Query {
     public static final String SELECT_ALL_CLIENTE = "SELECT * FROM CLIENTE ORDER BY CODIGO";
     //Fornecedor
     public static final String INSERT_FORNECEDOR = "INSERT INTO FORNECEDOR"
-            + "CODIGO, NOME, CNPJ, TELEFONE, EMAIL";
+            + "(CODIGO, NOME, CNPJ, TELEFONE, EMAIL, ENDERECO) VALUES"
+            + "(?,?,?,?,?,?)";
     public static final String SELECT_SEQ_FORNECEDOR = "SELECT FORNECEDOR_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
     public static final String UPDATE_FORNECEDOR = "UPDATE FORNECEDOR SET "
-            + "CODIGO = ?, NOME = ?, CNPJ = ?, TELEFONE = ?, EMAIL = ?";
+            + "CODIGO = ?, NOME = ?, CNPJ = ?, TELEFONE = ?, EMAIL = ?, ENDERECO = ?";
     public static final String DELETE_FORNECEDOR = "DELETE * FROM FORNECEDOR WHERE CODIGO = ?";
     public static final String SELECT_FORNECEDOR = "SELECT *FROM FORNECEDOR WHERE CODIGO = ?";
     public static final String SELECT_ALL_FORNECEDOR = "SELECT * FROM FORNECEDOR ORDER BY CODIGO";

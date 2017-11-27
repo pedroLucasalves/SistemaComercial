@@ -164,7 +164,8 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
             int linha = jTablePesquisarFuncionario.getSelectedRow();
             String codigo =jTablePesquisarFuncionario.getValueAt(linha, 0).toString();
             
-            EFuncionario eFuncionario = new NFuncionario().consultar(Integer.parseInt(codigo));
+            EFuncionario eFuncionario;
+            eFuncionario = new NFuncionario().consultar(Integer.parseInt(codigo));
             AFuncionarioCadastro tela02 = new AFuncionarioCadastro(jDesktopPanePrincipal, eFuncionario);
             
             jDesktopPanePrincipal.add(tela02);
