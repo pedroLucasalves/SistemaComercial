@@ -40,7 +40,9 @@ public class AFornecedorCadastro extends javax.swing.JInternalFrame {
     }
 
     public AFornecedorCadastro(JDesktopPane JdesktopPanePrincipal, EFornecedor eFornecedor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this(JdesktopPanePrincipal);
+        
+        preencherTela(eFornecedor);
     }
  
 

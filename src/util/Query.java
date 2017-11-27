@@ -44,6 +44,7 @@ public class Query {
     public static final String DELETE_CLIENTE = "DELETE FROM CLIENTE WHERE CODIGO = ?";
     public static final String SELECT_CLIENTE = "SELECT * FROM CLIENTE WHERE CODIGO = ?";
     public static final String SELECT_ALL_CLIENTE = "SELECT * FROM CLIENTE ORDER BY CODIGO";
+    
     //Fornecedor
     public static final String INSERT_FORNECEDOR = "INSERT INTO FORNECEDOR"
             + "(CODIGO, NOME, CNPJ, TELEFONE, EMAIL, ENDERECO) VALUES"

@@ -34,7 +34,9 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
     }
     
     public AClienteCadastro(JDesktopPane jdesktopPanePrincipal, ECliente eCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this(jdesktopPanePrincipal);
+        
+        preencherTela(eCliente);
     }
 
     /**
