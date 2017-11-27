@@ -61,11 +61,12 @@ public class PCliente {
         try {
 
             PreparedStatement psd = cnn.prepareStatement(Query.UPDATE_CLIENTE);
-            psd.setString(1, eCliente.getNome());
-            psd.setString(2, eCliente.getCpf());
-            psd.setString(3, eCliente.getTelefone());
-            psd.setString(4, eCliente.getEndereco());
-            psd.setString(5, eCliente.getFormaPagamento());
+            psd.setInt(1, eCliente.getCodigo());
+            psd.setString(2, eCliente.getNome());
+            psd.setString(3, eCliente.getCpf());
+            psd.setString(4, eCliente.getTelefone());
+            psd.setString(5, eCliente.getEndereco());
+            psd.setString(6, eCliente.getFormaPagamento());
 
             psd.executeUpdate();
 

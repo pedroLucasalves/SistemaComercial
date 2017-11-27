@@ -40,11 +40,11 @@ public class Query {
             + "(?,?,?,?,?,?)";
     public static final String SELECT_SEQ_CLIENTE = " SELECT CLIENTE_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
     public static final String UPDATE_CLIENTE = "UPDATE CLIENTE SET "
-            + "NOME = ?, CPF = ?, TELEFONE = ?, ENDERECO, FORMADEPAGAMENTO = ? WHERE CODIGO = ?";
+            + "NOME = ?, CPF = ?, TELEFONE = ?, ENDERECO = ?, FORMADEPAGAMENTO = ? WHERE CODIGO = ?";
     public static final String DELETE_CLIENTE = "DELETE FROM CLIENTE WHERE CODIGO = ?";
     public static final String SELECT_CLIENTE = "SELECT * FROM CLIENTE WHERE CODIGO = ?";
     public static final String SELECT_ALL_CLIENTE = "SELECT * FROM CLIENTE ORDER BY CODIGO";
-    
+
     //Fornecedor
     public static final String INSERT_FORNECEDOR = "INSERT INTO FORNECEDOR"
             + "(CODIGO, NOME, CNPJ, TELEFONE, EMAIL, ENDERECO) VALUES"
