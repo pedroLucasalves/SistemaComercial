@@ -17,7 +17,7 @@ import negocio.NCliente;
  * @author Pedro
  */
 public class AClienteCadastro extends javax.swing.JInternalFrame {
-
+    
     JDesktopPane jDesktopPanePrincipal;
 
     /**
@@ -26,11 +26,15 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
     public AClienteCadastro() {
         initComponents();
     }
-
+    
     public AClienteCadastro(JDesktopPane parametro) {
         this();
-
+        
         this.jDesktopPanePrincipal = parametro;
+    }
+    
+    public AClienteCadastro(JDesktopPane jdesktopPanePrincipal, ECliente eCliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -254,7 +258,7 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
             ECliente eCliente = new ECliente();
-
+            
             if (!jTextFieldCodigo.getText().isEmpty()) {
                 eCliente.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
             }
@@ -264,13 +268,13 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
             eCliente.setTelefone(jFormattedTextFieldTelefone.getText());
             eCliente.setEndereco(jTextFieldEndereco.getText());
             eCliente.setFormaPagamento(jTextFieldFormaDePagamento.getText());
-
+            
             new NCliente().salvar(eCliente);
-
+            
             JOptionPane.showMessageDialog(null, "Operação Realizada com sucesso!");
             
             LimparTela();
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -286,15 +290,15 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         try {
-            int resposta = JOptionPane.showConfirmDialog(null,"Confirmar a exclusão do cliente",
-                                                         "Sistema Comercial", JOptionPane.YES_OPTION);
-            if(resposta == JOptionPane.YES_OPTION){
+            int resposta = JOptionPane.showConfirmDialog(null, "Confirmar a exclusão do cliente",
+                    "Sistema Comercial", JOptionPane.YES_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
                 NCliente nCliente = new NCliente();
                 nCliente.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
                 JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
                 LimparTela();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -354,5 +358,18 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
         jTextFieldFormaDePagamento.setText("");
         
         jButtonExcluir.setEnabled(false);
+    }
+
+    private void preencherTela(ECliente eCliente) {
+        try {
+            jTextFieldCodigo.setText(eCliente.getCodigo() + "");
+            jTextFieldNome.setText(eCliente.getNome());
+            jFormattedTextFieldCPF.setText(eCliente.getCpf());
+            jFormattedTextFieldTelefone.setText(eCliente.getTelefone());
+            jTextFieldEndereco.setText(eCliente.getEndereco());
+            jTextFieldFormaDePagamento.setText(eCliente.getFormaPagamento());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 }

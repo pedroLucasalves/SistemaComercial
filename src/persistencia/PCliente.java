@@ -143,7 +143,7 @@ public class PCliente {
             eCliente.setCpf(rs.getString("CPF"));
             eCliente.setTelefone(rs.getString("TELEFONE"));
             eCliente.setEndereco(rs.getString("ENDERECO"));
-            eCliente.setFormaPagamento(rs.getString("FORMAPAGAMENTO"));
+            eCliente.setFormaPagamento(rs.getString("FORMADEPAGAMENTO"));
             lista.add(eCliente);
 
         }
