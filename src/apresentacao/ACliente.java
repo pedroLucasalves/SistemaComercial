@@ -6,6 +6,7 @@
 package apresentacao;
 
 import apresentacao.cadastro.AClienteCadastro;
+import apresentacao.pesquisa.AClientePesquisa;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.DesktopPaneUI;
@@ -17,7 +18,7 @@ import javax.swing.plaf.DesktopPaneUI;
 public class ACliente extends javax.swing.JInternalFrame {
 
     JDesktopPane jDesktopPanePrincipal;
-    
+
     /**
      * Creates new form ACliente
      */
@@ -27,7 +28,7 @@ public class ACliente extends javax.swing.JInternalFrame {
 
     public ACliente(JDesktopPane parametro) {
         this();
-        
+
         this.jDesktopPanePrincipal = parametro;
     }
 
@@ -84,19 +85,27 @@ public class ACliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
-        try{
+        try {
             AClienteCadastro tela01 = new AClienteCadastro(jDesktopPanePrincipal);
             jDesktopPanePrincipal.add(tela01);
             tela01.setVisible(true);
-            
+
             this.dispose();
-        }catch(Exception e ){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed
 
     private void jButtonConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarClienteActionPerformed
-        // TODO add your handling code here:
+        try {
+            AClientePesquisa tela02 = new AClientePesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonConsultarClienteActionPerformed
 
 

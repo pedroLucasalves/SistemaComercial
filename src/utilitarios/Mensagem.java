@@ -19,13 +19,13 @@ public class Mensagem {
 
     public static void MSG02() {
         JOptionPane.showMessageDialog(null, "Descrição ja cadastrada");
-        
+
+    }
+
+    public static void MSG03() {
+        JOptionPane.showMessageDialog(null, "Digite um CPF Valido!");
     }
 }
-//
-//    public static int MSG03() {
-//        return JOptionPane.showConfirmDialog(null, "Confirmar Exclusão?", "Mensagem do Sistema", 0, 3);
-//    }
 //
 //    public static void MSG04() {
 //        JOptionPane.showMessageDialog(null, "Alteração Efetuada com Sucesso!", "Mensagem do Sistema", 1);

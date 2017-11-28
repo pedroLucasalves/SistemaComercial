@@ -44,11 +44,13 @@ public class APrincipal extends javax.swing.JFrame {
             }
         };
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonProduto = new javax.swing.JButton();
+        jButtonCliente = new javax.swing.JButton();
         jButtonFuncionario = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButtonFornecedor = new javax.swing.JButton();
+        jButtonPromocao = new javax.swing.JButton();
+        jButtonVenda = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,19 +86,19 @@ public class APrincipal extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setText("Produto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonProduto.setBackground(new java.awt.Color(0, 102, 255));
+        jButtonProduto.setText("Produto");
+        jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonProdutoActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 255));
-        jButton2.setText("Clente");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCliente.setBackground(new java.awt.Color(0, 102, 255));
+        jButtonCliente.setText("Clente");
+        jButtonCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonClienteActionPerformed(evt);
             }
         });
 
@@ -120,6 +122,22 @@ public class APrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButtonPromocao.setBackground(new java.awt.Color(0, 102, 255));
+        jButtonPromocao.setText("promoção");
+        jButtonPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPromocaoActionPerformed(evt);
+            }
+        });
+
+        jButtonVenda.setBackground(new java.awt.Color(0, 102, 255));
+        jButtonVenda.setText("Venda");
+        jButtonVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVendaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -134,9 +152,15 @@ public class APrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonFornecedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))))
+                            .addComponent(jButtonProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonPromocao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -145,14 +169,18 @@ public class APrincipal extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addComponent(jLabel2)
                 .addGap(51, 51, 51)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jButtonProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addComponent(jButtonFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
                 .addComponent(jButtonFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +212,7 @@ public class APrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonFuncionarioActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
         try {
             ACliente telaC = new ACliente(jDesktopPanePrincipal);
             jDesktopPanePrincipal.add(telaC);
@@ -192,9 +220,9 @@ public class APrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonClienteActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProdutoActionPerformed
         try {
             AProduto telaP = new AProduto(jDesktopPanePrincipal);
             jDesktopPanePrincipal.add(telaP);
@@ -202,7 +230,7 @@ public class APrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonProdutoActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try {
@@ -221,6 +249,14 @@ public class APrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonFornecedorActionPerformed
+
+    private void jButtonPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPromocaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonPromocaoActionPerformed
+
+    private void jButtonVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,10 +295,12 @@ public class APrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCliente;
     private javax.swing.JButton jButtonFornecedor;
     private javax.swing.JButton jButtonFuncionario;
+    private javax.swing.JButton jButtonProduto;
+    private javax.swing.JButton jButtonPromocao;
+    private javax.swing.JButton jButtonVenda;
     private javax.swing.JDesktopPane jDesktopPanePrincipal;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

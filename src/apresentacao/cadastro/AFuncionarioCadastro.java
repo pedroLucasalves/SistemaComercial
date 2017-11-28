@@ -290,7 +290,11 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
                 eFuncionario.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
             }
             eFuncionario.setNome(jTextFieldNome.getText().toUpperCase());
-            eFuncionario.setCpf(jFormattedTextFieldCPF.getText());
+            if (utilitarios.Utilitarios.validarCPF(jFormattedTextFieldCPF.getText())) {
+                eFuncionario.setCpf(jFormattedTextFieldCPF.getText());
+                utilitarios.Mensagem.MSG03();
+                return;
+            }
             eFuncionario.setRg(jTextFieldRG.getText());
             eFuncionario.setEndereco(jTextFieldEndereco.getText().toUpperCase());
             eFuncionario.setTelefone(jFormattedTextFieldTelefone.getText());

@@ -265,14 +265,19 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
                 eCliente.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
             }
             eCliente.setNome(jTextFieldNome.getText().toUpperCase());
-            eCliente.setCpf(jFormattedTextFieldCPF.getText());
+            if (utilitarios.Utilitarios.validarCPF(jFormattedTextFieldCPF.getText())) {
+                eCliente.setCpf(jFormattedTextFieldCPF.getText());
+                utilitarios.Mensagem.MSG03();
+                return;
+            }
+
             eCliente.setTelefone(jFormattedTextFieldTelefone.getText());
             eCliente.setEndereco(jTextFieldEndereco.getText());
             eCliente.setFormaPagamento(jTextFieldFormaDePagamento.getText());
 
             new NCliente().salvar(eCliente);
 
-           utilitarios.Mensagem.MSG01();
+            utilitarios.Mensagem.MSG01();
 
             LimparTela();
 
