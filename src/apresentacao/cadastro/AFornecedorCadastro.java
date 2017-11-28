@@ -31,20 +31,19 @@ public class AFornecedorCadastro extends javax.swing.JInternalFrame {
         this();
 
         this.JDesktopPanePrincipal = parametro;
-        
-        
+
     }
-    public AFornecedorCadastro(EFornecedor eFornecedor){
-        
+
+    public AFornecedorCadastro(EFornecedor eFornecedor) {
+
         preencherTela(eFornecedor);
     }
 
     public AFornecedorCadastro(JDesktopPane JdesktopPanePrincipal, EFornecedor eFornecedor) {
         this(JdesktopPanePrincipal);
-        
+
         preencherTela(eFornecedor);
     }
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -268,7 +267,7 @@ public class AFornecedorCadastro extends javax.swing.JInternalFrame {
 
             NFornecedor nFornecedor = new NFornecedor();
             nFornecedor.salvar(eFornecedor);
-            JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+            utilitarios.Mensagem.MSG01();
             LimpaTela();
 
         } catch (Exception e) {
@@ -290,12 +289,12 @@ public class AFornecedorCadastro extends javax.swing.JInternalFrame {
         try {
             int resposta = JOptionPane.showConfirmDialog(null, "Confirme a exclusão do Fornecedor ?",
                     "Sistema Comercial", JOptionPane.YES_OPTION);
-            if(resposta == JOptionPane.YES_OPTION){
+            if (resposta == JOptionPane.YES_OPTION) {
                 NFornecedor nFornecedor = new NFornecedor();
                 nFornecedor.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
-                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+                utilitarios.Mensagem.MSG01();
                 LimpaTela();
-        }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -369,7 +368,7 @@ public class AFornecedorCadastro extends javax.swing.JInternalFrame {
             jFormattedTextFieldTelefone.setText(eFornecedor.getTelefone());
             jTextFieldEmail.setText(eFornecedor.getEmail());
             jTextFieldEndereco.setText(eFornecedor.getEndereco());
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

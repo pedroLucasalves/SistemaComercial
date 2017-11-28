@@ -70,7 +70,6 @@ public class PFornecedor {
 
             psd.executeUpdate();
             cnn.commit();
-            psd.close();
 
         } catch (Exception e) {
             cnn.rollback();

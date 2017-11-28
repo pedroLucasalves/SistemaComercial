@@ -212,12 +212,12 @@ public class ATipoFuncionarioCadastro extends javax.swing.JInternalFrame {
             NTipoFuncionario nTipoFuncionario = new NTipoFuncionario();
             nTipoFuncionario.salvar(eTipoFuncionario);
 
-            JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+            utilitarios.Mensagem.MSG01();
 
             LimparTela();
 
         } catch (java.sql.SQLIntegrityConstraintViolationException e) {
-            JOptionPane.showMessageDialog(null, "Descrição ja Cadastrada");
+            utilitarios.Mensagem.MSG02();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

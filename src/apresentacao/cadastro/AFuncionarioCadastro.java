@@ -298,7 +298,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
             eFuncionario.seteTipoFuncionario((ETipoFuncionario) jComboBoxTipoFuncionario.getSelectedItem());
             new NFuncionario().salvar(eFuncionario);
 
-            JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+            utilitarios.Mensagem.MSG01();
 
             LimparTela();
         } catch (Exception e) {
@@ -317,12 +317,12 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         try {
             int resposta = JOptionPane.showConfirmDialog(null, "Confirma a exclusão do Funcionário?",
-                                                        "Sistema Comercial",JOptionPane.YES_OPTION);
-            
-            if(resposta ==JOptionPane.YES_OPTION){
+                    "Sistema Comercial", JOptionPane.YES_OPTION);
+
+            if (resposta == JOptionPane.YES_OPTION) {
                 NFuncionario nFuncionario = new NFuncionario();
                 nFuncionario.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
-                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+                utilitarios.Mensagem.MSG01();
                 LimparTela();
             }
         } catch (Exception e) {
@@ -342,7 +342,7 @@ public class AFuncionarioCadastro extends javax.swing.JInternalFrame {
         AFuncionarioPesquisa tela01 = new AFuncionarioPesquisa(jDesktopPanePrincipal);
         jDesktopPanePrincipal.add(tela01);
         tela01.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 

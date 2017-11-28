@@ -17,7 +17,7 @@ import negocio.NCliente;
  * @author Pedro
  */
 public class AClienteCadastro extends javax.swing.JInternalFrame {
-    
+
     JDesktopPane jDesktopPanePrincipal;
 
     /**
@@ -26,16 +26,16 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
     public AClienteCadastro() {
         initComponents();
     }
-    
+
     public AClienteCadastro(JDesktopPane parametro) {
         this();
-        
+
         this.jDesktopPanePrincipal = parametro;
     }
-    
+
     public AClienteCadastro(JDesktopPane jdesktopPanePrincipal, ECliente eCliente) {
         this(jdesktopPanePrincipal);
-        
+
         preencherTela(eCliente);
     }
 
@@ -180,7 +180,7 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
@@ -215,33 +215,33 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonPesquisar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextFieldFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
                     .addComponent(jButtonLimpar)
@@ -260,23 +260,22 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
             ECliente eCliente = new ECliente();
-            
+
             if (!jTextFieldCodigo.getText().isEmpty()) {
                 eCliente.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
             }
-            eCliente.setCpf(jFormattedTextFieldCPF.getText());
-            eCliente.setNome(jTextFieldNome.getText());
+            eCliente.setNome(jTextFieldNome.getText().toUpperCase());
             eCliente.setCpf(jFormattedTextFieldCPF.getText());
             eCliente.setTelefone(jFormattedTextFieldTelefone.getText());
             eCliente.setEndereco(jTextFieldEndereco.getText());
             eCliente.setFormaPagamento(jTextFieldFormaDePagamento.getText());
-            
+
             new NCliente().salvar(eCliente);
-            
-            JOptionPane.showMessageDialog(null, "Operação Realizada com sucesso!");
-            
+
+           utilitarios.Mensagem.MSG01();
+
             LimparTela();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -297,7 +296,7 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
             if (resposta == JOptionPane.YES_OPTION) {
                 NCliente nCliente = new NCliente();
                 nCliente.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
-                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+                utilitarios.Mensagem.MSG01();
                 LimparTela();
             }
         } catch (Exception e) {
@@ -318,7 +317,7 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
             AClientePesquisa tela02 = new AClientePesquisa(jDesktopPanePrincipal);
             jDesktopPanePrincipal.add(tela02);
             tela02.setVisible(true);
-            
+
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -326,7 +325,7 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
-        
+
     }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
 
@@ -358,7 +357,7 @@ public class AClienteCadastro extends javax.swing.JInternalFrame {
         jFormattedTextFieldTelefone.setText("");
         jTextFieldEndereco.setText("");
         jTextFieldFormaDePagamento.setText("");
-        
+
         jButtonExcluir.setEnabled(false);
     }
 
