@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import util.Query;
 
 /**
  *
@@ -25,35 +26,56 @@ public class PProduto {
         cnn.setAutoCommit(false);
 
         try {
-            String sq2 = "SELECT PRODUTO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
+            
             Statement stm = cnn.createStatement();
-            ResultSet rs = stm.executeQuery(sq2);
+            ResultSet rs = stm.executeQuery(Query.SELECT_SEQ_PRODUTO);
 
             if (rs.next()) {
                 eProduto.setCodigo(rs.getInt("CODIGO"));
             }
             rs.close();
-            String sq1 = "INSERT INTO PRODUTO (CODIGO,NOME, VALOR,QUANTIDADE)"
-                    + "VALUES (?,?,?,?)";
+ 
 
-            PreparedStatement psd = cnn.prepareStatement(sq1);
+            PreparedStatement psd = cnn.prepareStatement(Query.INSERT_PRODUTO);
             psd.setInt(1, eProduto.getCodigo());
             psd.setString(2, eProduto.getNome());
-            psd.setDouble(3, eProduto.getValor());
-            psd.setDouble(4, eProduto.getQuantidade());
+            psd.setString(3, eProduto.getDescricao());
+            psd.setDouble(4, eProduto.getValorUnitario());
+            psd.setDouble(5, eProduto.getQuantidade());
 
             psd.execute();
-
-            psd.close();
             cnn.commit();
+            psd.close();
 
         } catch (Exception e) {
             cnn.rollback();
+            throw e;
+        }finally {
+            cnn.setAutoCommit(true);
         }
-        cnn.close();
+        
     }
 
-    public void alterar(EProduto eProduto) {
+    public void alterar(EProduto eProduto) throws ClassNotFoundException, Exception {
+        Connection cnn = util.UConexao.getConexao();
+        cnn.setAutoCommit(false);
+        try {
+            PreparedStatement psd = cnn.prepareStatement(Query.UPDATE_PRODUTO);
+            psd.setInt(1, eProduto.getCodigo());
+            psd.setString(2, eProduto.getNome());
+            psd.setString(3, eProduto.getDescricao());
+            psd.setDouble(4, eProduto.getValorUnitario());
+            psd.setDouble(5, eProduto.getQuantidade());
+            
+            psd.executeUpdate();
+            cnn.commit();
+          
+        } catch (Exception e) {
+            cnn.rollback();
+            throw e;
+        }finally{
+            cnn.setAutoCommit(true);
+        }
 
     }
 

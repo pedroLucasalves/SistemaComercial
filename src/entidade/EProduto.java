@@ -4,7 +4,8 @@ public class EProduto {
 
     private int codigo;
     private String nome;
-    private double valor;
+    private String descricao;
+    private double valorUnitario;
     private double quantidade;
 
     public int getCodigo() {
@@ -23,12 +24,12 @@ public class EProduto {
         this.nome = nome;
     }
 
-    public double getValor() {
-        return valor;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
     public double getQuantidade() {
@@ -39,8 +40,22 @@ public class EProduto {
         this.quantidade = quantidade;
     }
 
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
     @Override
     public String toString(){
-        return this.nome;
+        return "Produto{" +
+                "nome =" + nome
+                + "descricao =" + descricao
+                +"valorUnitario =" + valorUnitario
+                +"quantidade =" + quantidade
+                + '}';
     }
 }
