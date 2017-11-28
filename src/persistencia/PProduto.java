@@ -79,16 +79,72 @@ public class PProduto {
 
     }
 
-    public void excluir(int codigo) {
+    public void excluir(int codigo) throws ClassNotFoundException, Exception {
+        Connection cnn = util.UConexao.getConexao();
+        cnn.setAutoCommit(false);
+        
+        try {
+            PreparedStatement psd = cnn.prepareStatement(Query.DELETE_PRODUTO);
+            psd.setInt(1, codigo);
+            
+            psd.execute();
+            cnn.commit();
+            
+        } catch (Exception e) {
+            cnn.rollback();
+        }finally{
+            cnn.setAutoCommit(true);
+        }
 
     }
 
-    public EProduto consultar(int codigo) {
-        return null;
+    public EProduto consultar(int codigo) throws ClassNotFoundException, Exception {
+        Connection cnn = util.UConexao.getConexao();
+        PreparedStatement psd = cnn.prepareStatement(Query.SELECT_PRODUTO);
+        
+        psd.setInt(1, codigo);
+        
+        ResultSet rs = psd.executeQuery();
+        EProduto eProduto = null;
+        
+        if(rs.next()){
+            eProduto = new EProduto();
+            eProduto.setCodigo(rs.getInt("CODIGO"));
+            eProduto.setNome(rs.getString("NOME"));
+            eProduto.setDescricao(rs.getString("DESCRICAO"));
+            eProduto.setValorUnitario(rs.getDouble("VALORUNITARIO"));
+            eProduto.setQuantidade(rs.getDouble("QUANTIDADE"));
+            
+        }
+        psd.close();
+        rs.close();
+  
+        return eProduto;
     }
 
-    public ArrayList<EProduto> listar() {
-        return null;
+    public ArrayList<EProduto> listar() throws ClassNotFoundException, Exception {
+        Connection cnn = util.UConexao.getConexao();
+        Statement stm = cnn.createStatement();
+        ResultSet rs = stm.executeQuery(Query.SELECT_ALL_PRODUTO);
+        
+        EProduto eProduto = null;
+        ArrayList<EProduto> lista = null;
+        
+        while(rs.next()){
+            if (lista == null){
+                lista = new ArrayList<>();
+            }
+            
+            eProduto = new EProduto();
+            eProduto.setCodigo(rs.getInt("CODIGO"));
+            eProduto.setNome(rs.getString("NOME"));
+            eProduto.setDescricao(rs.getString("DESCRICAO"));
+            eProduto.setValorUnitario(rs.getDouble("VALORUNITARIO"));
+            eProduto.setQuantidade(rs.getDouble("QUANTIDADE"));
+            lista.add(eProduto);
+        }
+        
+        return lista;
     }
 
 }
