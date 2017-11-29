@@ -68,4 +68,6 @@ public class EProduto {
                 +"promocao =" + ePromocao
                 + '}';
     }
+    
+    
 }
