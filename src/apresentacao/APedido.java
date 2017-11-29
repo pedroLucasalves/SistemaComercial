@@ -6,6 +6,7 @@
 package apresentacao;
 
 import apresentacao.cadastro.APedidoCadastro;
+import apresentacao.pesquisa.APedidoPesquisa;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -95,7 +96,15 @@ public class APedido extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonRealizarPedidoActionPerformed
 
     private void jButtonConsultarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarPedidoActionPerformed
-        // TODO add your handling code here:
+        try {
+            APedidoPesquisa tela02 = new APedidoPesquisa(JDesktopPanePrincipal);
+            JDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonConsultarPedidoActionPerformed
 
 

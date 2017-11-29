@@ -5,26 +5,31 @@
  */
 package apresentacao;
 
+import apresentacao.cadastro.AProdutoCadastro;
+import apresentacao.pesquisa.AProdutoPesquisa;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Pedro
  */
 public class AProduto extends javax.swing.JInternalFrame {
+
     JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form AProduto
      */
     public AProduto() {
         initComponents();
     }
-    public AProduto(JDesktopPane parametro){
+
+    public AProduto(JDesktopPane parametro) {
         this();
-        
-        
+
         this.jDesktopPanePrincipal = parametro;
-        
+
     }
 
     /**
@@ -42,8 +47,18 @@ public class AProduto extends javax.swing.JInternalFrame {
         setClosable(true);
 
         jButtonCadastrarProduto.setText("Cadastrar Prdouto");
+        jButtonCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarProdutoActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarProduto.setText("Consultar Produto");
+        jButtonConsultarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,6 +83,30 @@ public class AProduto extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoActionPerformed
+        try {
+            AProdutoPesquisa tela02 = new AProdutoPesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonConsultarProdutoActionPerformed
+
+    private void jButtonCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoActionPerformed
+        try {
+            AProdutoCadastro tela01 = new AProdutoCadastro(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela01);
+            tela01.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonCadastrarProdutoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

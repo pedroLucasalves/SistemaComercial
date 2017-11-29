@@ -6,6 +6,7 @@
 package apresentacao;
 
 import apresentacao.cadastro.APromocaoCadastro;
+import apresentacao.pesquisa.APromocaoPesquisa;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -96,7 +97,11 @@ public class APromocao extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            
+            APromocaoPesquisa tela02 = new APromocaoPesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+
+            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
