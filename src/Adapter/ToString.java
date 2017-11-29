@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package Adapter;
-
-/**
- *
- * @author Joao
- */
 public class ToString implements Conversor{
      public String ParaString (Object objeto){
         return objeto.toString();

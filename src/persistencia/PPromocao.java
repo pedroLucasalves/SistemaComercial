@@ -21,41 +21,40 @@ public class PPromocao {
     public static void incluir(EPromocao ePromocao) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
-        
+
         try {
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(Query.SELECT_SEQ_TIPOFUNCIONARIO);
-            
-            if (rs.next()){
-                ePromocao.setCodigo(rs.getInt("CODIGO"));  
+
+            if (rs.next()) {
+                ePromocao.setCodigo(rs.getInt("CODIGO"));
             }
             rs.close();
-            
-                  
-            
+
         } catch (Exception e) {
+            cnn.rollback();
+            throw e;
         }
-        
-        
+
     }
 
     public PPromocao() {
     }
 
     public void alterar(EPromocao ePromocao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     public void excluir(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     public EPromocao consultar(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     public ArrayList<EPromocao> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
-    
+
 }

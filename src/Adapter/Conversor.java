@@ -4,11 +4,6 @@
  */
 
 package Adapter;
-
-/**
- *
- * @author eugenio
- */
 public interface Conversor {
     public String ParaString(Object objeto);
 

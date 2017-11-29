@@ -7,11 +7,6 @@ package Adapter;
 
 import java.util.Arrays;
 
-/**
- *
- * @author eugenio
- */
-//Classe adaptadora da interface matemática com classe Math do Java.
 public class Adaptador implements Conversor{
     public String ParaString (Object objeto) {
      return objeto + "";
