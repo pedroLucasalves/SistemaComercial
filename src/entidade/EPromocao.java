@@ -62,23 +62,25 @@ public class EPromocao {
         return null;
     
 }
-    public static String promocaoQuantidade(){
+    public static String promocaoQuantidade(EProduto eProduto){
         
-        int pague = 3;
-        int leve = 5;
-        int valorFinal;
+        int pague = 0;
+        int leve = 0;
+        double valorFinal;
         int slp = 0;
-        int valorUnitario = 0 ;
-        int valorDesconto;
+        double valorUnitario;
+        double valorDesconto;
         
+       valorUnitario = eProduto.getValorUnitario();
         
         if(leve > pague){
             slp = leve - pague;
             
         } else {
-            JOptionPane.showMessageDialog(null, "o valor de leva tem  que ser maior que o pague");
+            JOptionPane.showMessageDialog(null, "O Valor de LEVE tem que ser maior que o PAGUE");
         }
         valorDesconto = valorUnitario*slp;
+        
         valorFinal = (leve*valorUnitario) - valorDesconto;
                 
         return null;
