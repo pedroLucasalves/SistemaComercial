@@ -159,6 +159,7 @@ public class AClientePesquisa extends javax.swing.JInternalFrame {
         try {
             int linha = jTablePesquisarCliente.getSelectedRow();
             String codigo = jTablePesquisarCliente.getValueAt(linha, 0).toString();
+//          String codigo = converter.ParaString(jTablePesquisarCliente.getValueAt(linha, 0));
 
             ECliente eCliente = new NCliente().consultar(Integer.parseInt(codigo));
             AClienteCadastro tela02 = new AClienteCadastro(jdesktopPanePrincipal, eCliente);
