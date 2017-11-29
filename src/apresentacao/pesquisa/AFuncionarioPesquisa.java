@@ -196,7 +196,7 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
             cabecalho.add("TELEFONE");
             cabecalho.add("ENDERECO");
             cabecalho.add("RG");
-            cabecalho.add("TIPOASSOCIADO");
+            cabecalho.add("TIPOFUNCIONARIO");
             
             Vector detalhes = new Vector();
             
