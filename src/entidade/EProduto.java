@@ -7,6 +7,15 @@ public class EProduto {
     private String descricao;
     private double valorUnitario;
     private double quantidade;
+    private EPromocao ePromocao;
+
+    public EPromocao getePromocao() {
+        return ePromocao;
+    }
+
+    public void setePromocao(EPromocao ePromocao) {
+        this.ePromocao = ePromocao;
+    }
 
     public int getCodigo() {
         return codigo;
@@ -56,6 +65,7 @@ public class EProduto {
                 + "descricao =" + descricao
                 +"valorUnitario =" + valorUnitario
                 +"quantidade =" + quantidade
+                +"promocao =" + ePromocao
                 + '}';
     }
 }
