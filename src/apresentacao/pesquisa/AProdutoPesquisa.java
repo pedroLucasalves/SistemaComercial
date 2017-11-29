@@ -5,8 +5,13 @@
  */
 package apresentacao.pesquisa;
 
+import apresentacao.cadastro.AProdutoCadastro;
+import entidade.EProduto;
+import java.util.Vector;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import negocio.NProduto;
 
 /**
  *
@@ -21,6 +26,7 @@ public class AProdutoPesquisa extends javax.swing.JInternalFrame {
      */
     public AProdutoPesquisa() {
         initComponents();
+        preencherTela();
     }
 
     public AProdutoPesquisa(JDesktopPane parametro) {
@@ -40,7 +46,7 @@ public class AProdutoPesquisa extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablePesquisa = new javax.swing.JTable();
         jButtonFechar = new javax.swing.JButton();
 
         setClosable(true);
@@ -59,7 +65,7 @@ public class AProdutoPesquisa extends javax.swing.JInternalFrame {
             .addGap(0, 65, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -70,7 +76,12 @@ public class AProdutoPesquisa extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTablePesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTablePesquisaMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTablePesquisa);
 
         jButtonFechar.setText("Fechar");
         jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,12 +123,53 @@ public class AProdutoPesquisa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
+    private void jTablePesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisaMousePressed
+        try {
+            int linha = jTablePesquisa.getSelectedRow();
+            String codigo = jTablePesquisa.getValueAt(linha, 0).toString();
+
+            EProduto eProduto = new NProduto().consultar(Integer.parseInt(codigo));
+            AProdutoCadastro tela = new AProdutoCadastro(jDesktopPanePrincipal, eProduto);
+
+            jDesktopPanePrincipal.add(tela);
+            tela.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jTablePesquisaMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablePesquisa;
     // End of variables declaration//GEN-END:variables
 
+    private void preencherTela() {
+        try {
+            Vector<String> cabecalho = new Vector();
+            cabecalho.add("CODIGO");
+            cabecalho.add("NOME");
+            cabecalho.add("VALORUNITARIO");
+            cabecalho.add("QUANTIDADE");
+            cabecalho.add("DESCRICAO");
+
+            Vector detalhes = new Vector();
+
+            for (EProduto detalhe : new NProduto().listar()) {
+                Vector<String> linha = new Vector();
+                linha.add(detalhe.getCodigo() + "");
+                linha.add(detalhe.getNome());
+                linha.add(detalhe.getValorUnitario() + "");
+                linha.add(detalhe.getQuantidade() + "");
+                linha.add(detalhe.getDescricao());
+                detalhes.add(linha);
+            }
+            jTablePesquisa.setModel(new DefaultTableModel(detalhes, cabecalho));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 }

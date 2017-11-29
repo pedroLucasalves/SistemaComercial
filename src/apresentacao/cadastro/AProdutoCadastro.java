@@ -32,6 +32,16 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
         this.jDesktopPanePrincipal = parametro;
     }
 
+    public AProdutoCadastro(EProduto eProduto) {
+        preencherTela(eProduto);
+    }
+
+    public AProdutoCadastro(JDesktopPane jDesktopPanePrincipal, EProduto eProduto) {
+        this(jDesktopPanePrincipal);
+
+        preencherTela(eProduto);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -232,8 +242,9 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
             if (!jTextFieldCodigo.getText().isEmpty()) {
                 eProduto.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
             }
-            eProduto.setValorUnitario(Integer.parseInt(jTextFieldValorUnitario.getText()));
-            eProduto.setQuantidade(Integer.parseInt(jTextFieldQuantidade.getText()));
+            eProduto.setNome(jTextFieldNome.getText());
+            eProduto.setValorUnitario(Double.valueOf(jTextFieldValorUnitario.getText()));
+            eProduto.setQuantidade(Double.valueOf(jTextFieldQuantidade.getText()));
             eProduto.setDescricao(jTextFieldDescricao.getText());
 
             NProduto nProduto = new NProduto();
@@ -261,9 +272,10 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
             if (resposta == JOptionPane.YES_OPTION) {
                 NProduto nProduto = new NProduto();
                 nProduto.excluir(Integer.parseInt(jTextFieldCodigo.getText()));
-
             }
+            LimparTela();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -311,10 +323,10 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
     private void LimparTela() {
         try {
             jTextFieldCodigo.setText("");
-            jTextFieldDescricao.setText("");
             jTextFieldNome.setText("");
-            jTextFieldQuantidade.setText("");
             jTextFieldValorUnitario.setText("");
+            jTextFieldQuantidade.setText("");
+            jTextFieldDescricao.setText("");
 
             jButtonExcluir.setEnabled(false);
         } catch (Exception e) {

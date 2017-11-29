@@ -26,7 +26,7 @@ public class PProduto {
         cnn.setAutoCommit(false);
 
         try {
-            
+
             Statement stm = cnn.createStatement();
             ResultSet rs = stm.executeQuery(Query.SELECT_SEQ_PRODUTO);
 
@@ -34,14 +34,13 @@ public class PProduto {
                 eProduto.setCodigo(rs.getInt("CODIGO"));
             }
             rs.close();
- 
 
             PreparedStatement psd = cnn.prepareStatement(Query.INSERT_PRODUTO);
-            psd.setString(1, eProduto.getNome());   
-            psd.setDouble(2, eProduto.getValorUnitario());
-            psd.setDouble(3, eProduto.getQuantidade());
-            psd.setString(4, eProduto.getDescricao());
-            psd.setInt(5, eProduto.getCodigo());
+            psd.setInt(1, eProduto.getCodigo());
+            psd.setString(2, eProduto.getNome());
+            psd.setDouble(3, eProduto.getValorUnitario());
+            psd.setDouble(4, eProduto.getQuantidade());
+            psd.setString(5, eProduto.getDescricao());
 
             psd.execute();
             cnn.commit();
@@ -50,10 +49,10 @@ public class PProduto {
         } catch (Exception e) {
             cnn.rollback();
             throw e;
-        }finally {
+        } finally {
             cnn.setAutoCommit(true);
         }
-        
+
     }
 
     public void alterar(EProduto eProduto) throws ClassNotFoundException, Exception {
@@ -66,14 +65,14 @@ public class PProduto {
             psd.setDouble(3, eProduto.getQuantidade());
             psd.setString(4, eProduto.getDescricao());
             psd.setInt(5, eProduto.getCodigo());
-            
+
             psd.executeUpdate();
             cnn.commit();
-          
+
         } catch (Exception e) {
             cnn.rollback();
             throw e;
-        }finally{
+        } finally {
             cnn.setAutoCommit(true);
         }
 
@@ -82,17 +81,17 @@ public class PProduto {
     public void excluir(int codigo) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
-        
+
         try {
             PreparedStatement psd = cnn.prepareStatement(Query.DELETE_PRODUTO);
             psd.setInt(1, codigo);
-            
+
             psd.execute();
             cnn.commit();
-            
+
         } catch (Exception e) {
             cnn.rollback();
-        }finally{
+        } finally {
             cnn.setAutoCommit(true);
         }
 
@@ -101,24 +100,24 @@ public class PProduto {
     public EProduto consultar(int codigo) throws ClassNotFoundException, Exception {
         Connection cnn = util.UConexao.getConexao();
         PreparedStatement psd = cnn.prepareStatement(Query.SELECT_PRODUTO);
-        
+
         psd.setInt(1, codigo);
-        
+
         ResultSet rs = psd.executeQuery();
         EProduto eProduto = null;
-        
-        if(rs.next()){
+
+        if (rs.next()) {
             eProduto = new EProduto();
             eProduto.setCodigo(rs.getInt("CODIGO"));
             eProduto.setNome(rs.getString("NOME"));
-            eProduto.setDescricao(rs.getString("DESCRICAO"));
             eProduto.setValorUnitario(rs.getDouble("VALORUNITARIO"));
             eProduto.setQuantidade(rs.getDouble("QUANTIDADE"));
-            
+            eProduto.setDescricao(rs.getString("DESCRICAO"));
+
         }
         psd.close();
         rs.close();
-  
+
         return eProduto;
     }
 
@@ -126,24 +125,24 @@ public class PProduto {
         Connection cnn = util.UConexao.getConexao();
         Statement stm = cnn.createStatement();
         ResultSet rs = stm.executeQuery(Query.SELECT_ALL_PRODUTO);
-        
+
         EProduto eProduto = null;
         ArrayList<EProduto> lista = null;
-        
-        while(rs.next()){
-            if (lista == null){
+
+        while (rs.next()) {
+            if (lista == null) {
                 lista = new ArrayList<>();
             }
-            
+
             eProduto = new EProduto();
             eProduto.setCodigo(rs.getInt("CODIGO"));
             eProduto.setNome(rs.getString("NOME"));
-            eProduto.setDescricao(rs.getString("DESCRICAO"));
             eProduto.setValorUnitario(rs.getDouble("VALORUNITARIO"));
             eProduto.setQuantidade(rs.getDouble("QUANTIDADE"));
+            eProduto.setDescricao(rs.getString("DESCRICAO"));
             lista.add(eProduto);
         }
-        
+
         return lista;
     }
 

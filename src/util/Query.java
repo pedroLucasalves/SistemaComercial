@@ -62,7 +62,7 @@ public class Query {
             + "(?,?,?,?,?)";
     public static final String SELECT_SEQ_PRODUTO = "SELECT PRODUTO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
     public static final String UPDATE_PRODUTO = "UPDATE PRODUTO SET "
-            + "NOME = ?, VALORUNITARIO = ?, QUANTIDADE =?, DESCRICAO = ?, WHERE CODIGO = ?";
+            + "NOME = ?, VALORUNITARIO = ?, QUANTIDADE = ?, DESCRICAO = ? WHERE CODIGO = ?";
     public static final String DELETE_PRODUTO = "DELETE FROM PRODUTO WHERE CODIGO = ?";
     public static final String SELECT_PRODUTO = "SELECT * FROM PRODUTO WHERE CODIGO = ?";
     public static final String SELECT_ALL_PRODUTO = "SELECT * FROM PRODUTO ORDER BY CODIGO";
