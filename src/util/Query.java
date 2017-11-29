@@ -55,20 +55,20 @@ public class Query {
     public static final String DELETE_FORNECEDOR = "DELETE FROM FORNECEDOR WHERE CODIGO = ?";
     public static final String SELECT_FORNECEDOR = "SELECT * FROM FORNECEDOR WHERE CODIGO = ?";
     public static final String SELECT_ALL_FORNECEDOR = "SELECT * FROM FORNECEDOR ORDER BY CODIGO";
-    
+
     //Produto
-    public static final String INSERT_PRODUTO = "INSERT PRODUTO INTO PRODUTO" + 
-            "(CODIGO, NOME, DESCRICAO, VALORUNITARIO, QUANTIDADE) VALUES" 
+    public static final String INSERT_PRODUTO = "INSERT INTO PRODUTO"
+            + "(CODIGO, NOME, VALORUNITARIO, QUANTIDADE, DESCRICAO) VALUES"
             + "(?,?,?,?,?)";
     public static final String SELECT_SEQ_PRODUTO = "SELECT PRODUTO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
-    public static final String UPDATE_PRODUTO = "UPDATE PRODUTO SET" 
-         + "WHERE CODIGO = ?, NOME = ?, DESCRICAO = ?, VALORUNITARIO = ?, QUANTIDADE =?";
+    public static final String UPDATE_PRODUTO = "UPDATE PRODUTO SET "
+            + "NOME = ?, VALORUNITARIO = ?, QUANTIDADE =?, DESCRICAO = ?, WHERE CODIGO = ?";
     public static final String DELETE_PRODUTO = "DELETE FROM PRODUTO WHERE CODIGO = ?";
     public static final String SELECT_PRODUTO = "SELECT * FROM PRODUTO WHERE CODIGO = ?";
     public static final String SELECT_ALL_PRODUTO = "SELECT * FROM PRODUTO ORDER BY CODIGO";
-    
+
     private static final String INSERT_PROMOCAO = " INSERT INTO PROMOCAO"
             + "(CODIGO,DESCRICAO)VALUES"
             + "(?,?)";
-    
+
 }

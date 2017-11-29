@@ -37,11 +37,11 @@ public class PProduto {
  
 
             PreparedStatement psd = cnn.prepareStatement(Query.INSERT_PRODUTO);
-            psd.setInt(1, eProduto.getCodigo());
-            psd.setString(2, eProduto.getNome());
-            psd.setString(3, eProduto.getDescricao());
-            psd.setDouble(4, eProduto.getValorUnitario());
-            psd.setDouble(5, eProduto.getQuantidade());
+            psd.setString(1, eProduto.getNome());   
+            psd.setDouble(2, eProduto.getValorUnitario());
+            psd.setDouble(3, eProduto.getQuantidade());
+            psd.setString(4, eProduto.getDescricao());
+            psd.setInt(5, eProduto.getCodigo());
 
             psd.execute();
             cnn.commit();
@@ -61,11 +61,11 @@ public class PProduto {
         cnn.setAutoCommit(false);
         try {
             PreparedStatement psd = cnn.prepareStatement(Query.UPDATE_PRODUTO);
-            psd.setInt(1, eProduto.getCodigo());
-            psd.setString(2, eProduto.getNome());
-            psd.setString(3, eProduto.getDescricao());
-            psd.setDouble(4, eProduto.getValorUnitario());
-            psd.setDouble(5, eProduto.getQuantidade());
+            psd.setString(1, eProduto.getNome());
+            psd.setDouble(2, eProduto.getValorUnitario());
+            psd.setDouble(3, eProduto.getQuantidade());
+            psd.setString(4, eProduto.getDescricao());
+            psd.setInt(5, eProduto.getCodigo());
             
             psd.executeUpdate();
             cnn.commit();
