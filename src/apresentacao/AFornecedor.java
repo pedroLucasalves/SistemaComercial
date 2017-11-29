@@ -6,6 +6,7 @@
 package apresentacao;
 
 import apresentacao.cadastro.AFornecedorCadastro;
+import apresentacao.pesquisa.AFornecedorPesquisa;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -63,7 +64,7 @@ public class AFornecedor extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCadastrarFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonConsultarFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -72,11 +73,11 @@ public class AFornecedor extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jButtonCadastrarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addComponent(jButtonConsultarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,7 +96,15 @@ public class AFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCadastrarFornecedorActionPerformed
 
     private void jButtonConsultarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarFornecedorActionPerformed
-        // TODO add your handling code here:
+        try {
+            AFornecedorPesquisa tela02 = new AFornecedorPesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
+            
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonConsultarFornecedorActionPerformed
 
 

@@ -5,6 +5,8 @@
  */
 package apresentacao;
 
+import apresentacao.cadastro.APedidoCadastro;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +15,19 @@ import javax.swing.JOptionPane;
  */
 public class APedido extends javax.swing.JInternalFrame {
 
+    JDesktopPane JDesktopPanePrincipal;
+
     /**
      * Creates new form APedido
      */
     public APedido() {
         initComponents();
+    }
+
+    public APedido(JDesktopPane parametro) {
+        this();
+
+        this.JDesktopPanePrincipal = parametro;
     }
 
     /**
@@ -53,29 +63,33 @@ public class APedido extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonRealizarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonConsultarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jButtonRealizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonConsultarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRealizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPedidoActionPerformed
-        try{
-          
-        }catch(Exception e ){
+        try {
+            APedidoCadastro tela01 = new APedidoCadastro(JDesktopPanePrincipal);
+            JDesktopPanePrincipal.add(tela01);
+            tela01.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonRealizarPedidoActionPerformed

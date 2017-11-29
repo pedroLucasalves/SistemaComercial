@@ -5,17 +5,29 @@
  */
 package apresentacao.cadastro;
 
+import apresentacao.pesquisa.AProdutoPesquisa;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pedro
  */
 public class AProdutoCadastro extends javax.swing.JInternalFrame {
 
+    JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form AProdutoCadastro
      */
     public AProdutoCadastro() {
         initComponents();
+    }
+
+    public AProdutoCadastro(JDesktopPane parametro) {
+        this();
+
+        this.jDesktopPanePrincipal = parametro;
     }
 
     /**
@@ -46,6 +58,9 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
         jTextFieldQuantidade = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+
+        setClosable(true);
+        setIconifiable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -126,14 +141,7 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jButtonSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonLimpar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonExcluir))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -150,12 +158,19 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
                             .addComponent(jTextFieldQuantidade)
                             .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonPesquisar)
-                    .addComponent(jButtonFechar))
-                .addGap(36, 36, 36))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonPesquisar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jButtonSalvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonLimpar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonFechar)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +201,7 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
                     .addComponent(jButtonLimpar)
@@ -211,11 +226,23 @@ public class AProdutoCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
-        // TODO add your handling code here:
+        try {
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        // TODO add your handling code here:
+        try {
+            AProdutoPesquisa tela01 = new AProdutoPesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela01);
+            tela01.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
 

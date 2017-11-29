@@ -22,7 +22,7 @@ public class APrincipal extends javax.swing.JFrame {
     public APrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        
+
     }
 
     /**
@@ -214,9 +214,9 @@ public class APrincipal extends javax.swing.JFrame {
 
     private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
         try {
-            ACliente telaC = new ACliente(jDesktopPanePrincipal);
-            jDesktopPanePrincipal.add(telaC);
-            telaC.setVisible(true);
+            ACliente tela02 = new ACliente(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela02);
+            tela02.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -224,9 +224,9 @@ public class APrincipal extends javax.swing.JFrame {
 
     private void jButtonProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProdutoActionPerformed
         try {
-            AProduto telaP = new AProduto(jDesktopPanePrincipal);
-            jDesktopPanePrincipal.add(telaP);
-            telaP.setVisible(true);
+            AProduto tela03 = new AProduto(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela03);
+            tela03.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -242,20 +242,32 @@ public class APrincipal extends javax.swing.JFrame {
 
     private void jButtonFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFornecedorActionPerformed
         try {
-            AFornecedor telaF = new AFornecedor(jDesktopPanePrincipal);
-            jDesktopPanePrincipal.add(telaF);
-            telaF.setVisible(true);
+            AFornecedor tela04 = new AFornecedor(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela04);
+            tela04.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButtonFornecedorActionPerformed
 
     private void jButtonPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPromocaoActionPerformed
-        // TODO add your handling code here:
+        try {
+            APromocao tela05 = new APromocao(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela05);
+            tela05.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonPromocaoActionPerformed
 
     private void jButtonVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVendaActionPerformed
-        // TODO add your handling code here:
+        try {
+            APedido tela06 = new APedido(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela06);
+            tela06.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButtonVendaActionPerformed
 
     /**
@@ -314,5 +326,5 @@ public class APrincipal extends javax.swing.JFrame {
             System.exit(0);
         }
     }
-    
+
 }

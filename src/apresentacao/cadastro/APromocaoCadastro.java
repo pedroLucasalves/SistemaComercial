@@ -5,17 +5,29 @@
  */
 package apresentacao.cadastro;
 
+import apresentacao.pesquisa.APromocaoPesquisa;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pedro
  */
 public class APromocaoCadastro extends javax.swing.JInternalFrame {
 
+    JDesktopPane jDesktopPanePrincipal;
+
     /**
      * Creates new form APromocaoCadastro
      */
     public APromocaoCadastro() {
         initComponents();
+    }
+
+    public APromocaoCadastro(JDesktopPane parametro) {
+        this();
+
+        this.jDesktopPanePrincipal = parametro;
     }
 
     /**
@@ -31,7 +43,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jButtonPesquisa = new javax.swing.JButton();
         jLabelLeve = new javax.swing.JLabel();
         jTextFieldLeve = new javax.swing.JTextField();
         jLabelPague = new javax.swing.JLabel();
@@ -46,6 +58,9 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jComboBoxTipopromo = new javax.swing.JComboBox<>();
+
+        setClosable(true);
+        setIconifiable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -74,7 +89,12 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Pesquisar");
+        jButtonPesquisa.setText("Pesquisar");
+        jButtonPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisaActionPerformed(evt);
+            }
+        });
 
         jLabelLeve.setText("Leve");
 
@@ -139,7 +159,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
                                 .addGap(44, 44, 44)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonPesquisa))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabelPague)
@@ -160,7 +180,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonPesquisa)))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -203,20 +223,32 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBoxTipopromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipopromoActionPerformed
-        
+
 //        if(jComboBoxTipopromo.getItemAt("Quantidade")){
 //        jLabelProcentagem.setVisible(false);
 //        jTextFieldPorcentagem.setVisible(false);
 //        }
     }//GEN-LAST:event_jComboBoxTipopromoActionPerformed
 
+    private void jButtonPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaActionPerformed
+        try {
+            APromocaoPesquisa tela01 = new APromocaoPesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela01);
+            tela01.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonPesquisaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonPesquisa;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxTipopromo;
     private javax.swing.JLabel jLabel1;

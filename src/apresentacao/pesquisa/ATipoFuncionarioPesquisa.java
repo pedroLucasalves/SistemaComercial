@@ -55,6 +55,9 @@ public class ATipoFuncionarioPesquisa extends javax.swing.JInternalFrame {
 
         jRadioButton1.setText("jRadioButton1");
 
+        setClosable(true);
+        setIconifiable(true);
+
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

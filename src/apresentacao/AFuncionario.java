@@ -7,6 +7,7 @@ package apresentacao;
 
 import apresentacao.cadastro.AFuncionarioCadastro;
 import apresentacao.cadastro.ATipoFuncionarioCadastro;
+import apresentacao.pesquisa.AFuncionarioPesquisa;
 import java.awt.JobAttributes;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -43,6 +44,7 @@ public class AFuncionario extends javax.swing.JInternalFrame {
 
         jButtonCadastrarFuncionario = new javax.swing.JButton();
         jButtonCadastrarTipoFuncionario = new javax.swing.JButton();
+        jButtonConsultarFuncionario = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -60,25 +62,35 @@ public class AFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonConsultarFuncionario.setText("Consultar Funcionario");
+        jButtonConsultarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarFuncionarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCadastrarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCadastrarTipoFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonCadastrarTipoFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonConsultarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jButtonCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addComponent(jButtonCadastrarTipoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jButtonConsultarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,9 +120,22 @@ public class AFuncionario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonCadastrarTipoFuncionarioActionPerformed
 
+    private void jButtonConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarFuncionarioActionPerformed
+        try {
+            AFuncionarioPesquisa tela03 = new AFuncionarioPesquisa(jDesktopPanePrincipal);
+            jDesktopPanePrincipal.add(tela03);
+            tela03.setVisible(true);
+
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonConsultarFuncionarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrarFuncionario;
     private javax.swing.JButton jButtonCadastrarTipoFuncionario;
+    private javax.swing.JButton jButtonConsultarFuncionario;
     // End of variables declaration//GEN-END:variables
 }
