@@ -67,4 +67,8 @@ public class Query {
     public static final String SELECT_PRODUTO = "SELECT * FROM PRODUTO WHERE CODIGO = ?";
     public static final String SELECT_ALL_PRODUTO = "SELECT * FROM PRODUTO ORDER BY CODIGO";
     
+    private static final String INSERT_PROMOCAO = " INSERT INTO PROMOCAO"
+            + "(CODIGO,DESCRICAO)VALUES"
+            + "(?,?)";
+    
 }
