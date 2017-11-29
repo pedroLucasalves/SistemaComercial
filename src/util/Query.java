@@ -51,7 +51,7 @@ public class Query {
             + "(?,?,?,?,?,?)";
     public static final String SELECT_SEQ_FORNECEDOR = "SELECT FORNECEDOR_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
     public static final String UPDATE_FORNECEDOR = "UPDATE FORNECEDOR SET "
-            + "WHERE CODIGO = ?, NOME = ?, CNPJ = ?, TELEFONE = ?, EMAIL = ?, ENDERECO = ?";
+            + "NOME = ?, CNPJ = ?, TELEFONE = ?, EMAIL = ?, ENDERECO = ? WHERE CODIGO = ?";
     public static final String DELETE_FORNECEDOR = "DELETE FROM FORNECEDOR WHERE CODIGO = ?";
     public static final String SELECT_FORNECEDOR = "SELECT * FROM FORNECEDOR WHERE CODIGO = ?";
     public static final String SELECT_ALL_FORNECEDOR = "SELECT * FROM FORNECEDOR ORDER BY CODIGO";

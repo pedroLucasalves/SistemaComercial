@@ -61,12 +61,14 @@ public class PFornecedor {
 
         try {
             PreparedStatement psd = cnn.prepareStatement(Query.UPDATE_FORNECEDOR);
-            psd.setInt(1, eFornecedor.getCodigo());
-            psd.setString(2, eFornecedor.getNome());
-            psd.setString(3, eFornecedor.getCnpj());
-            psd.setString(4, eFornecedor.getTelefone());
-            psd.setString(5, eFornecedor.getEmail());
-            psd.setString(6, eFornecedor.getEndereco());
+            
+            
+            psd.setString(1, eFornecedor.getNome());
+            psd.setString(2, eFornecedor.getCnpj());
+            psd.setString(3, eFornecedor.getTelefone());
+            psd.setString(4, eFornecedor.getEmail());
+            psd.setString(5, eFornecedor.getEndereco());
+            psd.setInt(6, eFornecedor.getCodigo());
 
             psd.executeUpdate();
             cnn.commit();
