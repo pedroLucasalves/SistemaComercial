@@ -41,18 +41,23 @@ public class EPromocao {
         this.drescricao = drescricao;
     }
     
-    public static String promocaoPorcentagem(){
+    public static String promocaoPorcentagem(EProduto eProduto){
         
         int n;
         double porcentagem;
         double valorDesconto;
         double valorFinal;
+        double valorUnitario;
+        
+        valorUnitario = eProduto.getValorUnitario();
+        
+        
         Scanner leia = new Scanner(System.in);
         
         n = leia.nextInt();
         
         porcentagem = n/100.00;
-        double valorUnitario = 0;
+        
         
         valorDesconto = valorUnitario*porcentagem;
         
@@ -64,14 +69,19 @@ public class EPromocao {
 }
     public static String promocaoQuantidade(EProduto eProduto){
         
-        int pague = 0;
-        int leve = 0;
+        int pague;
+        int leve;
         double valorFinal;
         int slp = 0;
         double valorUnitario;
         double valorDesconto;
         
        valorUnitario = eProduto.getValorUnitario();
+       
+       Scanner leia = new Scanner(System.in);
+        
+        leve = leia.nextInt();
+        pague = leia.nextInt();
         
         if(leve > pague){
             slp = leve - pague;
