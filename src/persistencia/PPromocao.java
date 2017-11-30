@@ -7,6 +7,7 @@ package persistencia;
 
 import entidade.EPromocao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -24,37 +25,116 @@ public class PPromocao {
 
         try {
             Statement stm = cnn.createStatement();
-            ResultSet rs = stm.executeQuery(Query.SELECT_SEQ_TIPOFUNCIONARIO);
+            ResultSet rs = stm.executeQuery(Query.SELECT_SEQ_PROMOCAO);
 
             if (rs.next()) {
                 ePromocao.setCodigo(rs.getInt("CODIGO"));
             }
-            rs.close();
+            
+        rs.close();
+            PreparedStatement ps = cnn.prepareStatement(Query.INSERT_PROMOCAO);
 
+            ps.setInt(1, ePromocao.getCodigo());
+            ps.setString(2, ePromocao.getDescricao());
+            ps.setDouble(3, ePromocao.getValorDesconto());
+            ps.setDouble(4, ePromocao.getValorFinal());
+            
+            ps.execute();
+
+            cnn.commit();
+            ps.close();
         } catch (Exception e) {
             cnn.rollback();
             throw e;
+        } finally {
+            cnn.setAutoCommit(true);
         }
 
     }
 
-    public PPromocao() {
+//    public PPromocao() {
+//    }
+
+    public void alterar(EPromocao ePromocao) throws ClassNotFoundException, Exception {
+        
+        Connection cnn = util.UConexao.getConexao();
+        cnn.setAutoCommit(false);
+        try {
+            PreparedStatement psd = cnn.prepareStatement(Query.UPDATE_PROMOCAO);
+
+            psd.setString(1, ePromocao.getDescricao());
+            psd.setInt(2, ePromocao.getCodigo());
+
+            psd.executeUpdate();
+            cnn.commit();
+        } catch (Exception e) {
+            cnn.rollback();
+            throw e;
+        } finally {
+            cnn.setAutoCommit(true);
+        }
+
     }
 
-    public void alterar(EPromocao ePromocao) {
+    public void excluir(int codigo) throws ClassNotFoundException, Exception {
+        Connection cnn = util.UConexao.getConexao();
+        cnn.setAutoCommit(false);
+        try {
+            PreparedStatement psd = cnn.prepareStatement(Query.DELETE_PROMOCAO);
+
+            psd.setInt(1, codigo);
+
+            psd.execute();
+            cnn.commit();
+
+        } catch (Exception e) {
+            cnn.rollback();
+            throw e;
+        } finally {
+            cnn.setAutoCommit(true);
+        }
 
     }
 
-    public void excluir(int codigo) {
+    public EPromocao consultar(int codigo) throws ClassNotFoundException, Exception {
+        Connection cnn = util.UConexao.getConexao();
+        PreparedStatement psd = cnn.prepareStatement(Query.SELECT_PROMOCAO);
 
+        psd.setInt(1, codigo);
+
+        ResultSet rs = psd.executeQuery();
+
+        EPromocao objeto = null;
+        if (rs.next()) {
+            objeto = new EPromocao();
+            objeto.setCodigo(rs.getInt("CODIGO"));
+            objeto.setDescricao(rs.getString("DESCRICAO"));
+        }
+        psd.close();
+        rs.close();
+        return objeto;
     }
 
-    public EPromocao consultar(int codigo) {
-        return null;
+    public ArrayList<EPromocao> listar() throws ClassNotFoundException, Exception {
+        Connection cnn = util.UConexao.getConexao();
+        Statement stm = cnn.createStatement();
+        ResultSet rs = stm.executeQuery(Query.SELECT_ALL_PROMOCAO);
+
+        ArrayList<EPromocao> lista = null;
+        while (rs.next()) {
+            if (lista == null) {
+                lista = new ArrayList<>();
+            }
+
+            EPromocao objeto = new EPromocao();
+            objeto.setCodigo(rs.getInt("CODIGO"));
+            objeto.setDescricao(rs.getString("DESCRICAO"));
+            lista.add(objeto);
+        }
+        stm.close();
+        rs.close();
+        return lista;
     }
 
-    public ArrayList<EPromocao> listar() {
-        return null;
-    }
 
 }
