@@ -82,6 +82,13 @@ public class Query {
     public static final String INSERT_ITEMPEDIDO = "INSERT INTO ITEMPEDIDO"
             + "(CODIGO, QUANTIDADE, COD_PEDIDO, COD_PRODUTO) VALUES"
             + "(?,?,?,?)";
+    public static final String SELECT_SEQ_ITEMPEDIDO = "SELECT ITEMPEDIDO_CODIGO_SEQ>NEXTVAL AS CODIGO FROM DUAL";
+    public static final String UPDATE_ITEMPEDIDO = "UPDATE ITEMPEDIDO SET "
+            + "QUANTIDADE, COD_PEDIDO, COD_PRODUTO WHERE CODIGO = ?";
+    public static final String DELETE_ITEMPEDIDO = "DELETE ITEMPEDIDO WHERE CODIGO = ?";
+    public static final String SELECT_ITEMPEDIDO = "SELECT * FROM ITEMPEDIDO WHERE CODIGO = ?";
+    public static final String SELECT_ALL_ITEMPEDIDO = "SELECT * FROM ITEMPEDIDO ORDER BY CODIGO";
+    //public 
     //promocao
     public static final String INSERT_PROMOCAO = "INSERT INTO PROMOCAO"
             + " (CODIGO, DESCRICAO) VALUES"
