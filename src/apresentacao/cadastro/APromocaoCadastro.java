@@ -7,11 +7,13 @@ package apresentacao.cadastro;
 
 import apresentacao.pesquisa.AProdutoPesquisa;
 import apresentacao.pesquisa.APromocaoPesquisa;
+import entidade.EProduto;
 import entidade.EPromocao;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import negocio.NPromocao;
+import persistencia.PProduto;
 
 /**
  *
@@ -26,6 +28,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
      */
     public APromocaoCadastro() {
         initComponents();
+        carregaProdutos();
     }
 
     public APromocaoCadastro(JDesktopPane parametro) {
@@ -62,6 +65,8 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jComboBoxTipopromo = new javax.swing.JComboBox<>();
         jTextFieldCodigoPromo = new javax.swing.JTextField();
+        jComboBoxProduto = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -146,6 +151,14 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBoxProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxProdutoActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Produto");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,7 +167,6 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,20 +180,28 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
                             .addComponent(jLabelProcentagem)
                             .addComponent(jLabel6)
                             .addComponent(jLabelLeve)
-                            .addComponent(jLabelPague)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabelPague))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxTipopromo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldPague, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldLeve, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel3))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextFieldCodigoPromo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(64, 64, 64)
-                                .addComponent(jButtonPesquisaPromo)))))
-                .addGap(33, 57, Short.MAX_VALUE))
+                                .addComponent(jButtonPesquisaPromo))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboBoxProduto, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxTipopromo, javax.swing.GroupLayout.Alignment.LEADING, 0, 127, Short.MAX_VALUE)))))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,6 +218,10 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(jComboBoxTipopromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLeve)
                     .addComponent(jTextFieldLeve, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,7 +243,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jButtonLimpar)
                     .addComponent(jButtonFechar)
                     .addComponent(jButtonExcluir))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -233,35 +257,15 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
     
     private void jComboBoxTipopromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipopromoActionPerformed
 
-        
         EPromocao ePromocao = new EPromocao();
-        if (jComboBoxTipopromo.getSelectedItem().equals("Quantidade")){
-          
-          ePromocao.getLeve();
-          ePromocao.getPague();
-          ePromocao.promocaoQuantidade();
-          
-        } else if(jComboBoxTipopromo.getSelectedItem().equals("Porcentagem")) {
-            
-            ePromocao.getX();
-            
-            ePromocao.promocaoPorcentagem();
-            
-            
+        ePromocao.setDescricao(jTextFieldDescricao.getText());
+        ePromocao.setEproduto((EProduto) jComboBoxProduto.getSelectedItem());
+        if(jComboBoxTipopromo.getSelectedItem().equals("Quantidade")){
+            ePromocao.descontoPagueLeve(Integer.parseInt(jTextFieldPague.getText()),Integer.parseInt( jTextFieldLeve.getText()));
+        }else {
+            ePromocao.descontoPorcentagem(Double.parseDouble(jTextFieldPorcentagem.getText()));
         }
-//        if(jComboBoxTipopromo.equals("Selecione...")){
-//        
-//        jTextFieldLeve.setEditable(false);
-//    jTextFieldPague.setEditable(false);
-//    jTextFieldPorcentagem.setEditable(false);
-//    
-//        }else if(jComboBoxTipopromo.equals("Quantidade")){
-//        jTextFieldLeve.setEditable(true);
-//        jTextFieldPague.setEditable(true);
-//        
-//        } else {
-//            jTextFieldPorcentagem.setEditable(true);
-//        }
+        
     }//GEN-LAST:event_jComboBoxTipopromoActionPerformed
 
     private void jButtonPesquisaPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaPromoActionPerformed
@@ -318,6 +322,21 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
+    public final void carregaProdutos(){
+        try {
+            for(EProduto p : new PProduto().listar()) {
+                jComboBoxProduto.addItem(p);
+            }
+            
+        } catch (Exception e) {
+        }
+        
+    }
+    
+    private void jComboBoxProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProdutoActionPerformed
+       
+    }//GEN-LAST:event_jComboBoxProdutoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonExcluir;
@@ -325,9 +344,11 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonPesquisaPromo;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JComboBox jComboBoxProduto;
     private javax.swing.JComboBox<String> jComboBoxTipopromo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelLeve;

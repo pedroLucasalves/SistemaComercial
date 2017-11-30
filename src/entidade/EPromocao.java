@@ -9,14 +9,11 @@ public class EPromocao {
 
     private int codigo;
     private String descricao;
-    private int pague;
-    private int leve;
-    private double valorFinal;
-    private double valorDesconto;
-    private double porcentagem;
-    private double valorUnitario;
-    private int slp;
-    private int x;
+    private int quantidade;
+    private double valorTotal;
+    private double percentualDesconto;
+    private EProduto eproduto;
+    
     
 
     public EPromocao(int codigo, String drescricao) {
@@ -45,123 +42,54 @@ public class EPromocao {
 
     }
 
-    public int getPague() {
-        return pague;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setPague(int pague) {
-        this.pague = pague;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public int getLeve() {
-        return leve;
+    public double getValorTotal() {
+        return valorTotal;
     }
 
-    public void setLeve(int leve) {
-        this.leve = leve;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public double getValorFinal() {
-        return valorFinal;
+    
+
+    public double getPercentualDesconto() {
+        return percentualDesconto;
     }
 
-    public void setValorFinal(double valorFinal) {
-        this.valorFinal = valorFinal;
+    public void setPercentualDesconto(double percentualDesconto) {
+        this.percentualDesconto = percentualDesconto;
     }
 
-    public double getValorDesconto() {
-        return valorDesconto;
+    
+
+    public EProduto getEproduto() {
+        return eproduto;
     }
 
-    public void setValorDesconto(double valorDesconto) {
-        this.valorDesconto = valorDesconto;
+    public void setEproduto(EProduto eproduto) {
+        this.eproduto = eproduto;
     }
 
-    public double getPorcentagem() {
-        return porcentagem;
-    }
-
-    public void setPorcentagem(double porcentagem) {
-        this.porcentagem = porcentagem;
-    }
-
-    public double getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(double valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
-
-    public int getSlp() {
-        return slp;
-    }
-
-    public void setSlp(int slp) {
-        this.slp = slp;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
+    
+    public void descontoPagueLeve(int qtdePague, int qtdeLeve) {
+        quantidade = qtdeLeve;
+        valorTotal = qtdeLeve * eproduto.getValorUnitario();
+        percentualDesconto = ((qtdeLeve * eproduto.getValorUnitario() / qtdePague * eproduto.getValorUnitario())-1)*100;
     }
     
-        public void promocaoQuantidade() {
-   
-        EProduto eProduto = new EProduto();
-
-        Scanner scan = new Scanner(System.in);
-        
-        pague = scan.nextInt();
-        leve = scan.nextInt();
-
-        valorUnitario = eProduto.getValorUnitario();
-
-        if (leve > pague) {
-            slp = leve - pague;
-
-        } else {
-            JOptionPane.showMessageDialog(null, "O Valor de LEVE tem que ser maior que o PAGUE");
-        }
-        valorDesconto = valorUnitario * slp;
-
-        valorFinal = (leve * valorUnitario) - valorDesconto;
-        
-        JOptionPane.showMessageDialog(null,"Pague" + pague + "Leve" + leve);
-        JOptionPane.showMessageDialog(null,"Valor Final: " + valorFinal + "Valor Desconto: " + valorDesconto);
-       
-        
-
-    }
-    
-    public void promocaoPorcentagem (){
-        
-        EProduto eProduto = new EProduto();
-        
-        valorUnitario = eProduto.getValorUnitario();
-        
-        Scanner scan = new Scanner(System.in);
-        
-        x = scan.nextInt();
-        
-        
-        porcentagem = x /100;
-        
-        valorDesconto =  valorUnitario * porcentagem;
-        
-        valorFinal = valorUnitario - valorDesconto;
-        
-        JOptionPane.showMessageDialog(null,"Desconto de " + x + " %.");
-        JOptionPane.showMessageDialog(null, "Valor Final: "+valorFinal +"Valor Dosconto: " +valorDesconto);
-        
-      
-  
+    public void descontoPorcentagem(double porcentagem) {
+        quantidade = 1;
+        valorTotal = eproduto.getValorUnitario();
+        percentualDesconto = porcentagem / 100;
     }
 
 
 }
-
-
