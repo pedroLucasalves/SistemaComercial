@@ -79,7 +79,7 @@ public class Query {
     public static final String SELECT_ALL_PEDIDO = "SELECT * FROM PEDIDO ORDER BY CODIGO";
 
     //Item pedido
-    public static final String INSERT_INTO = "INSERT INTO ITEMPEDIDO"
+    public static final String INSERT_ITEMPEDIDO = "INSERT INTO ITEMPEDIDO"
             + "(CODIGO, QUANTIDADE, COD_PEDIDO, COD_PRODUTO) VALUES"
             + "(?,?,?,?)";
     //promocao

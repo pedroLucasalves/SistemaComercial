@@ -22,7 +22,7 @@ public class PItemPedido {
 
         try {
            
-            PreparedStatement psd = cnn.prepareStatement(Query.);
+            PreparedStatement psd = cnn.prepareStatement(Query.INSERT_ITEMPEDIDO);
 
             psd.setDouble(1, eItemPedido.getQuantidade());
             psd.setDouble(2, eItemPedido.getValor());
