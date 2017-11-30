@@ -35,6 +35,6 @@ public class PItemPedido {
         } catch (Exception e) {
             cnn.rollback();
         }
-        cnn.close();
+       
     }
 }

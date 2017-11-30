@@ -16,15 +16,15 @@ import java.util.List;
 public class EPedido {
 
     private int codigo;
-    private Date data;
+    private Date dataHora;
     private double valorTotal;
     
     private EFuncionario eFuncionario;
-    private List<EItemPedido> eItemPedido;
+    private List<EItemPedido> ListaPedido;
     
     public EPedido(){
         eFuncionario = new EFuncionario();
-        eItemPedido = new ArrayList<>();
+        ListaPedido = new ArrayList<>();
     }
 
     public int getCodigo() {
@@ -35,12 +35,12 @@ public class EPedido {
         this.codigo = codigo;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataHora() {
+        return dataHora;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataHora(Date data) {
+        this.dataHora = data;
     }
 
     public double getValorTotal() {
@@ -49,6 +49,9 @@ public class EPedido {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+    public void setValorTotalAcumulando(double valor) {
+        this.valorTotal += valor;
     }
 
     public EFuncionario geteFuncionario() {
@@ -60,11 +63,11 @@ public class EPedido {
     }
 
     public List<EItemPedido> geteItemPedido() {
-        return eItemPedido;
+        return ListaPedido;
     }
 
     public void seteItemPedido(List<EItemPedido> eItemPedido) {
-        this.eItemPedido = eItemPedido;
+        this.ListaPedido = eItemPedido;
     }
     
 }

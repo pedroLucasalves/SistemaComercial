@@ -125,6 +125,15 @@ public class PProduto {
         Connection cnn = util.UConexao.getConexao();
         Statement stm = cnn.createStatement();
         ResultSet rs = stm.executeQuery(Query.SELECT_ALL_PRODUTO);
+        
+        
+        
+//        PreparedStatement psd = cnn.prepareStatement(Query.SELECT_ALL_PEDIDO);
+//        if(parametro.getNome() != null){
+//            if(!parametro.getNome().isEmpty()){
+//                psd.setString(1,"%" + parametro.getNome().toUpperCase() + "%");
+//            }
+//        }
 
         EProduto eProduto = null;
         ArrayList<EProduto> lista = null;

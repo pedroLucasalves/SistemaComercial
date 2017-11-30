@@ -158,7 +158,7 @@ public class AProdutoPesquisa extends javax.swing.JInternalFrame {
 
             Vector detalhes = new Vector();
 
-            for (EProduto detalhe : new NProduto().listar()) {
+          for (EProduto detalhe : new NProduto().listar()) {
                 Vector<String> linha = new Vector();
                 linha.add(detalhe.getCodigo() + "");
                 linha.add(detalhe.getNome());

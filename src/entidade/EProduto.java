@@ -9,6 +9,15 @@ public class EProduto {
     private double quantidade;
     private EPromocao ePromocao;
 
+    public EProduto(int codigo, String nome) {
+        this.codigo = codigo;
+        this.nome = nome;
+    }
+
+    public EProduto() {
+        
+    }
+
     public EPromocao getePromocao() {
         return ePromocao;
     }
@@ -49,7 +58,6 @@ public class EProduto {
         this.quantidade = quantidade;
     }
 
-
     public String getDescricao() {
         return descricao;
     }
@@ -57,17 +65,10 @@ public class EProduto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
     @Override
-    public String toString(){
-        return "Produto{" +
-                "nome =" + nome
-                + "descricao =" + descricao
-                +"valorUnitario =" + valorUnitario
-                +"quantidade =" + quantidade
-                +"promocao =" + ePromocao
-                + '}';
+    public String toString() {
+        return this.nome;
     }
-    
-    
+
 }
