@@ -80,5 +80,11 @@ public class Query {
     private static final String INSERT_PROMOCAO = " INSERT INTO PROMOCAO"
             + "(CODIGO,DESCRICAO)VALUES"
             + "(?,?)";
+    public static final String SELECT_SEQ_PROMOCAO = "SELECT PROMOCAO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
+    public static final String UPDATE_PROMOCAO = "UPDATE PROMOCAO SET "
+            + "DESCRICAO = ?,VALORDESCONTO =?, VALORFINAL =? WHERE CODIGO = ?";
+    public static final String DELETE_PROMOCAO = "DELETE FROM PROMOCAO WHERE CODIGO = ?";
+    public static final String SELECT_PROMOCAO = "SELECT * FROM PROMOCAO WHERE CODIGO = ?";
+    public static final String SELECT_ALL_PROMOCAO = "SELECT * FROM PROMOCAO ORDER BY CODIGO";
 
 }

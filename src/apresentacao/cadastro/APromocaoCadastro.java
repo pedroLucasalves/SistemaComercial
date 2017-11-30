@@ -5,9 +5,13 @@
  */
 package apresentacao.cadastro;
 
+import apresentacao.pesquisa.AProdutoPesquisa;
 import apresentacao.pesquisa.APromocaoPesquisa;
+import entidade.EPromocao;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import negocio.NPromocao;
 
 /**
  *
@@ -42,8 +46,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBoxProduto = new javax.swing.JComboBox<>();
-        jButtonPesquisa = new javax.swing.JButton();
+        jButtonPesquisaPromo = new javax.swing.JButton();
         jLabelLeve = new javax.swing.JLabel();
         jTextFieldLeve = new javax.swing.JTextField();
         jLabelPague = new javax.swing.JLabel();
@@ -58,6 +61,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         jButtonFechar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jComboBoxTipopromo = new javax.swing.JComboBox<>();
+        jTextFieldCodigoPromo = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -85,12 +89,12 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25))
         );
 
-        jLabel2.setText("Produto");
+        jLabel2.setText("Codigo");
 
-        jButtonPesquisa.setText("Pesquisar");
-        jButtonPesquisa.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPesquisaPromo.setText("Pesquisar");
+        jButtonPesquisaPromo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPesquisaActionPerformed(evt);
+                jButtonPesquisaPromoActionPerformed(evt);
             }
         });
 
@@ -104,6 +108,11 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
 
         jButtonSalvar.setBackground(new java.awt.Color(0, 255, 51));
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jButtonExcluir.setBackground(new java.awt.Color(255, 0, 0));
         jButtonExcluir.setText("Excluir");
@@ -115,12 +124,22 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
 
         jButtonLimpar.setBackground(new java.awt.Color(255, 255, 0));
         jButtonLimpar.setText("Limpar");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
 
         jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Tipo Promo");
 
-        jComboBoxTipopromo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quantidade", "Procentagem" }));
+        jComboBoxTipopromo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Quantidade", "Procentagem" }));
         jComboBoxTipopromo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTipopromoActionPerformed(evt);
@@ -135,6 +154,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -143,63 +163,49 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
                         .addComponent(jButtonExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonFechar))
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBoxTipopromo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(44, 44, 44)
-                                .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonPesquisa))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelPague)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldPague, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabelLeve, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(82, 82, 82)
-                            .addComponent(jTextFieldLeve, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelProcentagem)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabelLeve)
+                            .addComponent(jLabelPague)
+                            .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxTipopromo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPague, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldLeve, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                            .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldCodigoPromo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64)
+                                .addComponent(jButtonPesquisaPromo)))))
+                .addGap(33, 57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonPesquisa)))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBoxTipopromo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jTextFieldCodigoPromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonPesquisaPromo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jComboBoxTipopromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLeve)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jTextFieldLeve, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTextFieldLeve, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldPague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPague))
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelPague)
-                        .addGap(5, 5, 5))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextFieldPague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelProcentagem)
                     .addComponent(jTextFieldPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -213,7 +219,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jButtonLimpar)
                     .addComponent(jButtonFechar)
                     .addComponent(jButtonExcluir))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,15 +229,42 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
+    
+    
     private void jComboBoxTipopromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipopromoActionPerformed
 
-//        if(jComboBoxTipopromo.getItemAt("Quantidade")){
-//        jLabelProcentagem.setVisible(false);
-//        jTextFieldPorcentagem.setVisible(false);
+        
+        EPromocao ePromocao = new EPromocao();
+        if (jComboBoxTipopromo.getSelectedItem().equals("Quantidade")){
+          
+          ePromocao.getLeve();
+          ePromocao.getPague();
+          ePromocao.promocaoQuantidade();
+          
+        } else if(jComboBoxTipopromo.getSelectedItem().equals("Porcentagem")) {
+            
+            ePromocao.getX();
+            
+            ePromocao.promocaoPorcentagem();
+            
+            
+        }
+//        if(jComboBoxTipopromo.equals("Selecione...")){
+//        
+//        jTextFieldLeve.setEditable(false);
+//    jTextFieldPague.setEditable(false);
+//    jTextFieldPorcentagem.setEditable(false);
+//    
+//        }else if(jComboBoxTipopromo.equals("Quantidade")){
+//        jTextFieldLeve.setEditable(true);
+//        jTextFieldPague.setEditable(true);
+//        
+//        } else {
+//            jTextFieldPorcentagem.setEditable(true);
 //        }
     }//GEN-LAST:event_jComboBoxTipopromoActionPerformed
 
-    private void jButtonPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaActionPerformed
+    private void jButtonPesquisaPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaPromoActionPerformed
         try {
             APromocaoPesquisa tela01 = new APromocaoPesquisa(jDesktopPanePrincipal);
             jDesktopPanePrincipal.add(tela01);
@@ -241,16 +274,57 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    }//GEN-LAST:event_jButtonPesquisaActionPerformed
+    }//GEN-LAST:event_jButtonPesquisaPromoActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        try {
+            EPromocao ePromocao= new EPromocao();
+
+            if (!jTextFieldCodigoPromo.getText().isEmpty()) {
+                ePromocao.setCodigo(Integer.parseInt(jTextFieldCodigoPromo.getText()));
+            }
+            
+            ePromocao.setDescricao(jTextFieldDescricao.getText().toUpperCase());
+            
+            if (!jTextFieldCodigoPromo.getText().isEmpty()){
+                ePromocao.setCodigo(Integer.parseInt(jTextFieldCodigoPromo.getText()));               
+            }
+            
+            NPromocao nPromocao = new NPromocao();
+            nPromocao.salvar(ePromocao);
+            
+            utilitarios.Mensagem.MSG01();
+
+//
+//            LimparTela();
+//
+//        } catch (java.sql.SQLIntegrityConstraintViolationException e) {
+//            utilitarios.Mensagem.MSG02();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonFecharActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonLimpar;
-    private javax.swing.JButton jButtonPesquisa;
+    private javax.swing.JButton jButtonPesquisaPromo;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JComboBox<String> jComboBoxProduto;
     private javax.swing.JComboBox<String> jComboBoxTipopromo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -260,6 +334,7 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelPague;
     private javax.swing.JLabel jLabelProcentagem;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextFieldCodigoPromo;
     private javax.swing.JTextField jTextFieldDescricao;
     private javax.swing.JTextField jTextFieldLeve;
     private javax.swing.JTextField jTextFieldPague;
