@@ -7,13 +7,14 @@ package entidade;
 
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 
 /**
  *
  * @author vip
  */
 public class EPromocao {
-    
+
     private int codigo;
     private String drescricao;
 
@@ -21,9 +22,6 @@ public class EPromocao {
         this.codigo = codigo;
         this.drescricao = drescricao;
     }
-    
-    
-    
 
     public int getCodigo() {
         return codigo;
@@ -39,63 +37,33 @@ public class EPromocao {
 
     public void setDrescricao(String drescricao) {
         this.drescricao = drescricao;
-    }
-    
-    public static String promocaoPorcentagem(EProduto eProduto){
-        
-        int n;
-        double porcentagem;
-        double valorDesconto;
-        double valorFinal;
-        double valorUnitario;
-        
-        valorUnitario = eProduto.getValorUnitario();
-        
-        
-        Scanner leia = new Scanner(System.in);
-        
-        n = leia.nextInt();
-        
-        porcentagem = n/100.00;
-        
-        
-        valorDesconto = valorUnitario*porcentagem;
-        
-        valorFinal = valorUnitario - valorDesconto;
 
-        //return valorFinal;
-        return null;
-    
-}
-    public static String promocaoQuantidade(EProduto eProduto){
-        
-        int pague;
-        int leve;
-        double valorFinal;
-        int slp = 0;
-        double valorUnitario;
-        double valorDesconto;
-        
-       valorUnitario = eProduto.getValorUnitario();
-       
-       Scanner leia = new Scanner(System.in);
-        
-        leve = leia.nextInt();
-        pague = leia.nextInt();
-        
-        if(leve > pague){
-            slp = leve - pague;
-            
-        } else {
-            JOptionPane.showMessageDialog(null, "O Valor de LEVE tem que ser maior que o PAGUE");
-        }
-        valorDesconto = valorUnitario*slp;
-        
-        valorFinal = (leve*valorUnitario) - valorDesconto;
-                
-        return null;
-        
     }
-    
-    
 }
+
+//    public static double promocaoQuantidade(EProduto eProduto) {
+//
+//        int pague;
+//        int leve;
+//        double valorFinal = 0;
+//        int slp = 0;
+//        double valorUnitario;
+//        double valorDesconto;
+//
+//        valorUnitario = eProduto.getValorUnitario();
+//
+//        if (leve > pague) {
+//            slp = leve - pague;
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "O Valor de LEVE tem que ser maior que o PAGUE");
+//        }
+//        valorDesconto = valorUnitario * slp;
+//
+//        valorFinal = (leve * valorUnitario) - valorDesconto;
+//        double promo = valorFinal;
+//        return valorFinal;
+//
+//    }
+//
+//}

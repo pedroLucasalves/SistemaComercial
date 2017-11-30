@@ -94,8 +94,8 @@ public class Utilitarios {
             return false;
         }
     }
-    
-    public static String retirarMascara(String stg){
+
+    public static String retirarMascara(String stg) {
         stg = stg.replace(" ", "");
         stg = stg.replace("-", "");
         stg = stg.replace(".", "");
@@ -103,7 +103,7 @@ public class Utilitarios {
         stg = stg.replace(")", "");
         stg = stg.replace("/", "");
         stg = stg.replace(")", "");
-        
+
         return stg;
     }
 
@@ -113,16 +113,15 @@ public class Utilitarios {
             evt.consume();
         }
     }
-    
-    public static boolean validarData(){
-                String s = "31/02/2009";
-        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+
+    public static boolean validarData() {
+        String s = "31/02/2009";
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            System.out.println(df.parse (s));
+            System.out.println(df.parse(s));
         } catch (ParseException ex) {
-           System.out.println(ex);
+            System.out.println(ex);
         }
         return true;
     }
-
 }
