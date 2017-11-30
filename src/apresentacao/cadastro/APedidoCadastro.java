@@ -461,8 +461,9 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
                 linha.add(item.geteProduto().getCodigo() + "");
                 linha.add(item.geteProduto().getDescricao());
                 linha.add(item.geteProduto().getNome());
-                linha.add(NumberFormat.getCurrencyInstance().format(item.geteProduto().getQuantidade()));
+                linha.add(NumberFormat.getCurrencyInstance().format(item.getValor()));
                 linha.add(NumberFormat.getCurrencyInstance().format(item.geteProduto().getValorUnitario()));
+                
                 detalhe.add(linha);
                 ePedido.setValorTotalAcumulando(item.getQuantidade() * item.geteProduto().getValorUnitario());
 
