@@ -151,6 +151,8 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextFieldCodigoPromo.setEditable(false);
+
         jComboBoxProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxProdutoActionPerformed(evt);
@@ -253,19 +255,18 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    
-    
+
     private void jComboBoxTipopromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipopromoActionPerformed
 
         EPromocao ePromocao = new EPromocao();
         ePromocao.setDescricao(jTextFieldDescricao.getText());
         ePromocao.setEproduto((EProduto) jComboBoxProduto.getSelectedItem());
-        if(jComboBoxTipopromo.getSelectedItem().equals("Quantidade")){
-            ePromocao.descontoPagueLeve(Integer.parseInt(jTextFieldPague.getText()),Integer.parseInt( jTextFieldLeve.getText()));
-        }else {
+        if (jComboBoxTipopromo.getSelectedItem().equals("Quantidade")) {
+            ePromocao.descontoPagueLeve(Integer.parseInt(jTextFieldPague.getText()), Integer.parseInt(jTextFieldLeve.getText()));
+        } else {
             ePromocao.descontoPorcentagem(Double.parseDouble(jTextFieldPorcentagem.getText()));
         }
-        
+
     }//GEN-LAST:event_jComboBoxTipopromoActionPerformed
 
     private void jButtonPesquisaPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaPromoActionPerformed
@@ -282,35 +283,26 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
-            EPromocao ePromocao= new EPromocao();
+            EPromocao ePromocao = new EPromocao();
 
             if (!jTextFieldCodigoPromo.getText().isEmpty()) {
                 ePromocao.setCodigo(Integer.parseInt(jTextFieldCodigoPromo.getText()));
             }
-            
+
             ePromocao.setDescricao(jTextFieldDescricao.getText().toUpperCase());
-            
-            if (!jTextFieldCodigoPromo.getText().isEmpty()){
-                ePromocao.setCodigo(Integer.parseInt(jTextFieldCodigoPromo.getText()));               
+
+            if (!jTextFieldCodigoPromo.getText().isEmpty()) {
+                ePromocao.setCodigo(Integer.parseInt(jTextFieldCodigoPromo.getText()));
             }
-            
+
             NPromocao nPromocao = new NPromocao();
             nPromocao.salvar(ePromocao);
-            
+
             utilitarios.Mensagem.MSG01();
-
-//
-//            LimparTela();
-//
-//        } catch (java.sql.SQLIntegrityConstraintViolationException e) {
-//            utilitarios.Mensagem.MSG02();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-
+            LimparTela();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro");
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -322,19 +314,19 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
-    public final void carregaProdutos(){
+    public final void carregaProdutos() {
         try {
-            for(EProduto p : new PProduto().listar()) {
+            for (EProduto p : new PProduto().listar()) {
                 jComboBoxProduto.addItem(p);
             }
-            
+
         } catch (Exception e) {
         }
-        
+
     }
-    
+
     private void jComboBoxProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProdutoActionPerformed
-       
+
     }//GEN-LAST:event_jComboBoxProdutoActionPerformed
 
 
@@ -361,4 +353,8 @@ public class APromocaoCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldPague;
     private javax.swing.JTextField jTextFieldPorcentagem;
     // End of variables declaration//GEN-END:variables
+
+    private void LimparTela() {
+
+    }
 }
