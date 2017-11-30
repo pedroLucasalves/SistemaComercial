@@ -30,15 +30,15 @@ public class PPromocao {
             if (rs.next()) {
                 ePromocao.setCodigo(rs.getInt("CODIGO"));
             }
-            
-        rs.close();
+
+            rs.close();
             PreparedStatement ps = cnn.prepareStatement(Query.INSERT_PROMOCAO);
 
             ps.setInt(1, ePromocao.getCodigo());
             ps.setString(2, ePromocao.getDescricao());
             ps.setDouble(3, ePromocao.getValorDesconto());
             ps.setDouble(4, ePromocao.getValorFinal());
-            
+
             ps.execute();
 
             cnn.commit();
@@ -54,9 +54,8 @@ public class PPromocao {
 
 //    public PPromocao() {
 //    }
-
     public void alterar(EPromocao ePromocao) throws ClassNotFoundException, Exception {
-        
+
         Connection cnn = util.UConexao.getConexao();
         cnn.setAutoCommit(false);
         try {
@@ -135,6 +134,5 @@ public class PPromocao {
         rs.close();
         return lista;
     }
-
 
 }

@@ -7,10 +7,12 @@ package apresentacao.pesquisa;
 
 import TMethod.OrdenarPorNome;
 import apresentacao.cadastro.AFuncionarioCadastro;
+import apresentacao.cadastro.APedidoCadastro;
 import entidade.EFuncionario;
 import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import negocio.NFuncionario;
@@ -20,22 +22,31 @@ import negocio.NFuncionario;
  * @author Pedro
  */
 public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
-    
+
     JDesktopPane jDesktopPanePrincipal;
-    
+    JInternalFrame chamadora;
+
     /**
      * Creates new form AFuncionarioPesquisa
      */
     public AFuncionarioPesquisa() {
         initComponents();
-        
+
         preencherTela();
     }
-    public AFuncionarioPesquisa(JDesktopPane parametro){
+
+    public AFuncionarioPesquisa(JDesktopPane parametro) {
         this();
-        
+
         this.jDesktopPanePrincipal = parametro;
     }
+
+    public AFuncionarioPesquisa(JDesktopPane jDesktopPanePrincipal, JInternalFrame parametro) {
+        this();
+
+        this.chamadora = parametro;
+    }
+
     private void imprimirNaGrid(Iterator<EFuncionario> dados) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTablePesquisarFuncionario.getModel();
@@ -51,13 +62,12 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
                 saida[5] = aux.getRg();
                 saida[6] = aux.geteTipoFuncionario().toString();
                 model.addRow(saida);
-                
-                
+
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(rootPane, erro);
         }
-     }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -204,12 +214,12 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
     private void jTablePesquisarFuncionarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisarFuncionarioMousePressed
         try {
             int linha = jTablePesquisarFuncionario.getSelectedRow();
-            String codigo =jTablePesquisarFuncionario.getValueAt(linha, 0).toString();
-            
+            String codigo = jTablePesquisarFuncionario.getValueAt(linha, 0).toString();
+
             EFuncionario eFuncionario;
             eFuncionario = new NFuncionario().consultar(Integer.parseInt(codigo));
             AFuncionarioCadastro tela02 = new AFuncionarioCadastro(jDesktopPanePrincipal, eFuncionario);
-            
+
             jDesktopPanePrincipal.add(tela02);
             tela02.setVisible(true);
             this.dispose();
@@ -219,8 +229,8 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTablePesquisarFuncionarioMousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         String filtro = (String) jComboBoxFiltro.getSelectedItem();
-        try{
+        String filtro = (String) jComboBoxFiltro.getSelectedItem();
+        try {
             OrdenarPorNome objeto = new OrdenarPorNome();
             imprimirNaGrid(objeto.listagemDeProfessor());
         } catch (Exception erro) {
@@ -241,9 +251,9 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTablePesquisarFuncionario;
     private javax.swing.JTextField jTextFieldProcurar;
     // End of variables declaration//GEN-END:variables
-    private void preencherTela(){
+    private void preencherTela() {
         try {
-            Vector <String> cabecalho = new Vector();
+            Vector<String> cabecalho = new Vector();
             cabecalho.add("CODIGO");
             cabecalho.add("NOME");
             cabecalho.add("CPF");
@@ -251,10 +261,10 @@ public class AFuncionarioPesquisa extends javax.swing.JInternalFrame {
             cabecalho.add("ENDERECO");
             cabecalho.add("RG");
             cabecalho.add("TIPOFUNCIONARIO");
-            
+
             Vector detalhes = new Vector();
-            
-            for(EFuncionario detalhe : new NFuncionario().listar()){
+
+            for (EFuncionario detalhe : new NFuncionario().listar()) {
                 Vector<String> linha = new Vector();
                 linha.add(detalhe.getCodigo() + "");
                 linha.add(detalhe.getNome());

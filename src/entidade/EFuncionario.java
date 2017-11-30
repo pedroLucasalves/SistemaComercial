@@ -66,14 +66,7 @@ public class EFuncionario extends EPessoa {
 
     @Override
     public String toString() {
-        return "Funcionario{"
-                + "nome=" + nome
-                + "cpf=" + cpf
-                + "telefone=" + telefone
-                + "endereço=" + endereco
-                + "rg=" + rg
-                + "cod_funcionario=" + eTipoFuncionario
-                + '}';
+        return this.nome;
     }
 
 }

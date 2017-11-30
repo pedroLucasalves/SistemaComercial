@@ -9,6 +9,7 @@ import entidade.EItemPedido;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import util.Query;
 
 /**
  *
@@ -20,10 +21,8 @@ public class PItemPedido {
         cnn.setAutoCommit(false);
 
         try {
-            String sq1 = "INSERT INTO ITEMPEDIDO(QUANTIDADE, VALOR, COD_PEDIDO, COD_PRODUTO"
-                    + "VALUES (?,?,?,?)";
-
-            PreparedStatement psd = cnn.prepareStatement(sq1);
+           
+            PreparedStatement psd = cnn.prepareStatement(Query.);
 
             psd.setDouble(1, eItemPedido.getQuantidade());
             psd.setDouble(2, eItemPedido.getValor());

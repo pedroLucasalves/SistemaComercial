@@ -23,6 +23,10 @@ public class NProduto {
         pProduto = new PProduto();
     }
 
+    public NProduto(EProduto parametro) {
+        
+    }
+
     public void salvar(EProduto eProduto) throws SQLException, Exception {
         if (eProduto.getCodigo() == 0) {
             pProduto.incluir(eProduto);
@@ -43,9 +47,4 @@ public class NProduto {
         return pProduto.listar();
     }
 
-    public Iterable<EProduto> listar(EProduto eProduto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-   
 }

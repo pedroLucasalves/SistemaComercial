@@ -5,6 +5,7 @@
  */
 package apresentacao.cadastro;
 
+import apresentacao.pesquisa.AFuncionarioPesquisa;
 import apresentacao.pesquisa.APromocaoPesquisa;
 import entidade.EFuncionario;
 import entidade.EItemPedido;
@@ -34,6 +35,8 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
      */
     public APedidoCadastro() {
         initComponents();
+        carregaCombos();
+
     }
 
     public APedidoCadastro(JDesktopPane parametro) {
@@ -60,8 +63,8 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonAdiconarProduto = new javax.swing.JButton();
+        jButtonRetirarProduto = new javax.swing.JButton();
         jComboBoxProduto = new javax.swing.JComboBox<>();
         jComboBoxFuncionario = new javax.swing.JComboBox<>();
         jTextFieldCodigo = new javax.swing.JTextField();
@@ -75,6 +78,8 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
         jButtonExcluir = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButtonpesquisa = new javax.swing.JButton();
+        jButtonPesquisaProduto = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -110,14 +115,19 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Quantidade");
 
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdiconarProduto.setText("Adicionar");
+        jButtonAdiconarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAdiconarProdutoActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Retirar");
+        jButtonRetirarProduto.setText("Retirar");
+        jButtonRetirarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetirarProdutoActionPerformed(evt);
+            }
+        });
 
         jComboBoxProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +173,15 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
 
         jButton7.setText("jButton7");
 
+        jButtonpesquisa.setText("Pesquisar");
+        jButtonpesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonpesquisaActionPerformed(evt);
+            }
+        });
+
+        jButtonPesquisaProduto.setText("Pesquisar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,20 +205,20 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel1)
                                         .addComponent(jLabel4))
                                     .addGap(26, 26, 26)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBoxFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBoxProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jButtonPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(0, 0, Short.MAX_VALUE))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                                            .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jButtonPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxFuncionario, 0, 342, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonpesquisa)
+                                        .addComponent(jButtonPesquisaProduto)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addComponent(jButtonSalvar)
@@ -211,9 +230,9 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
                         .addComponent(jButton7))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonAdiconarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonRetirarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -225,22 +244,24 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonPesquisa))
-                .addGap(10, 10, 10)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBoxFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                    .addComponent(jComboBoxFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonpesquisa))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                    .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPesquisaProduto))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonRetirarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                    .addComponent(jButtonAdiconarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -271,7 +292,7 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
         carregaTabela(ePedido.geteItemPedido());
     }
 
-    private void SelecionarFuncionario(EFuncionario eFuncionario) {
+    public void SelecionarFuncionario(EFuncionario eFuncionario) {
         try {
             for (int i = 0; i < jComboBoxFuncionario.getModel().getSize(); i++) {
                 EFuncionario item = (EFuncionario) jComboBoxFuncionario.getModel().getElementAt(i);
@@ -296,9 +317,31 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonPesquisaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonAdiconarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdiconarProdutoActionPerformed
+        try {
+            EItemPedido eItemPedido = new EItemPedido();
+            EProduto produtoSelecionado = (EProduto) jComboBoxProduto.getModel().getSelectedItem();
+
+            if (produtoSelecionado.getCodigo() == 0) {
+                throw new Exception("E necessario selecionar um produto");
+            }
+            eItemPedido.seteProduto(produtoSelecionado);
+            eItemPedido.setQuantidade(Double.parseDouble(jTextFieldQuantidade.getText()));
+
+            if (eItemPedido.getQuantidade() <= 0) {
+                throw new Exception("e necessario informar a quantidade do produto");
+            }
+            AdiconarItemNaLista(eItemPedido);
+            carregaTabela(ePedido.geteItemPedido());
+            jTextFieldValorTotal.setText(NumberFormat.getCurrencyInstance().format(ePedido.getValorTotal()));
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "É necessário informar uma quantidade válida.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+    }//GEN-LAST:event_jButtonAdiconarProdutoActionPerformed
 
     private void jComboBoxFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFuncionarioActionPerformed
 
@@ -315,15 +358,48 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jComboBoxProdutoActionPerformed
 
+    private void jButtonpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonpesquisaActionPerformed
+        try {
+            AFuncionarioPesquisa tela01 = new AFuncionarioPesquisa(jDesktopPanePrincipal, this);
+
+            jDesktopPanePrincipal.add(tela01);
+            tela01.setVisible(true);
+
+            this.setVisible(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+    }//GEN-LAST:event_jButtonpesquisaActionPerformed
+
+    private void jButtonRetirarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetirarProdutoActionPerformed
+        try {
+
+            if (jTableVenda.getSelectedRow() == -1) {
+                throw new Exception(" E necessario selecionar um item na lista");
+            }
+            if (ePedido.geteItemPedido().isEmpty()) {
+                throw new Exception("É necessário ter algum item na lista para ser removido.");
+            }
+            ePedido.geteItemPedido().remove(jTableVenda.getSelectedRow());
+
+            carregaTabela(ePedido.geteItemPedido());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonRetirarProdutoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButtonAdiconarProduto;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonPesquisa;
+    private javax.swing.JButton jButtonPesquisaProduto;
+    private javax.swing.JButton jButtonRetirarProduto;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JButton jButtonpesquisa;
     private javax.swing.JComboBox<Object> jComboBoxFuncionario;
     private javax.swing.JComboBox<Object> jComboBoxProduto;
     private javax.swing.JLabel jLabel1;
@@ -345,7 +421,7 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
             jComboBoxProduto.removeAllItems();
             jComboBoxProduto.addItem(new EProduto(0, "Selecione..."));
 
-            for (EProduto eProduto : new NProduto().listar(new EProduto())) {
+            for (EProduto eProduto : new NProduto().listar()) {
                 jComboBoxProduto.addItem(eProduto);
             }
 
@@ -353,7 +429,7 @@ public class APedidoCadastro extends javax.swing.JInternalFrame {
             jComboBoxFuncionario.removeAllItems();
             jComboBoxFuncionario.addItem(new EFuncionario(0, "Selecione"));
 
-            for (EFuncionario eFuncionario : new NFuncionario().listar(new EFuncionario())) {
+            for (EFuncionario eFuncionario : new NFuncionario().listar()) {
                 jComboBoxFuncionario.addItem(eFuncionario);
             }
 

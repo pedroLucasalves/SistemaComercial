@@ -69,16 +69,22 @@ public class Query {
 
     //Pedido
     public static final String INSERT_PEDIDO = "INSERT INTO PEDIDO"
-            + "CODIGO, NOW(DATAHORA), VALORTOTAL, COD_FUNCIONARIO ";
+            + "(CODIGO, NOW(DATAHORA), VALORTOTAL, COD_FUNCIONARIO) VALUES "
+            + "(?,?,?,?)";
     public static final String SELECT_SEQ_PEDIDO = "SELECT PEDIDO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
     public static final String UPDATE_PEDIDO = "UPDATE PEDIDO SET "
             + "DATAHORA = ?, VALORTOTAL = ?, COD_FUNCONARIO = ? WHERE CODIGO = ?";
     public static final String DELETE_PEDIDO = "DELETE FROM PEDIDO WHERE CODIGO = ?";
     public static final String SELECT_PEDIDO = "SELECT * FROM PEDIDO WHERE CODIGO = ?";
     public static final String SELECT_ALL_PEDIDO = "SELECT * FROM PEDIDO ORDER BY CODIGO";
+
+    //Item pedido
+    public static final String INSERT_INTO = "INSERT INTO ITEMPEDIDO"
+            + "(CODIGO, QUANTIDADE, COD_PEDIDO, COD_PRODUTO) VALUES"
+            + "(?,?,?,?)";
     //promocao
-    private static final String INSERT_PROMOCAO = " INSERT INTO PROMOCAO"
-            + "(CODIGO,DESCRICAO)VALUES"
+    public static final String INSERT_PROMOCAO = "INSERT INTO PROMOCAO"
+            + " (CODIGO, DESCRICAO) VALUES"
             + "(?,?)";
     public static final String SELECT_SEQ_PROMOCAO = "SELECT PROMOCAO_CODIGO_SEQ.NEXTVAL AS CODIGO FROM DUAL";
     public static final String UPDATE_PROMOCAO = "UPDATE PROMOCAO SET "
